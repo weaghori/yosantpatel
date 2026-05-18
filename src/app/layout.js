@@ -1,5 +1,6 @@
 import RootLayoutShell from "@/components/RootLayoutShell";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -31,10 +32,17 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <link rel="stylesheet" href="/css/core.min.css" />
         <link rel="stylesheet" href="/css/skin-web-application.css" />
+        
+        {/* Load jQuery and Swiper before Next.js is interactive */}
+        <Script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" strategy="beforeInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" strategy="beforeInteractive" />
       </head>
       <RootLayoutShell>
         {children}
       </RootLayoutShell>
+      
+      {/* Load Timber master script after page is interactive */}
+      <Script src="/js/timber.master.min.js" strategy="afterInteractive" />
     </html>
   );
 }
