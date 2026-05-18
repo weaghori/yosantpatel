@@ -80,8 +80,8 @@ export default function BlogDetailClient({ post }) {
                 ? post.content
                     .replace(/src="\/uploads\//g, 'src="https://ams.aghorimediahouse.com/uploads/')
                     .replace(/src='\/uploads\//g, "src='https://ams.aghorimediahouse.com/uploads/")
-                    .replace(/<li>\s*[●•·⁃■\-\*]\s*/g, '<li>')
-                    .replace(/<li>\s*<span[^>]*>\s*[●•·⁃■\-\*]\s*<\/span>\s*/g, '<li>')
+                    .replace(/<li>(?:\s|&nbsp;|&#160;)*(?:&bull;|&#8226;|&#x2022;|&middot;|&#183;|[●•·⁃■\-\*])(?:\s|&nbsp;|&#160;)*/gi, '<li>')
+                    .replace(/<li>(?:\s|&nbsp;|&#160;)*<span[^>]*>(?:\s|&nbsp;|&#160;)*(?:&bull;|&#8226;|&#x2022;|&middot;|&#183;|[●•·⁃■\-\*])(?:\s|&nbsp;|&#160;)*<\/span>(?:\s|&nbsp;|&#160;)*/gi, '<li>')
                 : '' 
             }} />
           </div>
