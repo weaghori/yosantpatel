@@ -12,13 +12,13 @@ export const metadata = {
     description: "I am one of the leading brand consultant and branding strategist in Mumbai providing expert branding solutions regarding all the branding needs",
     url: "https://yosantpatel.com",
     siteName: "Yosant Patel",
-    images: ["/images/FAVICON.png"],
+    images: ["/FAVICON.png"],
   },
   twitter: {
     card: "summary",
     title: "Get Best Branding Advice From The Best Brand Consultancy in Mumbai | Official Site",
     description: "I am one of the leading brand consultant and branding strategist in Mumbai providing expert branding solutions regarding all the branding needs",
-    images: ["/images/FAVICON.png"],
+    images: ["/FAVICON.png"],
   },
 };
 
@@ -31,7 +31,6 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <link rel="stylesheet" href="/css/core.min.css" />
         <link rel="stylesheet" href="/css/skin-web-application.css" />
-        <link rel="shortcut icon" href="/images/FAVICON.png" type="image/x-icon" />
       </head>
       <RootLayoutShell>
         {children}

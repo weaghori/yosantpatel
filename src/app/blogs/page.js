@@ -56,7 +56,7 @@ export default async function Blogs() {
                   </div>
                 </div>
               </div>
-              <img data-src="/images/slider/Blog-Learn-teach-Yosant-Patel.jpg" data-retina src="/images/blank.png" alt="" />
+              <img src="/images/slider/Blog-Learn-teach-Yosant-Patel.jpg" data-retina alt="" />
             </li>
           </ul>
         </div>
