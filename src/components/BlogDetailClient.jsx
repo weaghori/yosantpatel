@@ -65,7 +65,13 @@ export default function BlogDetailClient({ post }) {
 
       <section className="inner_blog_three">
         <div className="row">
-          <div className="container prose-container" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="container prose-container" dangerouslySetInnerHTML={{ 
+            __html: post.content
+              ? post.content
+                  .replace(/src="\/uploads\//g, 'src="https://ams.aghorimediahouse.com/uploads/')
+                  .replace(/src='\/uploads\//g, "src='https://ams.aghorimediahouse.com/uploads/")
+              : '' 
+          }} />
         </div>
       </section>
 
