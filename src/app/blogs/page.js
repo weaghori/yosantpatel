@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import MasonryTrigger from '@/components/MasonryTrigger';
 
+export const dynamic = 'force-dynamic';
+
 async function fetchBlogs() {
   try {
-    const res = await fetch('https://ams.aghorimediahouse.com/api/blogs?website=yosantpatel', { next: { revalidate: 3600 } });
+    const res = await fetch('https://ams.aghorimediahouse.com/api/blogs?website=yosantpatel', { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       if (data.success && Array.isArray(data.blogs)) {
