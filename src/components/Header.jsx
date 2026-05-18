@@ -16,10 +16,10 @@ export default function Header() {
   const isBlogDetail = pathname.startsWith('/blogs/') && pathname !== '/blogs';
   
   // All pages with high-impact hero sections are transparent initially
-  const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail;
+  const isTransparent = isHomePage || isWorkDetail;
 
   // Pages with dark hero images need the white logo for transparency
-  const hasDarkHero = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail;
+  const hasDarkHero = isHomePage || isWorkDetail;
   const needsBlackNav = !hasDarkHero;
   
   const navColorClass = needsBlackNav ? 'color-black' : '';
