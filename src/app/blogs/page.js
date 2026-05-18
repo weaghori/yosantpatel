@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import MasonryTrigger from '@/components/MasonryTrigger';
-// test
+
 async function fetchBlogs() {
   try {
     const res = await fetch('https://ams.aghorimediahouse.com/api/blogs?website=yosantpatel', { next: { revalidate: 3600 } });
