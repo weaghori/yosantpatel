@@ -1,11 +1,13 @@
 import BlogDetailClient from '@/components/BlogDetailClient';
 import { notFound } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   
   try {
-    const res = await fetch(`https://ams.aghorimediahouse.com/api/blogs/${slug}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`https://ams.aghorimediahouse.com/api/blogs/${slug}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       if (data.success && data.blog) {
@@ -35,7 +37,7 @@ export default async function BlogDetail({ params }) {
   const { slug } = await params;
   
   try {
-    const res = await fetch(`https://ams.aghorimediahouse.com/api/blogs/${slug}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`https://ams.aghorimediahouse.com/api/blogs/${slug}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       if (data.success && data.blog) {
