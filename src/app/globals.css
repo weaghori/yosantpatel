@@ -1,2 +1,4 @@
-/* globals.css */
-/* Reset or keep empty to rely on core.min.css and skin-web-application.css */
+
+.button.custom-blue-text {
+    color: #203b72 !important;
+}
