@@ -9,7 +9,7 @@ export default function RootLayoutShell({ children }) {
   const isHomePage = pathname === '/';
   
   // Dynamic body class
-  const bodyClass = `shop home-page ${isHomePage ? 'main-page' : ''}`;
+  const bodyClass = `shop home-page ${isHomePage ? 'main-page' : ''}`.trim();
 
   return (
     <body className={bodyClass}>
