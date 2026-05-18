@@ -9,7 +9,7 @@ export default function RootLayoutShell({ children }) {
   const isHomePage = pathname === '/';
   
   // Dynamic body class
-  const bodyClass = `shop home-page ${isHomePage ? 'main-page' : ''}`;
+  const bodyClass = `shop home-page ${isHomePage ? 'main-page' : ''}`.trim();
 
   return (
     <body className={bodyClass}>
@@ -38,10 +38,6 @@ export default function RootLayoutShell({ children }) {
       </div>
 
       {/* Scripts */}
-      <Script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" strategy="beforeInteractive" />
-      <Script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" strategy="beforeInteractive" />
-      <Script src="/js/timber.master.min.js" strategy="afterInteractive" />
-      
       <Script id="google-tag-manager" strategy="afterInteractive">
         {`
           (function (w, d, s, l, i) {

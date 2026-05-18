@@ -33,6 +33,10 @@ export default function BlogDetailClient({ post }) {
     }
   };
 
+  const imageUrl = post.mainImage 
+    ? (post.mainImage.startsWith('http') ? post.mainImage : `https://ams.aghorimediahouse.com${post.mainImage}`)
+    : (post.img ? (post.img.startsWith('http') ? post.img : `https://ams.aghorimediahouse.com${post.img}`) : null);
+
   return (
     <>
       {/* Intro Title Section 1 */}
@@ -65,7 +69,22 @@ export default function BlogDetailClient({ post }) {
 
       <section className="inner_blog_three">
         <div className="row">
-          <div className="container prose-container" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="container prose-container">
+            {imageUrl && (
+              <div className="blog-hero-image-wrapper">
+                <img src={imageUrl} alt={post.title} className="blog-hero-image" />
+              </div>
+            )}
+            <div dangerouslySetInnerHTML={{ 
+              __html: post.content
+                ? post.content
+                    .replace(/src="\/uploads\//g, 'src="https://ams.aghorimediahouse.com/uploads/')
+                    .replace(/src='\/uploads\//g, "src='https://ams.aghorimediahouse.com/uploads/")
+                    .replace(/<li>(?:\s|&nbsp;|&#160;)*(?:&bull;|&#8226;|&#x2022;|&middot;|&#183;|[●•·⁃■\-\*])(?:\s|&nbsp;|&#160;)*/gi, '<li>')
+                    .replace(/<li>(?:\s|&nbsp;|&#160;)*<span[^>]*>(?:\s|&nbsp;|&#160;)*(?:&bull;|&#8226;|&#x2022;|&middot;|&#183;|[●•·⁃■\-\*])(?:\s|&nbsp;|&#160;)*<\/span>(?:\s|&nbsp;|&#160;)*/gi, '<li>')
+                : '' 
+            }} />
+          </div>
         </div>
       </section>
 
@@ -84,6 +103,27 @@ export default function BlogDetailClient({ post }) {
           color: #555555 !important;
         }
 
+        /* Hero banner image styling to match CRM premium layout */
+        .blog-hero-image-wrapper {
+          position: relative;
+          width: 100%;
+          max-width: 100%;
+          border-radius: 24px;
+          overflow: hidden;
+          margin-bottom: 48px !important;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+          border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        .blog-hero-image {
+          width: 100% !important;
+          height: auto !important;
+          max-height: 480px !important;
+          object-fit: cover !important;
+          margin: 0 !important;
+          border-radius: 0 !important;
+          display: block !important;
+        }
+
         /* Force structural wrapper elements from CKEditor to be transparent */
         .prose-container div,
         .prose-container span,
@@ -92,6 +132,11 @@ export default function BlogDetailClient({ post }) {
           background-color: transparent !important;
           background: transparent !important;
           max-width: 100% !important;
+        }
+        
+        .prose-container > div:last-child {
+          background-color: transparent !important;
+          background: transparent !important;
         }
 
         /* Headings styling */
@@ -208,6 +253,13 @@ export default function BlogDetailClient({ post }) {
             font-size: 15px !important;
             line-height: 1.7 !important;
             margin-bottom: 16px !important;
+          }
+          .blog-hero-image-wrapper {
+            border-radius: 16px;
+            margin-bottom: 24px !important;
+          }
+          .blog-hero-image {
+            max-height: 280px !important;
           }
         }
 
