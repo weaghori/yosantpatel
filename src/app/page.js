@@ -15,7 +15,7 @@ export default function Home() {
         <div className="tm-slider-container full-width-slider pagination-top" data-featured-slider data-parallax
           data-parallax-fade-out data-animation="slide" data-scale-under="960" style={{ width: '100%' }}>
           <ul className="tms-slides">
-            <li className="tms-slide" data-image data-as-bkg-image data-force-fit>
+            <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{ backgroundImage: "url('/images/Yosant_Branding_Logo_Design.jpg')" }}>
               <div className="tms-content">
                 <div className="tms-content-inner left v-align-middle">
                   <div className="row">

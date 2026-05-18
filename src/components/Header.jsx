@@ -93,7 +93,10 @@ export default function Header() {
               <div className="logo no-transition">
                 <div className="logo-inner">
                   <Link href="/" className="no-transition">
-                    <img src={needsBlackNav ? "/images/YOSANT BLACK LOGO.svg" : "/images/logo.svg"} alt="Logo" />
+                    <img src="/images/YOSANT BLACK LOGO.svg" alt="Logo" />
+                  </Link>
+                  <Link href="/" className="no-transition">
+                    <img src="/images/logo.svg" alt="Logo" />
                   </Link>
                 </div>
               </div>

@@ -172,7 +172,7 @@ export default function Contact() {
         <div className="tm-slider-container full-width-slider" data-parallax data-parallax-fade-out
           data-animation="slide" data-scale-under="1140">
           <ul className="tms-slides">
-            <li className="tms-slide" data-image data-as-bkg-image data-force-fit>
+            <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{ backgroundImage: "url('/images/slider/slide-2-page-intro.jpg')" }}>
               <div className="tms-content">
                 <div className="tms-content-inner left">
                   <div className="row">

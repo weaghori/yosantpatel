@@ -2,3 +2,53 @@
 .button.custom-blue-text {
     color: #203b72 !important;
 }
+
+/* Custom Header Logo Toggle */
+/* For transparent headers (initially transparent) */
+.header.header-transparent:not(.header-background) .logo-inner a:first-child {
+    display: none !important;
+}
+.header.header-transparent:not(.header-background) .logo-inner a:last-child {
+    display: inline-block !important;
+}
+
+/* Default state: For non-transparent headers, or when scrolled (header-background is active) */
+.header:not(.header-transparent) .logo-inner a:first-child,
+.header.header-background .logo-inner a:first-child {
+    display: inline-block !important;
+}
+.header:not(.header-transparent) .logo-inner a:last-child,
+.header.header-background .logo-inner a:last-child {
+    display: none !important;
+}
+
+/* Fallback background images for uninitialized slider/hero sections */
+.tms-slide {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Fix for solutions page and other page titles overlapping/hidden slider issue */
+.page-intro {
+    min-height: 400px !important;
+    position: relative !important;
+}
+.page-intro .tm-slider-container {
+    height: 100% !important;
+    min-height: 400px !important;
+}
+.page-intro .tms-slides,
+.page-intro .tms-slide {
+    height: 100% !important;
+    min-height: 400px !important;
+}
+
+@media (max-width: 768px) {
+    .page-intro,
+    .page-intro .tm-slider-container,
+    .page-intro .tms-slides,
+    .page-intro .tms-slide {
+        min-height: 300px !important;
+    }
+}
