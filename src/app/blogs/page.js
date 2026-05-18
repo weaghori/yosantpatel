@@ -1,33 +1,29 @@
 import Link from 'next/link';
-import { BLOG_DATA } from '@/data/blog-data';
 import MasonryTrigger from '@/components/MasonryTrigger';
 
 async function fetchBlogs() {
   try {
     const res = await fetch('https://ams.aghorimediahouse.com/api/blogs?website=yosantpatel', { next: { revalidate: 3600 } });
-    if (!res.ok) throw new Error('API request failed');
-    const data = await res.json();
-    if (data.success && Array.isArray(data.blogs)) {
-      return data.blogs.map(blog => ({
-        slug: blog.slug,
-        title: blog.title,
-        img: blog.mainImage ? (blog.mainImage.startsWith('http') ? blog.mainImage : `https://ams.aghorimediahouse.com${blog.mainImage}`) : "/images/slider/Blog-Learn-teach-Yosant-Patel.jpg",
-        category: "Branding",
-        date: blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : "18 May 2026",
-        likes: 150,
-        excerpt: blog.description || "",
-        content: blog.content
-      }));
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && Array.isArray(data.blogs)) {
+        return data.blogs.map(blog => ({
+          slug: blog.slug,
+          title: blog.title,
+          img: blog.mainImage ? (blog.mainImage.startsWith('http') ? blog.mainImage : `https://ams.aghorimediahouse.com${blog.mainImage}`) : "/images/slider/Blog-Learn-teach-Yosant-Patel.jpg",
+          category: "Branding",
+          date: blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : "18 May 2026",
+          likes: 150,
+          excerpt: blog.description || "",
+          content: blog.content
+        }));
+      }
     }
   } catch (error) {
     console.error('Failed to fetch blogs from API:', error);
   }
 
-  // Fallback to local BLOG_DATA if API fails
-  return Object.keys(BLOG_DATA).map(slug => ({
-    slug,
-    ...BLOG_DATA[slug]
-  }));
+  return [];
 }
 
 export default async function Blogs() {
