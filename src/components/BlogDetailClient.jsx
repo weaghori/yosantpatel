@@ -33,242 +33,196 @@ export default function BlogDetailClient({ post }) {
     }
   };
 
-  const imageUrl = post.mainImage 
-    ? (post.mainImage.startsWith('http') ? post.mainImage : `https://ams.aghorimediahouse.com${post.mainImage}`)
-    : (post.img ? (post.img.startsWith('http') ? post.img : `https://ams.aghorimediahouse.com${post.img}`) : null);
-
   return (
     <>
-      {/* Intro Title Section 1 */}
-      <div className="section-block intro-title-1 small bkg-yblue color-white">
-        <div className="row">
-          <div className="column width-12 mt-30">
-            <div className="title-container">
-              <div className="title-container-inner">
-                <h1 className="inline">{post.title}</h1>
-              </div>
-            </div>
+      <article className="modern-blog-container">
+        {/* Meta Header */}
+        <div className="modern-blog-header">
+          <h1 className="modern-blog-title">{post.title}</h1>
+          <div className="modern-blog-meta">
+            {post.date || (post.createdAt ? new Date(post.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : '')} / By {post.author?.name || "Yosant Patel"}
           </div>
         </div>
-      </div>
-      {/* Intro Title Section 1 End */}
 
-      <section className="inner_blog">
-        <div className="container blog_container">
-          <div className="date_author">
-            <div className="row">
-              <div className="column width-12">
-                <span className="post-date">
-                  {post.date || (post.createdAt ? new Date(post.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : '')} / By {post.author?.name || "Yosant Patel"}
-                </span>
-              </div>
-            </div>
+        {/* Hero Image */}
+        {post.mainImage && (
+          <div className="modern-blog-hero">
+            <img 
+              src={post.mainImage.startsWith('http') ? post.mainImage : `https://ams.aghorimediahouse.com${post.mainImage}`} 
+              alt={post.title} 
+            />
           </div>
-        </div>
-      </section>
+        )}
 
-      <section className="inner_blog_three">
-        <div className="row">
-          <div className="container prose-container">
-            {imageUrl && (
-              <div className="blog-hero-image-wrapper">
-                <img src={imageUrl} alt={post.title} className="blog-hero-image" />
-              </div>
-            )}
-            <div dangerouslySetInnerHTML={{ 
-              __html: post.content
-                ? post.content
-                    .replace(/src="\/uploads\//g, 'src="https://ams.aghorimediahouse.com/uploads/')
-                    .replace(/src='\/uploads\//g, "src='https://ams.aghorimediahouse.com/uploads/")
-                    .replace(/<li>(?:\s|&nbsp;|&#160;)*(?:&bull;|&#8226;|&#x2022;|&middot;|&#183;|[●•·⁃■\-\*])(?:\s|&nbsp;|&#160;)*/gi, '<li>')
-                    .replace(/<li>(?:\s|&nbsp;|&#160;)*<span[^>]*>(?:\s|&nbsp;|&#160;)*(?:&bull;|&#8226;|&#x2022;|&middot;|&#183;|[●•·⁃■\-\*])(?:\s|&nbsp;|&#160;)*<\/span>(?:\s|&nbsp;|&#160;)*/gi, '<li>')
-                : '' 
-            }} />
-          </div>
-        </div>
-      </section>
+        {/* Content */}
+        <div className="modern-prose-container" dangerouslySetInnerHTML={{ 
+          __html: post.content
+            ? post.content
+                .replace(/src="\/uploads\//g, 'src="https://ams.aghorimediahouse.com/uploads/')
+                .replace(/src='\/uploads\//g, "src='https://ams.aghorimediahouse.com/uploads/")
+                .replace(/<li>\s*[●•·⁃■\-\*]\s*/g, '<li>')
+                .replace(/<li>\s*<span[^>]*>\s*[●•·⁃■\-\*]\s*<\/span>\s*/g, '<li>')
+            : '' 
+        }} />
+      </article>
 
       <style>{`
-        /* Make the entire blog body and author sections full viewport width white */
-        .inner_blog,
-        .inner_blog_three {
+        /* Make body background white since this is a clean layout */
+        body {
           background-color: #ffffff !important;
         }
 
-        .date_author {
-          color: #555555 !important;
+        .modern-blog-container {
+            max-width: 56rem;
+            margin: 0 auto;
+            padding: 4rem 1rem 6rem;
+            background: #ffffff;
+            color: #000000;
+            font-family: 'Open Sans', sans-serif;
         }
 
-        .date_author span {
-          color: #555555 !important;
+        .modern-blog-header {
+            margin-bottom: 3rem;
+            text-align: left;
         }
 
-        /* Hero banner image styling to match CRM premium layout */
-        .blog-hero-image-wrapper {
-          position: relative;
-          width: 100%;
-          max-width: 100%;
-          border-radius: 24px;
-          overflow: hidden;
-          margin-bottom: 48px !important;
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-          border: 1px solid rgba(0, 0, 0, 0.06);
-        }
-        .blog-hero-image {
-          width: 100% !important;
-          height: auto !important;
-          max-height: 480px !important;
-          object-fit: cover !important;
-          margin: 0 !important;
-          border-radius: 0 !important;
-          display: block !important;
+        .modern-blog-title {
+            font-size: 2.25rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            color: #000000;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-family: 'Open Sans', sans-serif;
         }
 
-        /* Force structural wrapper elements from CKEditor to be transparent */
-        .prose-container div,
-        .prose-container span,
-        .prose-container table,
-        .prose-container section {
-          background-color: transparent !important;
-          background: transparent !important;
-          max-width: 100% !important;
-        }
-        
-        .prose-container > div:last-child {
-          background-color: transparent !important;
-          background: transparent !important;
+        @media (min-width: 768px) {
+            .modern-blog-title {
+                font-size: 3.75rem;
+            }
         }
 
-        /* Headings styling */
-        .prose-container h1,
-        .prose-container h2,
-        .prose-container h3,
-        .prose-container h4,
-        .prose-container h5,
-        .prose-container h6 {
-          color: #111111 !important;
-          font-weight: 700 !important;
-          text-transform: uppercase !important;
-          background-color: transparent !important;
-          background: transparent !important;
+        .modern-blog-meta {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .prose-container h2 {
-          font-size: 32px !important;
-          margin-top: 40px !important;
-          margin-bottom: 20px !important;
-          line-height: 1.3 !important;
+        .modern-blog-hero {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .prose-container h3 {
-          font-size: 26px !important;
-          margin-top: 30px !important;
-          margin-bottom: 16px !important;
-          line-height: 1.3 !important;
+        .modern-blog-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .prose-container h4 {
-          font-size: 22px !important;
-          margin-top: 24px !important;
-          margin-bottom: 12px !important;
+        /* Base Prose Container for the Content */
+        .modern-prose-container {
+            font-family: 'Open Sans', sans-serif;
         }
 
-        /* Spacing for Paragraphs */
-        .prose-container p {
-          margin-bottom: 24px !important;
-          color: #2d3748 !important; /* text-gray-800 */
-          line-height: 1.85 !important;
-          font-size: 18px !important;
-          background-color: transparent !important;
-          background: transparent !important;
+        /* Headings */
+        .modern-prose-container h1,
+        .modern-prose-container h2,
+        .modern-prose-container h3,
+        .modern-prose-container h4,
+        .modern-prose-container h5,
+        .modern-prose-container h6 {
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+            letter-spacing: -0.025em !important;
+            color: #000000 !important;
+            margin-top: 2em !important;
+            margin-bottom: 1em !important;
+            line-height: 1.2 !important;
+            background: transparent !important;
+            font-family: 'Open Sans', sans-serif !important;
         }
 
-        /* Unordered Lists */
-        .prose-container ul {
-          list-style-type: disc !important;
-          list-style-position: outside !important;
-          margin-left: 28px !important;
-          margin-bottom: 24px !important;
-          padding-left: 8px !important;
-          background-color: transparent !important;
-          background: transparent !important;
+        .modern-prose-container h2 { font-size: 2.25rem !important; }
+        .modern-prose-container h3 { font-size: 1.875rem !important; }
+        .modern-prose-container h4 { font-size: 1.5rem !important; }
+
+        @media (max-width: 768px) {
+            .modern-prose-container h2 { font-size: 1.875rem !important; }
+            .modern-prose-container h3 { font-size: 1.5rem !important; }
         }
 
-        .prose-container ul li {
-          list-style-type: disc !important;
-          margin-bottom: 10px !important;
-          color: #2d3748 !important;
-          line-height: 1.85 !important;
-          font-size: 18px !important;
-          background-color: transparent !important;
-          background: transparent !important;
+        /* Paragraphs */
+        .modern-prose-container p {
+            color: #1f2937 !important;
+            line-height: 1.85 !important;
+            font-size: 1.125rem !important;
+            margin-bottom: 1.5em !important;
+            background: transparent !important;
         }
 
-        /* Ordered Lists */
-        .prose-container ol {
-          list-style-type: decimal !important;
-          list-style-position: outside !important;
-          margin-left: 28px !important;
-          margin-bottom: 24px !important;
-          padding-left: 8px !important;
-          background-color: transparent !important;
-          background: transparent !important;
+        /* Lists */
+        .modern-prose-container ul {
+            list-style-type: disc !important;
+            margin-left: 2rem !important;
+            margin-bottom: 1.5em !important;
+        }
+        .modern-prose-container ol {
+            list-style-type: decimal !important;
+            margin-left: 2rem !important;
+            margin-bottom: 1.5em !important;
+        }
+        .modern-prose-container li {
+            color: #1f2937 !important;
+            line-height: 1.85 !important;
+            font-size: 1.125rem !important;
+            margin-bottom: 0.5em !important;
+            background: transparent !important;
         }
 
-        .prose-container ol li {
-          list-style-type: decimal !important;
-          margin-bottom: 10px !important;
-          color: #2d3748 !important;
-          line-height: 1.85 !important;
-          font-size: 18px !important;
-          background-color: transparent !important;
-          background: transparent !important;
+        /* Nested list resets */
+        .modern-prose-container ul ul,
+        .modern-prose-container ol ul,
+        .modern-prose-container ul ol,
+        .modern-prose-container ol ol {
+          margin-left: 1.5rem !important;
+          margin-top: 0.5rem !important;
+          margin-bottom: 0.5rem !important;
         }
 
-        /* Nested list resets to prevent excessive double indents */
-        .prose-container ul ul,
-        .prose-container ol ul,
-        .prose-container ul ol,
-        .prose-container ol ol {
-          margin-left: 24px !important;
-          margin-top: 8px !important;
-          margin-bottom: 8px !important;
+        /* Links */
+        .modern-prose-container a {
+            color: #9333ea !important;
+            font-weight: 900 !important;
+            text-decoration: underline !important;
         }
 
-        /* Override large inline font-sizes for mobile screens */
-        @media (max-width: 767px) {
-          .prose-container h2 {
-            font-size: 24px !important;
-            margin-top: 30px !important;
-            margin-bottom: 16px !important;
-          }
-          .prose-container h3 {
-            font-size: 20px !important;
-            margin-top: 24px !important;
-            margin-bottom: 12px !important;
-          }
-          .prose-container p, 
-          .prose-container ul li, 
-          .prose-container ol li {
-            font-size: 15px !important;
-            line-height: 1.7 !important;
-            margin-bottom: 16px !important;
-          }
-          .blog-hero-image-wrapper {
-            border-radius: 16px;
-            margin-bottom: 24px !important;
-          }
-          .blog-hero-image {
-            max-height: 280px !important;
-          }
+        /* Images inside content */
+        .modern-prose-container img {
+            border-radius: 1.5rem !important;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            margin: 3rem auto !important;
         }
 
-        .prose-container img {
-          max-width: 100% !important;
-          height: auto !important;
-          display: block !important;
-          margin: 2rem auto !important;
-          border-radius: 12px !important;
+        /* Force CKEditor layout wrappers to be transparent */
+        .modern-prose-container div,
+        .modern-prose-container span,
+        .modern-prose-container table,
+        .modern-prose-container section {
+            background-color: transparent !important;
+            background: transparent !important;
+            max-width: 100% !important;
         }
       `}</style>
 
