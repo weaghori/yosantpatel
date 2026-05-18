@@ -1,4 +1,3 @@
-import { BLOG_DATA } from '@/data/blog-data';
 import BlogDetailClient from '@/components/BlogDetailClient';
 import { notFound } from 'next/navigation';
 
@@ -29,19 +28,7 @@ export async function generateMetadata({ params }) {
     console.error('Failed to fetch blog metadata from API:', error);
   }
 
-  const post = BLOG_DATA[slug];
-  
-  if (!post) return { title: 'Blog Not Found' };
-
-  return {
-    title: `${post.title} | Yosant Patel Blog`,
-    description: post.content.substring(0, 160).replace(/<[^>]*>/g, ''),
-    openGraph: {
-      title: post.title,
-      description: post.content.substring(0, 160).replace(/<[^>]*>/g, ''),
-      images: [post.img || "/images/slider/Blog-Learn-teach-Yosant-Patel.jpg"],
-    }
-  };
+  return { title: 'Blog Not Found' };
 }
 
 export default async function BlogDetail({ params }) {
@@ -59,12 +46,6 @@ export default async function BlogDetail({ params }) {
     console.error('Failed to fetch blog details from API:', error);
   }
 
-  const post = BLOG_DATA[slug];
-
-  if (!post) {
-    notFound();
-  }
-
-  return <BlogDetailClient post={post} />;
+  notFound();
 }
 

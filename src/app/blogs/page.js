@@ -1,15 +1,13 @@
 import Link from 'next/link';
-import { BLOG_DATA } from '@/data/blog-data';
 import MasonryTrigger from '@/components/MasonryTrigger';
 
 async function fetchBlogs() {
-  let dynamicBlogs = [];
   try {
     const res = await fetch('https://ams.aghorimediahouse.com/api/blogs?website=yosantpatel', { next: { revalidate: 3600 } });
     if (res.ok) {
       const data = await res.json();
       if (data.success && Array.isArray(data.blogs)) {
-        dynamicBlogs = data.blogs.map(blog => ({
+        return data.blogs.map(blog => ({
           slug: blog.slug,
           title: blog.title,
           img: blog.mainImage ? (blog.mainImage.startsWith('http') ? blog.mainImage : `https://ams.aghorimediahouse.com${blog.mainImage}`) : "/images/slider/Blog-Learn-teach-Yosant-Patel.jpg",
@@ -25,14 +23,7 @@ async function fetchBlogs() {
     console.error('Failed to fetch blogs from API:', error);
   }
 
-  // Get local static BLOG_DATA
-  const staticBlogs = Object.keys(BLOG_DATA).map(slug => ({
-    slug,
-    ...BLOG_DATA[slug]
-  }));
-
-  // Combine both: dynamic blogs first, then static blogs
-  return [...dynamicBlogs, ...staticBlogs];
+  return [];
 }
 
 export default async function Blogs() {
