@@ -196,7 +196,7 @@ export default function Approach() {
               {step.title}
             </h3>
 
-            {/* Suspended Gallery Image Frame */}
+            
             <div style={{
               borderRadius: isMobile ? '14px' : '20px',
               overflow: 'hidden',
