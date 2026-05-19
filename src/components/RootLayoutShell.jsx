@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,6 +8,25 @@ import Script from "next/script";
 export default function RootLayoutShell({ children }) {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
+
+  // Scroll to top and wake up lazy loaders/reveals on every client-side page navigation
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+    // Dispatch scroll & resize events after DOM content renders
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new Event('scroll'));
+      
+      // If legacy jQuery components exist on page, fire their scroll & resize handlers
+      if (typeof window !== 'undefined' && window.jQuery) {
+        window.jQuery(window).trigger('resize');
+        window.jQuery(window).trigger('scroll');
+      }
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
   
   // Dynamic body class
   const bodyClass = `shop home-page ${isHomePage ? 'main-page' : ''}`.trim();
@@ -141,6 +161,13 @@ export default function RootLayoutShell({ children }) {
           })();
         `}
       </Script>
+      
+      {/* Re-load and re-evaluate Timber master script on route changes to scan and build new page elements */}
+      <Script 
+        key={pathname}
+        src={`/js/timber.master.min.js?v=${pathname}`} 
+        strategy="afterInteractive" 
+      />
     </body>
   );
 }

@@ -1,13 +1,66 @@
 "use client";
 import Link from 'next/link';
-
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function Home() {
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCta, setHoveredCta] = useState(false);
+  const [hoveredConsult, setHoveredConsult] = useState(false);
+  const [hoveredStats, setHoveredStats] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Custom Dynamic React Count-Up Animation
+  const [count, setCount] = useState(1);
+  const [startCount, setStartCount] = useState(false);
+  const statsRef = useRef(null);
+
   useEffect(() => {
-    // Trigger resize to help legacy scripts calculate layout
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    // Trigger standard resize for legacy scripts
     window.dispatchEvent(new Event('resize'));
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // IntersectionObserver to trigger count animation when scrolled into view
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setStartCount(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  // 60FPS Frame-Rate Bound Count Animation
+  useEffect(() => {
+    if (!startCount) return;
+    let start = 1;
+    const end = 207;
+    const duration = 1500; // 1.5 seconds
+    const step = Math.ceil(end / (duration / 16)); // ~60fps step size
+    
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, 16); // 16ms interval (~60fps)
+
+    return () => clearInterval(timer);
+  }, [startCount]);
   return (
     <>
       {/* Fullscreen Slider Section */}
@@ -15,38 +68,74 @@ export default function Home() {
         <div className="tm-slider-container full-width-slider pagination-top" data-featured-slider data-parallax
           data-parallax-fade-out data-animation="slide" data-scale-under="960" style={{ width: '100%' }}>
           <ul className="tms-slides">
-            <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{ backgroundImage: "url('/images/Yosant_Branding_Logo_Design.jpg')" }}>
-              <div className="tms-content">
+            <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{ 
+              backgroundImage: "url('/images/Yosant_Branding_Logo_Design.jpg')",
+              backgroundPosition: isMobile ? '82% center' : 'center center'
+            }}>
+              <div className="tms-content" style={{ zIndex: 2 }}>
                 <div className="tms-content-inner left v-align-middle">
                   <div className="row">
                     <div className="column width-12">
-                      <h1 className="tms-caption title-large color-white lspacing-small no-margin-bottom text-uppercase"
+                      <h1 className="tms-caption no-margin-bottom text-uppercase"
                         data-animate-in="preset:slideInRightShort;duration:1000ms;"
-                        data-no-scale>
-                        I Am <strong>Yosant Patel</strong>
+                        data-no-scale
+                        style={{ fontFamily: 'inherit', margin: 0 }}>
+                        <span style={{
+                          color: '#ffffff',
+                          fontSize: isMobile ? '28px' : '56px',
+                          lineHeight: isMobile ? '1.2' : '1.15',
+                          fontWeight: '300',
+                          display: 'block'
+                        }}>
+                          I Am <strong style={{ fontWeight: '800' }}>Yosant Patel</strong>
+                        </span>
                       </h1>
                       <div className="clear"></div>
-                      <div className="tms-caption lead color-white lspacing-medium"
+                      <div className="tms-caption"
                         data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;"
-                        data-no-scale>
-                        A Brand Consulting Visionary,<br />Owner of a Digital Media Marketing
-                        Firm, <br />and Founder of a Graphic Design Academy.
+                        data-no-scale
+                        style={{
+                          marginTop: isMobile ? '15px' : '25px',
+                          fontFamily: 'inherit'
+                        }}>
+                        <span style={{
+                          color: '#ffffff',
+                          fontSize: isMobile ? '14px' : '22px',
+                          lineHeight: isMobile ? '1.5' : '1.65',
+                          fontWeight: '300',
+                          letterSpacing: 'normal',
+                          display: 'block'
+                        }}>
+                          A Brand Consulting Visionary,<br />Owner of a Digital Media Marketing
+                          Firm, <br />and Founder of a Graphic Design Academy.
+                        </span>
                         <br />
                         <Link href="/consultation">
-                          <button 
-                            className="button medium text-uppercase weight-bold custom-blue-text"
-                            style={{ 
-                              marginTop: '30px', 
-                              backgroundColor: '#ffffff',
-                              border: 'none',
-                              padding: '12px 30px',
-                              borderRadius: '4px',
-                              fontSize: '14px',
-                              letterSpacing: '1px',
-                              display: 'inline-block'
+                          <button
+                            onMouseEnter={() => setHoveredCta(true)}
+                            onMouseLeave={() => setHoveredCta(false)}
+                            style={{
+                              marginTop: isMobile ? '20px' : '35px',
+                              backgroundColor: hoveredCta ? '#ffffff' : 'transparent',
+                              border: '1px solid #ffffff',
+                              padding: isMobile ? '12px 28px' : '14px 34px',
+                              borderRadius: '30px',
+                              fontSize: '13px',
+                              letterSpacing: '2px',
+                              display: 'inline-block',
+                              cursor: 'pointer',
+                              boxShadow: hoveredCta ? '0 8px 25px rgba(255, 255, 255, 0.25)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
+                              transform: hoveredCta ? 'translateY(-3px)' : 'none',
+                              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                              textTransform: 'uppercase',
+                              fontWeight: '700',
+                              outline: 'none',
+                              fontFamily: 'inherit'
                             }}
                           >
-                            Grow Your Business
+                            <span style={{ color: hoveredCta ? '#203b72' : '#ffffff', transition: 'color 0.3s ease' }}>
+                              Grow Your Business
+                            </span>
                           </button>
                         </Link>
                       </div><br />
@@ -61,346 +150,490 @@ export default function Home() {
       </section>
       {/* Fullscreen Slider Section End */}
 
-      <div className="section-block bkg-ygrey color-black With_16">
-        <div className="row">
-          <div className="column width-5 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;"
-            data-threshold="0.5">
-            <h2 className="number-16 ">18 </h2>
+      <div className="section-block color-black With_16" style={{
+        padding: isMobile ? '50px 0' : '100px 0',
+        backgroundColor: '#ffffff',
+        borderBottom: '1px solid #f1f5f9'
+      }}>
+        <div className="row flex" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="column width-5 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;" data-threshold="0.5" style={{ flex: '1 1 300px' }}>
+            <h2 style={{
+              fontSize: isMobile ? '90px' : '150px',
+              fontWeight: '800',
+              lineHeight: '1',
+              margin: 0,
+              fontFamily: 'inherit',
+              background: 'linear-gradient(135deg, #203b72 0%, #0f172a 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              opacity: 0.95,
+              letterSpacing: '-5px',
+              textAlign: isMobile ? 'left' : 'center'
+            }}>
+              18
+            </h2>
           </div>
-          <div className="column width-7 horizon"
-            data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;" data-threshold="0.5">
-            <h2 className="color-black description-16">With 18+ years of experience, I have learned and
-              explored various ways to build and enrich a brand. I am keen to help you reach your goal.
+          <div className="column width-7 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;" data-threshold="0.5" style={{ flex: '1 1 450px' }}>
+            <h2 className="color-black description-16" style={{
+              fontSize: isMobile ? '18px' : '24px',
+              fontWeight: '400',
+              lineHeight: '1.65',
+              color: '#1e293b',
+              borderLeft: isMobile ? 'none' : '4px solid #203b72',
+              paddingLeft: isMobile ? '0' : '30px',
+              marginTop: isMobile ? '20px' : '0',
+              marginRight: 0,
+              marginBottom: 0,
+              fontFamily: 'inherit'
+            }}>
+              With 18+ years of experience, I have learned and explored various ways to build and enrich a brand. I am keen to help you reach your goal.
             </h2>
           </div>
         </div>
       </div>
 
-      {/* Hero Section 5 */}
-      <section id="about"
-        className="section-block hero-5 hero-5-1 window-height right show-media-column-on-mobile bkg-white color-charcoal"
-        style={{ paddingBottom: '0px' }}>
-        <div className="row">
-          <div className="column width-9">
-            <div className="hero-content split-hero-content">
-              <div className="hero-content-inner left horizon"
-                data-animate-in="preset:slideInRightShort;duration:1000ms;" data-threshold="0.5">
-                <h2 className="mb-30">Why Hire Me?</h2>
-                <p className="lead">Having a focused approach is always beneficial; meanwhile, developing a
-                  good foundation for your brand is essential. With my expert research, aligning your
-                  brand needs to market trends, and through my constant guidance, you are closer to
-                  success.</p>
+      <section id="about" className="section-block" style={{ padding: isMobile ? '60px 0' : '120px 0', backgroundColor: '#203b72', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+        <div className="row flex" style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '30px' : '50px' }}>
+
+          {/* Left Column: Why Hire Me sticky info block */}
+          <div className="column width-4 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;" data-threshold="0.5" style={{ flex: '1 1 350px', position: isMobile ? 'static' : 'sticky', top: '100px', height: 'fit-content' }}>
+            <div style={{ width: '60px', height: '4px', backgroundColor: '#ffffff', marginBottom: '25px' }} />
+            <h2 style={{
+              fontSize: isMobile ? '30px' : '42px',
+              fontWeight: '800',
+              lineHeight: '1.15',
+              letterSpacing: '-1.5px',
+              color: '#ffffff',
+              marginBottom: '20px',
+              fontFamily: 'inherit'
+            }}>
+              Why Hire Me?
+            </h2>
+            <p className="lead" style={{
+              fontSize: isMobile ? '16px' : '18px',
+              lineHeight: '1.75',
+              color: '#cbd5e1',
+              fontWeight: '300',
+              margin: 0,
+              fontFamily: 'inherit'
+            }}>
+              Having a focused approach is always beneficial; meanwhile, developing a
+              good foundation for your brand is essential. With my expert research, aligning your
+              brand needs to market trends, and through my constant guidance, you are closer to
+              success.
+            </p>
+          </div>
+
+          {/* Right Column: 4 glassmorphic expertise cards */}
+          <div className="column width-8" style={{ flex: '1 1 650px', display: 'flex', flexDirection: 'column', gap: isMobile ? '20px' : '30px' }}>
+            <div className="row flex boxes" style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '20px' : '30px', margin: 0 }}>
+
+              {/* Card 1: Market Insights */}
+              <div style={{ flex: '1 1 calc(50% - 15px)', minWidth: '280px', display: 'flex' }}>
+                <div
+                  onMouseEnter={() => setHoveredCard(0)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: hoveredCard === 0 ? '1px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.08)',
+                    borderRadius: '24px',
+                    padding: isMobile ? '25px' : '40px',
+                    boxShadow: hoveredCard === 0 ? '0 20px 40px rgba(0, 0, 0, 0.3)' : 'none',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start'
+                  }}
+                >
+                  <div style={{
+                    width: isMobile ? '50px' : '64px',
+                    height: isMobile ? '50px' : '64px',
+                    borderRadius: '50%',
+                    backgroundColor: hoveredCard === 0 ? '#ffffff' : 'rgba(255, 255, 255, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: isMobile ? '15px' : '25px',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <img
+                      src="/images/icons/market-analysis.png"
+                      alt=""
+                      style={{
+                        width: isMobile ? '24px' : '32px',
+                        height: isMobile ? '24px' : '32px',
+                        filter: hoveredCard === 0 ? 'none' : 'brightness(0) invert(1)',
+                        transition: 'all 0.3s ease'
+                      }}
+                    />
+                  </div>
+                  <h3 style={{
+                    fontSize: isMobile ? '18px' : '20px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: isMobile ? '10px' : '15px',
+                    fontFamily: 'inherit'
+                  }}>
+                    Market Insights
+                  </h3>
+                  <p style={{
+                    fontSize: isMobile ? '14px' : '15px',
+                    lineHeight: '1.7',
+                    color: '#cbd5e1',
+                    margin: 0,
+                    fontFamily: 'inherit'
+                  }}>
+                    While building a brand, knowing market insights is essential. I help you find different possible touchpoints to reach your target audience and assure you to make this process easy and effective.
+                  </p>
+                </div>
               </div>
+
+              {/* Card 2: Expert Guidance */}
+              <div style={{ flex: '1 1 calc(50% - 15px)', minWidth: '280px', display: 'flex' }}>
+                <div
+                  onMouseEnter={() => setHoveredCard(1)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: hoveredCard === 1 ? '1px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.08)',
+                    borderRadius: '24px',
+                    padding: isMobile ? '25px' : '40px',
+                    boxShadow: hoveredCard === 1 ? '0 20px 40px rgba(0, 0, 0, 0.3)' : 'none',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start'
+                  }}
+                >
+                  <div style={{
+                    width: isMobile ? '50px' : '64px',
+                    height: isMobile ? '50px' : '64px',
+                    borderRadius: '50%',
+                    backgroundColor: hoveredCard === 1 ? '#ffffff' : 'rgba(255, 255, 255, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: isMobile ? '15px' : '25px',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <img
+                      src="/images/icons/guidance.png"
+                      alt=""
+                      style={{
+                        width: isMobile ? '24px' : '32px',
+                        height: isMobile ? '24px' : '32px',
+                        filter: hoveredCard === 1 ? 'none' : 'brightness(0) invert(1)',
+                        transition: 'all 0.3s ease'
+                      }}
+                    />
+                  </div>
+                  <h3 style={{
+                    fontSize: isMobile ? '18px' : '20px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: isMobile ? '10px' : '15px',
+                    fontFamily: 'inherit'
+                  }}>
+                    Expert Guidance
+                  </h3>
+                  <p style={{
+                    fontSize: isMobile ? '14px' : '15px',
+                    lineHeight: '1.7',
+                    color: '#cbd5e1',
+                    margin: 0,
+                    fontFamily: 'inherit'
+                  }}>
+                    I have gained knowledge about brands with 18+ years of experience in the industry. Through my guidance with wisdom will help you to grow in your business. I try to align business and marketing strategies that will fill the gaps in your brand.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3: Creative Expert */}
+              <div style={{ flex: '1 1 calc(50% - 15px)', minWidth: '280px', display: 'flex' }}>
+                <div
+                  onMouseEnter={() => setHoveredCard(2)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: hoveredCard === 2 ? '1px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.08)',
+                    borderRadius: '24px',
+                    padding: isMobile ? '25px' : '40px',
+                    boxShadow: hoveredCard === 2 ? '0 20px 40px rgba(0, 0, 0, 0.3)' : 'none',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start'
+                  }}
+                >
+                  <div style={{
+                    width: isMobile ? '50px' : '64px',
+                    height: isMobile ? '50px' : '64px',
+                    borderRadius: '50%',
+                    backgroundColor: hoveredCard === 2 ? '#ffffff' : 'rgba(255, 255, 255, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: isMobile ? '15px' : '25px',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <img
+                      src="/images/icons/expert.png"
+                      alt=""
+                      style={{
+                        width: isMobile ? '24px' : '32px',
+                        height: isMobile ? '24px' : '32px',
+                        filter: hoveredCard === 2 ? 'none' : 'brightness(0) invert(1)',
+                        transition: 'all 0.3s ease'
+                      }}
+                    />
+                  </div>
+                  <h3 style={{
+                    fontSize: isMobile ? '18px' : '20px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: isMobile ? '10px' : '15px',
+                    fontFamily: 'inherit'
+                  }}>
+                    Creative Expert
+                  </h3>
+                  <p style={{
+                    fontSize: isMobile ? '14px' : '15px',
+                    lineHeight: '1.7',
+                    color: '#cbd5e1',
+                    margin: 0,
+                    fontFamily: 'inherit'
+                  }}>
+                    I have expertise in graphic design. I help you create appealing and effective creative messages with a strategy to reach your target audience and generate leads. I assure you to get your desired results.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 4: Brand Analyst */}
+              <div style={{ flex: '1 1 calc(50% - 15px)', minWidth: '280px', display: 'flex' }}>
+                <div
+                  onMouseEnter={() => setHoveredCard(3)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: hoveredCard === 3 ? '1px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.08)',
+                    borderRadius: '24px',
+                    padding: isMobile ? '25px' : '40px',
+                    boxShadow: hoveredCard === 3 ? '0 20px 40px rgba(0, 0, 0, 0.3)' : 'none',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start'
+                  }}
+                >
+                  <div style={{
+                    width: isMobile ? '50px' : '64px',
+                    height: isMobile ? '50px' : '64px',
+                    borderRadius: '50%',
+                    backgroundColor: hoveredCard === 3 ? '#ffffff' : 'rgba(255, 255, 255, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: isMobile ? '15px' : '25px',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    <img
+                      src="/images/icons/analyst.png"
+                      alt=""
+                      style={{
+                        width: isMobile ? '24px' : '32px',
+                        height: isMobile ? '24px' : '32px',
+                        filter: hoveredCard === 3 ? 'none' : 'brightness(0) invert(1)',
+                        transition: 'all 0.3s ease'
+                      }}
+                    />
+                  </div>
+                  <h3 style={{
+                    fontSize: isMobile ? '18px' : '20px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: isMobile ? '10px' : '15px',
+                    fontFamily: 'inherit'
+                  }}>
+                    Brand Analyst
+                  </h3>
+                  <p style={{
+                    fontSize: isMobile ? '14px' : '15px',
+                    lineHeight: '1.7',
+                    color: '#cbd5e1',
+                    margin: 0,
+                    fontFamily: 'inherit'
+                  }}>
+                    It is essential to know competitors’ moves and consumers’ perspectives on your product and brand. I help you collect data and analyze the results post-campaign.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
+
         </div>
       </section>
-      {/* Hero Section 5 End */}
 
-      {/* Feature Column Section */}
-      <div className="section-block replicable-content">
-        <div className="row flex boxes">
-          <div className="column width-6">
-            <div className="box xlarge bkg-ygrey">
-              <div className="feature-column medium left center-on-mobile">
-                <span className="feature-icon icon-note color-theme"></span>
-                <div className="feature-text">
-                  <h3><img src="/images/icons/market-analysis.png" alt="" className="home-icon" />Market
-                    Insights</h3>
-                  <p className="mb-70 mb-mobile-30">While building a brand, knowing market insights is
-                    essential. I help you find different possible touchpoints to reach your target
-                    audience and assure you to make this process easy and effective. </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column width-6">
-            <div className="box xlarge">
-              <div className="feature-column medium left center-on-mobile">
-                <span className="feature-icon icon-play color-theme"></span>
-                <div className="feature-text">
-                  <h3><img src="/images/icons/guidance.png" alt="" className="home-icon" />Expert Guidance
-                  </h3>
-                  <p>I have gained knowledge about brands with 18+ years of experience in the
-                    industry. Through my guidance with wisdom will help you to grow in your
-                    business. I try to align business and marketing strategies that will fill the
-                    gaps in your brand. </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column width-6">
-            <div className="box xlarge">
-              <div className="feature-column medium left center-on-mobile">
-                <span className="feature-icon icon-list color-theme"></span>
-                <div className="feature-text">
-                  <h3><img src="/images/icons/expert.png" alt="" className="home-icon" />Creative Expert
-                  </h3>
-                  <p>I have expertise in graphic design. I help you create appealing and effective
-                    creative messages with a strategy to reach your target audience and generate
-                    leads. I assure you to get your desired results. </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="column width-6">
-            <div className="box xlarge bkg-ygrey">
-              <div className="feature-column medium left center-on-mobile">
-                <span className="feature-icon icon-share color-theme"></span>
-                <div className="feature-text">
-                  <h3><img src="/images/icons/analyst.png" alt="" className="home-icon" />Brand Analyst</h3>
-                  <p>It is essential to know competitors’ moves and consumers’ perspectives on your
-                    product and brand. I help you collect data and analyze the results
-                    post-campaign.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Feature Column Section End */}
+      {/* Content Section (Work & Statistics) */}
+      <div className="section-block replicable-content" style={{ padding: isMobile ? '60px 0' : '120px 0', backgroundColor: '#ffffff', borderBottom: '1px solid #f1f5f9' }}>
+        <div className="row flex" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: isMobile ? '30px' : '50px' }}>
 
-      {/* Content Section */}
-      <div className="section-block replicable-content bkg-ygrey color-black">
-        <div className="row">
-          <div className="column width-12 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;"
-            data-threshold="0.5">
-            <h2 className="mb-30">Work</h2>
-          </div>
-          <div className="column width-5 offset-2 horizon"
-            data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;" data-threshold="0.5">
-            <p>With a passion for uplifting a brand, I have transformed various brands from scratch. In
+          <div className="column width-7 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;" data-threshold="0.5" style={{ flex: '1 1 400px' }}>
+            <h2 style={{
+              fontSize: isMobile ? '30px' : '42px',
+              fontWeight: '800',
+              color: '#0f172a',
+              marginBottom: '20px',
+              fontFamily: 'inherit'
+            }}>
+              Work
+            </h2>
+            <p style={{
+              fontSize: isMobile ? '15px' : '16px',
+              lineHeight: '1.75',
+              color: '#475569',
+              fontWeight: '300',
+              margin: 0,
+              fontFamily: 'inherit'
+            }}>
+              With a passion for uplifting a brand, I have transformed various brands from scratch. In
               these 18+ years of experience, I have explored different ways to mold brands into accurate
               strategies aligned with creative messages. I have provided the best results from brand
-              research to audit the outcome.</p>
+              research to audit the outcome.
+            </p>
           </div>
-          <div className="column width-4 horizon">
-            <div className="stats-1 left">
-              <div className="stat box large bkg-white">
-                <div className="stat-inner">
-                  <p className="counter"><span className="stat-counter" data-count-from="1"
-                    data-count-to="207"></span>+ Projects</p>
-                  <p className="description">Worked on projects in 18 years</p>
-                </div>
-              </div>
+
+          <div className="column width-5 horizon" style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'center' }}>
+            <div 
+              ref={statsRef}
+              onMouseEnter={() => setHoveredStats(true)}
+              onMouseLeave={() => setHoveredStats(false)}
+              style={{
+                background: 'linear-gradient(135deg, #203b72 0%, #0f172a 100%)',
+                borderRadius: '24px',
+                padding: isMobile ? '30px 20px' : '40px 50px',
+                boxShadow: hoveredStats ? '0 30px 60px rgba(32, 59, 114, 0.35)' : '0 25px 50px -12px rgba(32, 59, 114, 0.25)',
+                textAlign: 'center',
+                width: '100%',
+                maxWidth: '360px',
+                border: hoveredStats ? '1px solid #203b72' : '1px solid rgba(255, 255, 255, 0.1)',
+                position: 'relative',
+                overflow: 'hidden',
+                transform: hoveredStats ? 'translateY(-10px)' : 'translateY(0)',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                cursor: 'pointer'
+              }}
+            >
+              {/* Subtle ambient blur light inside stat box */}
+              <div style={{
+                position: 'absolute',
+                top: '-50px',
+                right: '-50px',
+                width: '150px',
+                height: '150px',
+                borderRadius: '50%',
+                background: 'rgba(255, 255, 255, 0.08)',
+                filter: 'blur(30px)',
+                pointerEvents: 'none'
+              }} />
+
+              <p style={{
+                fontSize: isMobile ? '44px' : '56px',
+                fontWeight: '800',
+                color: '#ffffff',
+                margin: '0 0 10px 0',
+                letterSpacing: '-2px',
+                lineHeight: '1'
+              }}>
+                {count}+
+              </p>
+              <p style={{
+                fontSize: isMobile ? '16px' : '18px',
+                fontWeight: '600',
+                color: '#ffffff',
+                margin: '0 0 15px 0',
+                letterSpacing: '1px',
+                textTransform: 'uppercase',
+                opacity: 0.95
+              }}>
+                Projects
+              </p>
+              <p style={{
+                fontSize: '14px',
+                lineHeight: '1.5',
+                color: '#93c5fd',
+                fontWeight: '300',
+                margin: 0
+              }}>
+                Worked on projects in 18 years
+              </p>
             </div>
           </div>
+
         </div>
       </div>
       {/* Content Section End */}
 
-      {/* Portfolio Grid */}
-      <div className="section-block grid-container fade-in-progressively full-width no-margins no-padding"
-        data-layout-mode="masonry" data-grid-ratio="1.5" data-animate-filter-duration="700" data-set-dimensions
-        data-animate-resize data-animate-resize-duration="0" data-as-bkg-image>
-        <div className="row">
-          <div className="column width-12">
-            <div className="row grid content-grid-3">
-              <div className="grid-item grid-sizer">
-                <div className="thumbnail img-scale-in" data-hover-easing="easeInOut" data-hover-speed="500"
-                  data-hover-bkg-color="#ffffff" data-hover-bkg-opacity="1">
-                  <Link className="overlay-link" href="/work/mitraas">
-                    <img src="/images/work/Mitraas-Yosant-Patel.jpg" alt="" />
-                    <span className="overlay-info">
-                      <span>
-                        <span>
-                          <span className="project-title">Mitraa's</span>
-                          <span className="project-description">Identity</span>
-                        </span>
-                      </span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-              <div className="grid-item portrait">
-                <div className="thumbnail showreel img-scale-in" data-hover-easing="easeInOut"
-                  data-hover-speed="500" data-hover-bkg-color="#ffffff" data-hover-bkg-opacity="1">
-                  <img src="/images/SHOWREEL.jpg" alt="" />
-                </div>
-                <div className="content-outer">
-                  <div className="content-inner color-white">
-                    <div className="row">
-                      <div className="column width-4 offset-4 center">
-                        <a className="lightbox-link icon-play icon-circled border-white bkg-hover-theme color-white color-hover-white circled medium"
-                          data-toolbar="zoom" data-group="gallery-1" data-caption="Showreel"
-                          href="https://www.youtube.com/embed/e9Pvxf8OjM4?autoplay=1"></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="grid-item">
-                <div className="thumbnail img-scale-in" data-hover-easing="easeInOut" data-hover-speed="500"
-                  data-hover-bkg-color="#ffffff" data-hover-bkg-opacity="1">
-                  <Link className="overlay-link" href="/work/chandan">
-                    <img src="/images/work/Chandan-jewellry-Yosant-Patel.jpg" alt="" />
-                    <span className="overlay-info">
-                      <span>
-                        <span>
-                          <span className="project-title">Chandan</span>
-                          <span className="project-description">Re-branding, Identity</span>
-                        </span>
-                      </span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-              <div className="grid-item">
-                <div className="thumbnail img-scale-in" data-hover-easing="easeInOut" data-hover-speed="500"
-                  data-hover-bkg-color="#ffffff" data-hover-bkg-opacity="1">
-                  <Link className="overlay-link" href="/work/elegant-classes">
-                    <img src="/images/work/Elegant-Classes-School-Yosant-Patel.jpg" alt="" />
-                    <span className="overlay-info">
-                      <span>
-                        <span>
-                          <span className="project-title">ELEGANT CLASSES</span>
-                          <span className="project-description">Design, Brand Strategy</span>
-                        </span>
-                      </span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-              <div className="grid-item">
-                <div className="thumbnail img-scale-in" data-hover-easing="easeInOut" data-hover-speed="500"
-                  data-hover-bkg-color="#ffffff" data-hover-bkg-opacity="1">
-                  <Link className="overlay-link" href="/work/kiya">
-                    <img src="/images/work/Kia-Solar-Panel-Yosant-Patel.jpg" alt="" />
-                    <span className="overlay-info">
-                      <span>
-                        <span>
-                          <span className="project-title">Kiya</span>
-                          <span className="project-description">Identity</span>
-                        </span>
-                      </span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Portfolio Grid End */}
-
-      {/* Team Grid */}
-      <div className="section-block team-2 bkg-ygrey">
-        <div className="row horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;"
-          data-threshold="0.2">
-          <div className="column width-6 color-black">
-            <h2 className="mb-50">Explore Branding Insights and Beyond.</h2>
-          </div>
-          <div className="column width-12">
-            <div className="row content-grid-3">
-              <div className="grid-item">
-                <div className="team-content">
-                  <div className="thumbnail no-margin-bottom img-scale-in" data-hover-easing="easeInOut"
-                    data-hover-speed="500" data-hover-bkg-color="#ffffff"
-                    data-hover-bkg-opacity="0.9">
-                    <Link className="overlay-link fade-location"
-                      href="/blogs/why_brand_development_is_important">
-                      <img src="/images/yosantPatelSite/brand_dev.jpg"
-                        alt="BRAND DEVELOPMENT" width="760" height="500" />
-                      <span className="overlay-info">
-                        <span>
-                          <span>
-                            <span>BRAND DEVELOPMENT </span>
-                          </span>
-                        </span>
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="team-content-info">
-                    <h5 className="mb-5">WHY BRAND DEVELOPMENT IS IMPORTANT?</h5>
-                    <p>Effective marketing is mandatory for an organization that desires to reach a
-                      larger audience. Marketing is not a one-stop solution, </p>
-                    <ul className="social-list list-horizontal">
-                      <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yosantpatel.com/blogs/why_brand_development_is_important"
-                        className="icon-facebook small" target="_blank"></a></li>
-                      <li><a href="https://twitter.com/intent/tweet?text=https%3A//yosantpatel.com/blogs/why_brand_development_is_important"
-                        className="icon-twitter small" target="_blank"></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="grid-item">
-                <div className="team-content">
-                  <div className="thumbnail no-margin-bottom img-scale-in" data-hover-easing="easeInOut"
-                    data-hover-speed="500" data-hover-bkg-color="#ffffff"
-                    data-hover-bkg-opacity="0.9">
-                    <Link className="overlay-link fade-location"
-                      href="/blogs/building_a_successfulbrand_strategy">
-                      <img src="/images/yosantPatelSite/brand_stra.jpg"
-                        alt="BRAND STRATEGY" width="760" height="500" />
-                      <span className="overlay-info">
-                        <span>
-                          <span>
-                            <span>BRAND STRATEGY</span>
-                          </span>
-                        </span>
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="team-content-info">
-                    <h5 className="mb-5">BUILDING A SUCCESSFUL BRAND STRATEGY</h5>
-                    <p>A branding strategy is a long-term blueprint for the development of a brand
-                      in order to achieve specific relevant goals...</p>
-                    <ul className="social-list list-horizontal">
-                      <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yosantpatel.com/blogs/building_a_successfulbrand_strategy"
-                        className="icon-facebook small" target="_blank"></a></li>
-                      <li><a href="https://twitter.com/intent/tweet?text=https%3A//yosantpatel.com/blogs/building_a_successfulbrand_strategy"
-                        className="icon-twitter small" target="_blank"></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="grid-item">
-                <div className="team-content">
-                  <div className="thumbnail no-margin-bottom img-scale-in" data-hover-easing="easeInOut"
-                    data-hover-speed="500" data-hover-bkg-color="#ffffff"
-                    data-hover-bkg-opacity="0.9">
-                    <Link className="overlay-link fade-location"
-                      href="/blogs/why_you_need_brand_consultation">
-                      <img src="/images/yosantPatelSite/brand_con.jpg"
-                        alt="BRAND CONSULTATION" width="760" height="500" />
-                      <span className="overlay-info">
-                        <span>
-                          <span>
-                            <span>BRAND CONSULTATION</span>
-                          </span>
-                        </span>
-                      </span>
-                    </Link>
-                  </div>
-                  <div className="team-content-info">
-                    <h5 className="mb-5">WHY YOU NEED BRAND CONSULTATION?</h5>
-                    <p>Brand Consultation is one of the most crucial elements of branding services.
-                      This blog will impart a brief on Brand consultancy...</p>
-                    <ul className="social-list list-horizontal">
-                      <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//yosantpatel.com/blogs/why_you_need_brand_consultation"
-                        className="icon-facebook small" target="_blank"></a></li>
-                      <li><a href="https://twitter.com/intent/tweet?text=https%3A//yosantpatel.com/blogs/why_you_need_brand_consultation"
-                        className="icon-twitter small" target="_blank"></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Team Grid End */}
-
       {/* Sign Up Section 2 */}
-      <section className="section-block signup-2 signup-2-1 pt-150 pb-150">
+      <section className="section-block signup-2 signup-2-1" style={{ paddingTop: isMobile ? '80px' : '150px', paddingBottom: isMobile ? '80px' : '150px' }}>
         <div className="row">
           <div className="column width-5 left">
-            <div className="signup-form-container">
-              <h2 className="color-white">Get a Personalized 101 Branding Consultation Now!</h2>
-              <p className="mb-30 color-white">Want to increase your brand's visibility? Share your business details and get 360° branding solutions today!</p>
-              <div className="">
-                <Link href="/consultation" className="button small no-margin-bottom">
-                  <span>Consult Now</span>
+            <div className="signup-form-container" style={{ padding: 0 }}>
+              <h2 style={{
+                fontSize: isMobile ? '28px' : '36px',
+                fontWeight: '700',
+                lineHeight: '1.25',
+                letterSpacing: '-0.5px',
+                color: '#ffffff',
+                marginBottom: '20px',
+                fontFamily: 'inherit'
+              }}>
+                Get a Personalized 101 Branding Consultation Now!
+              </h2>
+              <p style={{
+                fontSize: isMobile ? '15px' : '18px',
+                lineHeight: '1.65',
+                color: '#ffffff',
+                fontWeight: '300',
+                marginBottom: '30px',
+                fontFamily: 'inherit'
+              }}>
+                Want to increase your brand's visibility? Share your business details and get 360° branding solutions today!
+              </p>
+              <div>
+                <Link href="/consultation">
+                  <button
+                    onMouseEnter={() => setHoveredConsult(true)}
+                    onMouseLeave={() => setHoveredConsult(false)}
+                    style={{
+                      backgroundColor: hoveredConsult ? '#ffffff' : 'transparent',
+                      border: '1px solid #ffffff',
+                      padding: isMobile ? '12px 28px' : '14px 34px',
+                      borderRadius: '30px',
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      letterSpacing: '2px',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      boxShadow: hoveredConsult ? '0 8px 25px rgba(255, 255, 255, 0.25)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
+                      transform: hoveredConsult ? 'translateY(-3px)' : 'none',
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                      outline: 'none',
+                      fontFamily: 'inherit'
+                    }}
+                  >
+                    <span style={{ color: hoveredConsult ? '#203b72' : '#ffffff', transition: 'color 0.3s ease' }}>
+                      Consult Now
+                    </span>
+                  </button>
                 </Link>
               </div>
             </div>
