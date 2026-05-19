@@ -6,7 +6,7 @@ export default function Solutions() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Dispatch resize to trigger global timber template checks
+    
     window.dispatchEvent(new Event('resize'));
 
     // Hydration-safe screen observer
