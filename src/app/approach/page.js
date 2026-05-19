@@ -184,7 +184,7 @@ export default function Approach() {
           </div>
 
           <div style={{ zIndex: 2 }}>
-            {/* Step Title */}
+            
             <h3 style={{
               fontSize: isMobile ? '16px' : '22px',
               fontWeight: '800',
