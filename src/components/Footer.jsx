@@ -52,7 +52,7 @@ export default function Footer() {
                 <a 
                   href="mailto:iam@yosantpatel.com" 
                   style={{ 
-                    fontSize: 'clamp(24px, 4vw, 36px)', 
+                    fontSize: 'clamp(18px, 2.5vw, 24px)', 
                     color: '#111111', 
                     textDecoration: 'none', 
                     transition: 'all 0.4s ease', 
