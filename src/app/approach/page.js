@@ -184,7 +184,7 @@ export default function Approach() {
           </div>
 
           <div style={{ zIndex: 2 }}>
-            {/* Step Title */}
+            
             <h3 style={{
               fontSize: isMobile ? '16px' : '22px',
               fontWeight: '800',
@@ -196,7 +196,7 @@ export default function Approach() {
               {step.title}
             </h3>
 
-            {/* Suspended Gallery Image Frame */}
+            
             <div style={{
               borderRadius: isMobile ? '14px' : '20px',
               overflow: 'hidden',

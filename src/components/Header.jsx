@@ -16,16 +16,45 @@ export default function Header() {
   const isBlogDetail = pathname.startsWith('/blogs/') && pathname !== '/blogs';
   
   // All pages with high-impact hero sections are transparent initially
-  const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail;
+  const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid;
 
   // Pages with dark hero images need the white logo for transparency
-  const hasDarkHero = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail;
+  const hasDarkHero = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid;
   const needsBlackNav = !hasDarkHero;
   
   const navColorClass = needsBlackNav ? 'color-black' : '';
 
   return (
     <>
+      {/* Premium custom styles to ensure highlighted active page in nav menu */}
+      <style>{`
+        /* Style inactive items as soft gray when background is white or color-black is set */
+        .navigation.color-black ul li a,
+        .header-background .navigation ul.menu li a,
+        .header-background .navigation ul li a {
+          color: #64748b !important;
+          font-weight: 500 !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Hover state: highlight to brand navy */
+        .navigation.color-black ul li a:hover,
+        .header-background .navigation ul.menu li a:hover,
+        .header-background .navigation ul li a:hover {
+          color: #203b72 !important;
+          opacity: 1 !important;
+        }
+
+        /* Highlight active page ('current') in brand navy blue */
+        .navigation.color-black ul li.current > a,
+        .header-background .navigation ul.menu li.current > a,
+        .header-background .navigation ul li.current > a {
+          color: #203b72 !important;
+          font-weight: 700 !important;
+          opacity: 1 !important;
+        }
+      `}</style>
+
       {/* Overlay Navigation Menu */}
       <div className="overlay-navigation-wrapper enter-right" data-no-scrollbar data-animation="slide-in">
         <div className="overlay-navigation-scroll-pane">

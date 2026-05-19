@@ -1,10 +1,19 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Work() {
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     window.dispatchEvent(new Event('resize'));
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const projects = [
@@ -75,23 +84,35 @@ export default function Work() {
 
   return (
     <>
-      <div className="section-block intro-title-1 pt-100 work-page">
-        <div className="row">
-          <div className="column width-12">
-            <div className="title-container">
-              <div className="title-container-inner left-on-mobile tmh-perspective">
-                <h1 className="font-alt-1 color-charcoal horizon mobile-res-work"
-                  data-animate-in="preset:slideInRightShort;duration:600ms;"
-                  style={{ padding: '0' }}>
-                  With <strong>18+ years </strong>of extensive experience in the industry, 
-                  I have worked on 207+ projects. I strive to offer best results to 
-                  varied brands by bringing creativity aligned with impactful strategy.
-                </h1>
-              </div>
-            </div>
+      {/* Premium Solid Brand Navy Hero Header Banner */}
+      <section className="work-hero-section" style={{
+        position: 'relative',
+        background: '#203b72',
+        padding: isMobile ? '100px 0 60px 0' : '160px 0 100px 0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
+      }}>
+        {/* Decorative Grid Frame */}
+        <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+          <div className="column width-12" style={{ textAlign: 'left', padding: '0 20px' }}>
+            <h1 className="font-alt-1 mobile-res-work" style={{
+              fontSize: isMobile ? '20px' : '32px',
+              lineHeight: '1.45',
+              fontWeight: '700',
+              color: '#ffffff',
+              margin: 0,
+              padding: 0,
+              letterSpacing: '-0.5px'
+            }}>
+              With <strong>18+ years</strong> of extensive experience in the industry, <br className="hide-on-mobile" />
+              I have worked on <strong>207+ projects</strong>. I strive to offer best results to <br className="hide-on-mobile" />
+              varied brands by bringing creativity aligned with impactful strategy.
+            </h1>
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="section-block grid-container full-width no-margins no-padding masonry masonry-set-dimensions"
         data-layout-mode="masonry" data-grid-ratio="1" data-animate-filter-duration="700"
