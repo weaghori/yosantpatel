@@ -264,7 +264,7 @@ export default function Footer() {
       <a id="bottom_top"></a>
 
       {/* Floating Scroll to Top Button */}
-      <button
+      <div
         onClick={scrollToTop}
         style={{
           position: 'fixed',
@@ -285,7 +285,10 @@ export default function Footer() {
           transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
           pointerEvents: isVisible ? 'all' : 'none',
           boxShadow: '0 10px 25px rgba(32, 59, 114, 0.25)',
-          transition: 'all 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
+          transition: 'all 0.4s cubic-bezier(0.25, 1, 0.5, 1)',
+          padding: 0,
+          margin: 0,
+          boxSizing: 'border-box'
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.backgroundColor = '#ffffff';
@@ -302,8 +305,20 @@ export default function Footer() {
           e.currentTarget.style.boxShadow = '0 10px 25px rgba(32, 59, 114, 0.25)';
         }}
       >
-        <span className="fa fa-chevron-up" style={{ fontSize: '18px', fontWeight: 'bold' }}></span>
-      </button>
+        <svg 
+          width="20" 
+          height="20" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="1.5" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          style={{ display: 'block', transition: 'transform 0.3s ease' }}
+        >
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </div>
     </footer>
   );
 }
