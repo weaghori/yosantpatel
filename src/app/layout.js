@@ -40,9 +40,6 @@ export default function RootLayout({ children }) {
       <RootLayoutShell>
         {children}
       </RootLayoutShell>
-      
-      {/* Load Timber master script after page is interactive */}
-      <Script src="/js/timber.master.min.js" strategy="afterInteractive" />
     </html>
   );
 }
