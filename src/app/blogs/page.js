@@ -81,51 +81,6 @@ export default function Blogs() {
         </div>
       </section>
 
-      {/* Intro Narrative Section */}
-      <section id="about" className="section-block" style={{
-        padding: isMobile ? '50px 0' : '110px 0',
-        backgroundColor: '#ffffff',
-        backgroundImage: 'radial-gradient(circle at 50% 120%, rgba(32, 59, 114, 0.04) 0%, transparent 60%)',
-        borderBottom: '1px solid #f1f5f9',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '30px' : '40px' }}>
-          {/* Left Column Heading */}
-          <div className="column" style={{ 
-            flex: isMobile ? '1 1 100%' : '1 1 35%', 
-            margin: 0 
-          }}>
-            <h2 style={{
-              fontSize: isMobile ? '22px' : '36px',
-              fontWeight: '800',
-              lineHeight: '1.25',
-              color: '#203b72',
-              fontFamily: 'inherit',
-              margin: 0,
-              letterSpacing: '-1px'
-            }}>
-              Insights, Thoughts & Creative Wisdom
-            </h2>
-          </div>
-          {/* Right Column Body */}
-          <div className="column" style={{ 
-            flex: isMobile ? '1 1 100%' : '1 1 55%', 
-            margin: 0 
-          }}>
-            <p style={{
-              fontSize: isMobile ? '13px' : '16px',
-              lineHeight: '1.8',
-              color: '#475569',
-              fontWeight: '300',
-              margin: 0,
-              fontFamily: 'inherit'
-            }}>
-              Deep dives into brand strategy, visual positioning, package design, and the art of international market growth. Under my perspective, building a long-lasting brand identity is an act of thorough research and creative vision.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Clean & Creative Blog Grid Section */}
       <section className="section-block" style={{
