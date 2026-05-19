@@ -1,7 +1,30 @@
 "use client";
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   return (
     <footer 
       style={{
@@ -239,6 +262,48 @@ export default function Footer() {
 
       </div>
       <a id="bottom_top"></a>
+
+      {/* Floating Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        style={{
+          position: 'fixed',
+          bottom: '30px',
+          right: '30px',
+          width: '50px',
+          height: '50px',
+          borderRadius: '50%',
+          backgroundColor: '#203b72',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          color: '#ffffff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          zIndex: 9999,
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
+          pointerEvents: isVisible ? 'all' : 'none',
+          boxShadow: '0 10px 25px rgba(32, 59, 114, 0.25)',
+          transition: 'all 0.4s cubic-bezier(0.25, 1, 0.5, 1)'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = '#ffffff';
+          e.currentTarget.style.color = '#203b72';
+          e.currentTarget.style.borderColor = '#203b72';
+          e.currentTarget.style.transform = 'translateY(-4px) scale(1.05)';
+          e.currentTarget.style.boxShadow = '0 15px 35px rgba(32, 59, 114, 0.35)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = '#203b72';
+          e.currentTarget.style.color = '#ffffff';
+          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          e.currentTarget.style.boxShadow = '0 10px 25px rgba(32, 59, 114, 0.25)';
+        }}
+      >
+        <span className="fa fa-chevron-up" style={{ fontSize: '18px', fontWeight: 'bold' }}></span>
+      </button>
     </footer>
   );
 }
