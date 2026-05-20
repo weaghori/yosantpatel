@@ -1,0 +1,572 @@
+"use client";
+import { useState } from 'react';
+
+const STEPS = ['Personal Info', 'Project Details', 'Review'];
+
+export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    fullName: '', email: '', phone: '', city: '', occupation: '',
+    services: [], budget: '', businessDetails: '', inquiryDetails: ''
+  });
+
+  if (!isOpen) return null;
+
+  const handleNext = () => setStep(p => Math.min(p + 1, 3));
+  const handleBack = () => setStep(p => Math.max(p - 1, 1));
+
+  const handleSubmit = () => {
+    console.log('Submitted:', formData, selectedDate);
+    alert('Request submitted! We will reach out shortly.');
+    onClose();
+    setStep(1);
+    setFormData({ fullName: '', email: '', phone: '', city: '', occupation: '', services: [], budget: '', businessDetails: '', inquiryDetails: '' });
+  };
+
+  const set = (name, value) => setFormData(p => ({ ...p, [name]: value }));
+
+  const toggleService = (srv) => {
+    setFormData(p => ({
+      ...p,
+      services: p.services.includes(srv) ? p.services.filter(s => s !== srv) : [...p.services, srv]
+    }));
+  };
+
+  const services = ['Graphic Design', 'Branding', 'Web Development', 'Digital Marketing', 'Social Marketing', 'Other'];
+  const budgets = ['20–50k', '50k–1L', '1–5L'];
+
+  return (
+    <div id="consultation-overlay" className="cm-overlay" onClick={onClose}>
+      <div className="cm-modal" onClick={e => e.stopPropagation()}>
+
+        {/* Left accent panel */}
+        <div className="cm-panel">
+          <div className="cm-panel-inner">
+            <div className="cm-brand">Yosant Patel</div>
+            <h3 className="cm-panel-title">Book a Free Consultation</h3>
+            {selectedDate && (
+              <div className="cm-date-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                {selectedDate.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' })}
+              </div>
+            )}
+            <div className="cm-steps-list">
+              {STEPS.map((label, i) => (
+                <div key={i} className={`cm-step-row ${step === i + 1 ? 'cm-step-active' : ''} ${step > i + 1 ? 'cm-step-done' : ''}`}>
+                  <div className="cm-step-dot">
+                    {step > i + 1
+                      ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+                      : i + 1}
+                  </div>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right form area */}
+        <div className="cm-form-area">
+          <button className="cm-close" onClick={onClose} aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+
+          {/* Progress bar */}
+          <div className="cm-progress-bar">
+            <div className="cm-progress-fill" style={{ width: `${(step / 3) * 100}%` }}></div>
+          </div>
+
+          <div className="cm-scroll-area">
+
+            {step === 1 && (
+              <div className="cm-pane" key="step1">
+                <p className="cm-step-label">Step 1 of 3</p>
+                <h2 className="cm-form-title">Personal Information</h2>
+                <p className="cm-form-sub">Tell us a bit about yourself so we can personalise your consultation.</p>
+
+                <div className="cm-fields">
+                  <div className="cm-field-row">
+                    <div className="cm-field">
+                      <label>Full Name</label>
+                      <input type="text" placeholder="Alex Johnson" value={formData.fullName} onChange={e => set('fullName', e.target.value)} />
+                    </div>
+                    <div className="cm-field">
+                      <label>Email</label>
+                      <input type="email" placeholder="alex@email.com" value={formData.email} onChange={e => set('email', e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="cm-field-row">
+                    <div className="cm-field">
+                      <label>Phone</label>
+                      <input type="tel" placeholder="+91 98765 43210" value={formData.phone} onChange={e => set('phone', e.target.value)} />
+                    </div>
+                    <div className="cm-field">
+                      <label>City</label>
+                      <input type="text" placeholder="Mumbai" value={formData.city} onChange={e => set('city', e.target.value)} />
+                    </div>
+                  </div>
+                  <div className="cm-field">
+                    <label>Occupation</label>
+                    <input type="text" placeholder="e.g. Business Owner, Designer…" value={formData.occupation} onChange={e => set('occupation', e.target.value)} />
+                  </div>
+                </div>
+
+                <div className="cm-actions">
+                  <button className="cm-btn-primary" onClick={handleNext}>Continue &rarr;</button>
+                </div>
+              </div>
+            )}
+
+            {step === 2 && (
+              <div className="cm-pane" key="step2">
+                <p className="cm-step-label">Step 2 of 3</p>
+                <h2 className="cm-form-title">Project Details</h2>
+                <p className="cm-form-sub">Help us understand the scope of your project.</p>
+
+                <div className="cm-fields">
+                  <div className="cm-field">
+                    <label>Services Needed</label>
+                    <div className="cm-chip-group">
+                      {services.map(s => (
+                        <button key={s} className={`cm-chip ${formData.services.includes(s) ? 'on' : ''}`} onClick={() => toggleService(s)}>{s}</button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="cm-field">
+                    <label>Budget Range</label>
+                    <div className="cm-chip-group">
+                      {budgets.map(b => (
+                        <button key={b} className={`cm-chip ${formData.budget === b ? 'on' : ''}`} onClick={() => set('budget', b)}>{b}</button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="cm-field">
+                    <label>About Your Business</label>
+                    <textarea placeholder="Briefly describe your business and goals…" rows="3" value={formData.businessDetails} onChange={e => set('businessDetails', e.target.value)} />
+                  </div>
+
+                  <div className="cm-field">
+                    <label>Inquiry Details</label>
+                    <textarea placeholder="Any specific requirements or questions?" rows="3" value={formData.inquiryDetails} onChange={e => set('inquiryDetails', e.target.value)} />
+                  </div>
+                </div>
+
+                <div className="cm-actions split">
+                  <button className="cm-btn-ghost" onClick={handleBack}>&larr; Back</button>
+                  <button className="cm-btn-primary" onClick={handleNext}>Review &rarr;</button>
+                </div>
+              </div>
+            )}
+
+            {step === 3 && (
+              <div className="cm-pane" key="step3">
+                <p className="cm-step-label">Step 3 of 3</p>
+                <h2 className="cm-form-title">Review & Submit</h2>
+                <p className="cm-form-sub">Everything look right? Hit submit and we'll be in touch shortly.</p>
+
+                <div className="cm-review">
+                  {selectedDate && <Row label="Preferred Date" val={selectedDate.toDateString()} />}
+                  <Row label="Full Name" val={formData.fullName} />
+                  <Row label="Email" val={formData.email} />
+                  <Row label="Phone" val={formData.phone} />
+                  <Row label="City" val={formData.city} />
+                  <Row label="Occupation" val={formData.occupation} />
+                  <Row label="Services" val={formData.services.join(', ')} />
+                  <Row label="Budget" val={formData.budget} />
+                  <Row label="Business Info" val={formData.businessDetails} />
+                  <Row label="Inquiry" val={formData.inquiryDetails} />
+                </div>
+
+                <div className="cm-actions split">
+                  <button className="cm-btn-ghost" onClick={handleBack}>&larr; Back</button>
+                  <button className="cm-btn-submit" onClick={handleSubmit}>Submit Request ✓</button>
+                </div>
+              </div>
+            )}
+
+          </div>
+        </div>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        /* ── Overlay ── */
+        .cm-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(10,15,30,0.72);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10000;
+          padding: 20px;
+        }
+
+        /* ── Modal shell ── */
+        .cm-modal {
+          display: flex;
+          width: 860px;
+          max-width: 100%;
+          max-height: 92vh;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+          animation: cmIn .35s cubic-bezier(.16,1,.3,1) both;
+        }
+        @keyframes cmIn {
+          from { opacity: 0; transform: scale(.96) translateY(20px); }
+          to   { opacity: 1; transform: scale(1)  translateY(0); }
+        }
+
+        /* ── Left accent panel ── */
+        .cm-panel {
+          width: 240px;
+          flex-shrink: 0;
+          background: linear-gradient(160deg, #203b72 0%, #162a54 100%);
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .cm-panel-inner {
+          padding: 40px 28px;
+        }
+        .cm-brand {
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 2.5px;
+          color: rgba(255,255,255,.5);
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+        .cm-panel-title {
+          font-size: 22px;
+          font-weight: 800;
+          line-height: 1.3;
+          color: #fff;
+          margin-bottom: 20px;
+          letter-spacing: -0.3px;
+        }
+        .cm-date-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(255,255,255,.12);
+          border: 1px solid rgba(255,255,255,.18);
+          border-radius: 30px;
+          padding: 7px 14px;
+          font-size: 13px;
+          font-weight: 600;
+          color: #fff;
+          margin-bottom: 32px;
+        }
+        .cm-steps-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .cm-step-row {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 14px;
+          color: rgba(255,255,255,.45);
+          font-weight: 500;
+          transition: color .2s;
+        }
+        .cm-step-row.cm-step-active { color: #fff; }
+        .cm-step-row.cm-step-done   { color: rgba(255,255,255,.7); }
+        .cm-step-dot {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          border: 2px solid rgba(255,255,255,.25);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          font-weight: 700;
+          flex-shrink: 0;
+          transition: all .2s;
+        }
+        .cm-step-active .cm-step-dot {
+          background: #fff;
+          border-color: #fff;
+          color: #203b72;
+        }
+        .cm-step-done .cm-step-dot {
+          background: rgba(255,255,255,.25);
+          border-color: rgba(255,255,255,.35);
+          color: #fff;
+        }
+
+        /* ── Right form area ── */
+        .cm-form-area {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          background: #fff;
+          position: relative;
+          min-width: 0;
+        }
+        .cm-close {
+          position: absolute;
+          top: 18px;
+          right: 18px;
+          width: 34px;
+          height: 34px;
+          background: #f1f5f9;
+          border: none;
+          border-radius: 50%;
+          color: #64748b;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all .2s;
+          z-index: 2;
+        }
+        .cm-close:hover {
+          background: #e2e8f0;
+          color: #0f172a;
+        }
+
+        /* ── Progress bar ── */
+        .cm-progress-bar {
+          height: 3px;
+          background: #f1f5f9;
+          flex-shrink: 0;
+        }
+        .cm-progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #203b72, #4a72c4);
+          transition: width .4s cubic-bezier(.16,1,.3,1);
+          border-radius: 0 3px 3px 0;
+        }
+
+        /* ── Scrollable content ── */
+        .cm-scroll-area {
+          flex: 1;
+          overflow-y: auto;
+          padding: 36px 40px 30px;
+        }
+        .cm-pane {
+          animation: paneIn .3s ease;
+        }
+        @keyframes paneIn {
+          from { opacity: 0; transform: translateX(12px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+
+        .cm-step-label {
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 700;
+          color: #203b72;
+          margin-bottom: 6px;
+        }
+        .cm-form-title {
+          font-size: 26px;
+          font-weight: 800;
+          color: #0f172a;
+          letter-spacing: -0.5px;
+          margin-bottom: 6px;
+        }
+        .cm-form-sub {
+          font-size: 14px;
+          color: #64748b;
+          margin-bottom: 28px;
+          line-height: 1.5;
+        }
+
+        /* ── Fields ── */
+        .cm-fields {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+        }
+        .cm-field-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 18px;
+        }
+        .cm-field {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .cm-field label {
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.8px;
+          color: #334155;
+        }
+        .cm-field input,
+        .cm-field textarea {
+          border: 1.5px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 11px 14px;
+          font-size: 15px;
+          font-family: inherit;
+          color: #0f172a;
+          background: #fafbfc;
+          outline: none;
+          transition: border-color .2s, box-shadow .2s;
+          resize: none;
+        }
+        .cm-field input:focus,
+        .cm-field textarea:focus {
+          border-color: #203b72;
+          box-shadow: 0 0 0 3px rgba(32,59,114,.1);
+          background: #fff;
+        }
+        .cm-field input::placeholder,
+        .cm-field textarea::placeholder {
+          color: #94a3b8;
+        }
+
+        /* ── Chips ── */
+        .cm-chip-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 9px;
+          margin-top: 2px;
+        }
+        .cm-chip {
+          background: #f8fafc;
+          border: 1.5px solid #e2e8f0;
+          border-radius: 30px;
+          padding: 8px 18px;
+          font-size: 13px;
+          font-weight: 500;
+          color: #475569;
+          cursor: pointer;
+          transition: all .2s;
+        }
+        .cm-chip:hover {
+          border-color: #203b72;
+          color: #203b72;
+        }
+        .cm-chip.on {
+          background: #203b72;
+          border-color: #203b72;
+          color: #fff;
+          font-weight: 600;
+        }
+
+        /* ── Review ── */
+        .cm-review {
+          background: #f8fafc;
+          border: 1.5px solid #e8edf4;
+          border-radius: 14px;
+          overflow: hidden;
+          margin-bottom: 4px;
+        }
+        .cm-review-row {
+          display: flex;
+          align-items: flex-start;
+          padding: 12px 18px;
+          border-bottom: 1px solid #f1f5f9;
+          gap: 14px;
+        }
+        .cm-review-row:last-child { border-bottom: none; }
+        .cm-review-label {
+          width: 130px;
+          flex-shrink: 0;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.6px;
+          color: #64748b;
+          padding-top: 2px;
+        }
+        .cm-review-val {
+          font-size: 14px;
+          color: #0f172a;
+          font-weight: 500;
+          line-height: 1.5;
+        }
+
+        /* ── Actions ── */
+        .cm-actions {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 28px;
+          gap: 12px;
+        }
+        .cm-actions.split { justify-content: space-between; }
+
+        .cm-btn-primary {
+          background: #203b72;
+          color: #fff;
+          border: none;
+          padding: 13px 28px;
+          border-radius: 10px;
+          font-size: 15px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: background .2s, transform .15s;
+        }
+        .cm-btn-primary:hover {
+          background: #162a54;
+          transform: translateY(-1px);
+        }
+        .cm-btn-ghost {
+          background: transparent;
+          border: 1.5px solid #e2e8f0;
+          color: #475569;
+          padding: 13px 24px;
+          border-radius: 10px;
+          font-size: 15px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all .2s;
+        }
+        .cm-btn-ghost:hover {
+          background: #f8fafc;
+          border-color: #cbd5e1;
+          color: #0f172a;
+        }
+        .cm-btn-submit {
+          background: linear-gradient(135deg, #203b72, #2d5aba);
+          color: #fff;
+          border: none;
+          padding: 13px 28px;
+          border-radius: 10px;
+          font-size: 15px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all .2s;
+          box-shadow: 0 4px 14px rgba(32,59,114,.3);
+        }
+        .cm-btn-submit:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 20px rgba(32,59,114,.4);
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+          .cm-panel { display: none; }
+          .cm-modal { border-radius: 16px; }
+          .cm-scroll-area { padding: 28px 22px 22px; }
+          .cm-field-row { grid-template-columns: 1fr; }
+          .cm-form-title { font-size: 22px; }
+        }
+      `}} />
+    </div>
+  );
+}
+
+function Row({ label, val }) {
+  return (
+    <div className="cm-review-row">
+      <span className="cm-review-label">{label}</span>
+      <span className="cm-review-val">{val || <em style={{color:'#94a3b8'}}>—</em>}</span>
+    </div>
+  );
+}
