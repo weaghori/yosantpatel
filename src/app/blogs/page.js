@@ -29,10 +29,11 @@ export default function Blogs() {
               slug: blog.slug,
               title: blog.title,
               img: blog.mainImage ? (blog.mainImage.startsWith('http') ? blog.mainImage : `https://ams.aghorimediahouse.com${blog.mainImage}`) : "/images/slider/Blog-Learn-teach-Yosant-Patel.jpg",
-              category: "Branding",
+              category: Array.isArray(blog.tags) && blog.tags.length > 0 ? blog.tags.join(', ') : "",
               date: blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : "18 May 2026",
               excerpt: blog.description || "",
-              content: blog.content
+              content: blog.content,
+              tags: Array.isArray(blog.tags) ? blog.tags : []
             }));
             setBlogs(mapped);
           }
@@ -202,7 +203,7 @@ export default function Blogs() {
                     </div>
                   </div>
 
-                  {/* Date & Category Tag */}
+                  {/* Date Metadata */}
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -214,8 +215,6 @@ export default function Blogs() {
                     textTransform: 'uppercase',
                     marginBottom: '10px'
                   }}>
-                    <span style={{ color: '#203b72' }}>{post.category}</span>
-                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#cbd5e1' }} />
                     <span>{post.date}</span>
                   </div>
 
@@ -242,11 +241,40 @@ export default function Blogs() {
                     lineHeight: '1.65',
                     color: '#64748b',
                     fontWeight: '300',
-                    margin: '0 0 18px',
+                    margin: '0 0 14px',
                     fontFamily: 'inherit'
                   }}>
                     {post.excerpt || (post.content ? post.content.substring(0, 130).replace(/<[^>]*>/g, '') + '...' : '')}
                   </p>
+
+                  {/* Tags Pill Badges */}
+                  {post.tags && post.tags.length > 0 && (
+                    <div style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: '6px',
+                      marginBottom: '20px'
+                    }}>
+                      {post.tags.map((tag, tagIndex) => (
+                        <span 
+                          key={tagIndex} 
+                          style={{
+                            fontSize: '10px',
+                            fontWeight: '600',
+                            backgroundColor: '#fafbfe',
+                            color: '#203b72',
+                            padding: '3px 8px',
+                            borderRadius: '4px',
+                            textTransform: 'lowercase',
+                            letterSpacing: '0.3px',
+                            border: '1px solid rgba(32, 59, 114, 0.12)'
+                          }}
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Simple Creative Slide-Arrow CTA */}
                   <div>

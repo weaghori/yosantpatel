@@ -30,8 +30,9 @@ export default function BlogDetailClient({ post }) {
                 slug: blog.slug,
                 title: blog.title,
                 img: blog.mainImage ? (blog.mainImage.startsWith('http') ? blog.mainImage : `https://ams.aghorimediahouse.com${blog.mainImage}`) : "/images/slider/Blog-Learn-teach-Yosant-Patel.jpg",
-                category: "Branding",
-                date: blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : "18 May 2026"
+                category: Array.isArray(blog.tags) && blog.tags.length > 0 ? blog.tags.join(', ') : "",
+                date: blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) : "18 May 2026",
+                tags: Array.isArray(blog.tags) ? blog.tags : []
               }));
             setRecentBlogs(filtered);
           }
@@ -74,17 +75,19 @@ export default function BlogDetailClient({ post }) {
         <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
           <div className="column width-12" style={{ textAlign: 'left' }}>
             {/* Category Tag */}
-            <span style={{
-              display: 'inline-block',
-              fontSize: '11px',
-              fontWeight: '700',
-              color: '#38bdf8',
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              marginBottom: '15px'
-            }}>
-              {post.category || "Branding"}
-            </span>
+            {Array.isArray(post.tags) && post.tags.length > 0 && (
+              <span style={{
+                display: 'inline-block',
+                fontSize: '11px',
+                fontWeight: '700',
+                color: '#38bdf8',
+                letterSpacing: '1.5px',
+                textTransform: 'uppercase',
+                marginBottom: '15px'
+              }}>
+                {post.tags.join(', ')}
+              </span>
+            )}
 
             {/* Premium Editorial Title */}
             <h1 style={{
@@ -168,6 +171,53 @@ export default function BlogDetailClient({ post }) {
                     : '' 
                 }} 
               />
+
+              {/* Elegant Tag Block at Bottom of Content */}
+              {Array.isArray(post.tags) && post.tags.length > 0 && (
+                <div style={{
+                  marginTop: '45px',
+                  paddingTop: '25px',
+                  borderTop: '1px solid #e2e8f0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  flexWrap: 'wrap'
+                }}>
+                  <span style={{
+                    fontSize: '11px',
+                    fontWeight: '700',
+                    color: '#64748b',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Tags:
+                  </span>
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '8px'
+                  }}>
+                    {post.tags.map((tag, idx) => (
+                      <span 
+                        key={idx}
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          backgroundColor: '#fafbfe',
+                          color: '#203b72',
+                          padding: '4px 12px',
+                          borderRadius: '6px',
+                          textTransform: 'lowercase',
+                          letterSpacing: '0.3px',
+                          border: '1px solid rgba(32, 59, 114, 0.12)'
+                        }}
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </article>
           </div>
         </div>
@@ -281,7 +331,7 @@ export default function BlogDetailClient({ post }) {
                           </div>
                         </div>
 
-                        {/* Metadata indicators */}
+                        {/* Date Metadata */}
                         <div style={{
                           display: 'flex',
                           alignItems: 'center',
@@ -293,8 +343,6 @@ export default function BlogDetailClient({ post }) {
                           textTransform: 'uppercase',
                           letterSpacing: '0.5px'
                         }}>
-                          <span style={{ color: '#203b72' }}>{suggested.category}</span>
-                          <span style={{ fontSize: '6px', opacity: 0.5 }}>●</span>
                           <span>{suggested.date}</span>
                         </div>
 
@@ -304,12 +352,41 @@ export default function BlogDetailClient({ post }) {
                           fontWeight: '800',
                           color: '#0f172a',
                           lineHeight: '1.4',
-                          margin: '0 0 15px',
+                          margin: '0 0 10px',
                           letterSpacing: '-0.3px',
                           transition: 'color 0.3s'
                         }} className="suggested-blog-title">
                           {suggested.title}
                         </h4>
+
+                        {/* Tags Pill Badges */}
+                        {suggested.tags && suggested.tags.length > 0 && (
+                          <div style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '6px',
+                            marginBottom: '15px'
+                          }}>
+                            {suggested.tags.map((tag, tagIndex) => (
+                              <span 
+                                key={tagIndex} 
+                                style={{
+                                  fontSize: '10px',
+                                  fontWeight: '600',
+                                  backgroundColor: '#fafbfe',
+                                  color: '#203b72',
+                                  padding: '3px 8px',
+                                  borderRadius: '4px',
+                                  textTransform: 'lowercase',
+                                  letterSpacing: '0.3px',
+                                  border: '1px solid rgba(32, 59, 114, 0.12)'
+                                }}
+                              >
+                                #{tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
 
                         {/* Clean micro-arrow Link */}
                         <div style={{
