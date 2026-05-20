@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
+import HomeBlogSection from '@/components/HomeBlogSection';
 
 export default function Home() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -581,6 +582,9 @@ export default function Home() {
         </div>
       </div>
       {/* Content Section End */}
+
+      {/* Dynamic Latest Blogs Section */}
+      <HomeBlogSection />
 
       {/* Sign Up Section 2 */}
       <section className="section-block signup-2 signup-2-1" style={{ paddingTop: isMobile ? '80px' : '150px', paddingBottom: isMobile ? '80px' : '150px' }}>
