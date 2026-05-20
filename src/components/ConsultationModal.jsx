@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const STEPS = ['Personal Info', 'Project Details', 'Review'];
 
@@ -9,6 +9,17 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
     fullName: '', email: '', phone: '', city: '', occupation: '',
     services: [], budget: '', businessDetails: '', inquiryDetails: ''
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -68,7 +79,9 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         {/* Right form area */}
         <div className="cm-form-area">
           <button className="cm-close" onClick={onClose} aria-label="Close">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', pointerEvents: 'none' }}>
+              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="3" />
+            </svg>
           </button>
 
           {/* Progress bar */}
@@ -210,7 +223,8 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
           display: flex;
           width: 860px;
           max-width: 100%;
-          max-height: 92vh;
+          height: 600px !important;
+          max-height: 90vh;
           border-radius: 20px;
           overflow: hidden;
           box-shadow: 0 40px 100px rgba(0,0,0,0.4);
@@ -311,27 +325,38 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
           background: #fff;
           position: relative;
           min-width: 0;
+          height: 100% !important;
+          max-height: 100% !important;
+          overflow: hidden !important;
         }
         .cm-close {
-          position: absolute;
-          top: 18px;
-          right: 18px;
-          width: 34px;
-          height: 34px;
-          background: #f1f5f9;
-          border: none;
-          border-radius: 50%;
-          color: #64748b;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all .2s;
-          z-index: 2;
+          position: absolute !important;
+          top: 18px !important;
+          right: 24px !important;
+          width: 34px !important;
+          height: 34px !important;
+          min-width: 34px !important;
+          max-width: 34px !important;
+          min-height: 34px !important;
+          max-height: 34px !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          border: none !important;
+          border-radius: 50% !important;
+          background: #f1f5f9 !important;
+          color: #64748b !important;
+          cursor: pointer !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          transition: all .2s !important;
+          z-index: 100 !important;
+          box-sizing: border-box !important;
+          line-height: 0 !important;
         }
         .cm-close:hover {
-          background: #e2e8f0;
-          color: #0f172a;
+          background: #e2e8f0 !important;
+          color: #0f172a !important;
         }
 
         /* ── Progress bar ── */
@@ -352,6 +377,19 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
           flex: 1;
           overflow-y: auto;
           padding: 36px 40px 30px;
+        }
+        .cm-scroll-area::-webkit-scrollbar {
+          width: 6px;
+        }
+        .cm-scroll-area::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .cm-scroll-area::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 10px;
+        }
+        .cm-scroll-area::-webkit-scrollbar-thumb:hover {
+          background: #94a3b8;
         }
         .cm-pane {
           animation: paneIn .3s ease;
@@ -379,7 +417,7 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         .cm-form-sub {
           font-size: 14px;
           color: #64748b;
-          margin-bottom: 28px;
+          margin-bottom: 18px;
           line-height: 1.5;
         }
 
@@ -387,37 +425,51 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         .cm-fields {
           display: flex;
           flex-direction: column;
-          gap: 18px;
+          gap: 14px !important;
         }
         .cm-field-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 18px;
+          gap: 14px !important;
         }
         .cm-field {
           display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 4px !important;
         }
         .cm-field label {
-          font-size: 12px;
+          font-size: 11px !important;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.8px;
-          color: #334155;
+          color: #475569;
         }
-        .cm-field input,
+        .cm-field input {
+          border: 1.5px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 10px 14px !important;
+          font-size: 14px !important;
+          font-family: inherit;
+          color: #0f172a;
+          background: #fafbfc;
+          outline: none;
+          transition: border-color .2s, box-shadow .2s;
+          height: 40px !important;
+        }
         .cm-field textarea {
           border: 1.5px solid #e2e8f0;
           border-radius: 10px;
-          padding: 11px 14px;
-          font-size: 15px;
+          padding: 10px 14px !important;
+          font-size: 14px !important;
           font-family: inherit;
           color: #0f172a;
           background: #fafbfc;
           outline: none;
           transition: border-color .2s, box-shadow .2s;
           resize: none;
+          height: 68px !important;
+          min-height: 68px !important;
+          max-height: 68px !important;
         }
         .cm-field input:focus,
         .cm-field textarea:focus {
@@ -496,7 +548,7 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         .cm-actions {
           display: flex;
           justify-content: flex-end;
-          margin-top: 28px;
+          margin-top: 18px;
           gap: 12px;
         }
         .cm-actions.split { justify-content: space-between; }
