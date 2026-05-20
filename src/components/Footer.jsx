@@ -26,299 +26,480 @@ export default function Footer() {
   };
 
   return (
-    <footer 
-      style={{
-        backgroundColor: '#ffffff',
-        borderTop: '1px solid #f2f2f5',
-        padding: '80px 5% 40px',
-        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        color: '#111111'
-      }}
-    >
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+    <>
+      <style>{`
+        /* Premium Creative Editorial Footer - Featuring Brand Navy #203b72 Accents */
+        footer.premium-footer {
+          background-color: #ffffff;
+          border-top: 1px solid #f1f5f9;
+          position: relative;
+          overflow: hidden;
+          padding: 100px 5% 40px;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          color: #475569;
+        }
+
+        .footer-max-width {
+          max-width: 1280px;
+          margin: 0 auto;
+        }
+
+        /* Top Row: Asymmetrical Brand + Tagline vs Big Creative Email CTA */
+        .footer-top-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 60px;
+          margin-bottom: 80px;
+        }
+
+        .footer-brand-section {
+          max-width: 420px;
+        }
+
+        .footer-logo-wrapper {
+          margin-bottom: 24px;
+        }
+
+        .footer-logo-img {
+          height: 28px;
+          width: auto;
+          display: block;
+          transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
         
-        {/* Top Section - Main Content */}
-        <div 
-          style={{ 
-            display: 'flex', 
-            flexWrap: 'wrap', 
-            justifyContent: 'space-between', 
-            gap: '50px',
-            marginBottom: '80px'
-          }}
-        >
+        .footer-logo-img:hover {
+          opacity: 0.75;
+        }
+
+        .footer-brand-tagline {
+          font-size: 14px;
+          line-height: 1.6;
+          color: #64748b;
+          margin: 0;
+          font-weight: 400;
+        }
+
+        .footer-cta-section {
+          text-align: right;
+        }
+
+        .footer-cta-tag {
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          color: #203b72;
+          font-weight: 600;
+          margin-bottom: 14px;
+          display: block;
+        }
+
+        .footer-cta-statement {
+          font-size: 16px;
+          color: #64748b;
+          margin: 0 0 10px 0;
+          font-weight: 400;
+          font-style: italic;
+        }
+
+        .footer-email-link {
+          font-size: clamp(16px, 1.8vw, 22px);
+          color: #0f172a;
+          text-decoration: none;
+          font-weight: 300;
+          display: inline-block;
+          position: relative;
+          transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .footer-email-link::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #203b72;
+          transform: scaleX(0.15);
+          transform-origin: right;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .footer-email-link:hover {
+          color: #203b72;
+        }
+        
+        .footer-email-link:hover::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+
+        /* Divider lines */
+        .footer-divider {
+          height: 1px;
+          background-color: #f1f5f9;
+          width: 100%;
+          margin-bottom: 45px;
+        }
+
+        /* Middle Row: Editorial Horizontal Links & Glassmorphic Connect Icons */
+        .footer-middle-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 40px;
+          margin-bottom: 60px;
+        }
+
+        .footer-nav-section {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .footer-nav-label {
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          color: #203b72;
+          font-weight: 600;
+          margin-right: 10px;
+        }
+
+        .footer-horizontal-links {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 12px 24px;
+        }
+
+        .footer-nav-link {
+          font-size: 15px;
+          color: #475569;
+          text-decoration: none;
+          font-weight: 400;
+          transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          display: inline-block;
+        }
+        
+        .footer-nav-link:hover {
+          color: #203b72;
+          transform: translateY(-2px);
+        }
+
+        .footer-slash {
+          color: #e2e8f0;
+          font-size: 14px;
+          user-select: none;
+        }
+
+        .footer-social-section {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .footer-social-label {
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          color: #203b72;
+          font-weight: 600;
+        }
+
+        .footer-social-list {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: flex;
+          gap: 12px;
+        }
+
+        .footer-social-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background-color: #f8fafc;
+          border: 1px solid #e2e8f0;
+          color: #475569;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          text-decoration: none;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .footer-social-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #203b72;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          z-index: 1;
+        }
+        
+        .footer-social-btn span {
+          position: relative;
+          z-index: 2;
+          font-size: 16px;
+          transition: color 0.4s ease;
+        }
+        
+        .footer-social-btn:hover {
+          color: #ffffff;
+          transform: translateY(-3px);
+          border-color: #203b72;
+          box-shadow: 0 8px 16px rgba(32, 59, 114, 0.12);
+        }
+        
+        .footer-social-btn:hover::before {
+          opacity: 1;
+        }
+
+        /* Bottom Row: Minimal Copyright & Legal Links */
+        .footer-bottom-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20px;
+          border-top: 1px solid #f1f5f9;
+          padding-top: 35px;
+        }
+
+        .footer-copyright {
+          margin: 0;
+          color: #64748b;
+          font-size: 13px;
+          font-weight: 400;
+        }
+
+        .footer-legal-links {
+          display: flex;
+          gap: 30px;
+          font-size: 13px;
+        }
+
+        .footer-legal-link {
+          color: #64748b;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          display: inline-block;
+        }
+        
+        .footer-legal-link:hover {
+          color: #203b72;
+        }
+
+        /* Floating Scroll to Top */
+        .scroll-to-top-btn {
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color: #ffffff;
+          border: 1px solid #e2e8f0;
+          color: #203b72;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 9999;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .scroll-to-top-btn:hover {
+          background-color: #203b72;
+          color: #ffffff;
+          border-color: #203b72;
+          transform: translateY(-4px) scale(1.05);
+          box-shadow: 0 15px 30px rgba(32, 59, 114, 0.25);
+        }
+
+        /* Responsiveness */
+        @media (max-width: 991px) {
+          .footer-top-row {
+            flex-direction: column;
+            gap: 40px;
+            align-items: flex-start;
+          }
+          .footer-cta-section {
+            text-align: left;
+          }
+          .footer-middle-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 30px;
+          }
+        }
+        @media (max-width: 767px) {
+          footer.premium-footer {
+            padding: 80px 6% 35px;
+          }
+          .footer-top-row {
+            margin-bottom: 50px;
+          }
+          .footer-logo-wrapper {
+            margin-bottom: 16px;
+          }
+          .footer-horizontal-links {
+            gap: 12px 18px;
+          }
+          .footer-nav-section {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+          .footer-social-section {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+          .footer-bottom-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+          }
+          .footer-legal-links {
+            gap: 20px;
+          }
+        }
+      `}</style>
+
+      <footer className="premium-footer">
+        <div className="footer-max-width">
           
-          {/* Left Column - Brand & Let's Talk */}
-          <div style={{ flex: '1 1 350px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <div style={{ marginBottom: '40px' }}>
-              <Link href="/" style={{ display: 'inline-block', transition: 'opacity 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'} onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
-                <img 
-                  src="/images/YOSANT BLACK LOGO.svg" 
-                  alt="Yosant Patel Logo" 
-                  style={{ height: '28px', width: 'auto', display: 'block' }} 
-                />
-              </Link>
+          {/* Top Row: Asymmetrical Brand Info + Gigantic Email CTA */}
+          <div className="footer-top-row">
+            
+            <div className="footer-brand-section">
+              <div className="footer-logo-wrapper" style={{ margin: 0 }}>
+                <Link href="/">
+                  <img 
+                    src="/images/YOSANT BLACK LOGO.svg" 
+                    alt="Yosant Patel Logo" 
+                    className="footer-logo-img"
+                  />
+                </Link>
+              </div>
             </div>
             
-            <div>
-              <h4 style={{ 
-                fontSize: '11px', 
-                textTransform: 'uppercase', 
-                letterSpacing: '3px', 
-                color: '#999999', 
-                marginBottom: '16px', 
-                fontWeight: '600' 
-              }}>
-                Let's Talk
-              </h4>
-              <p style={{ margin: 0 }}>
-                <a 
-                  href="mailto:iam@yosantpatel.com" 
-                  style={{ 
-                    fontSize: 'clamp(18px, 2.5vw, 24px)', 
-                    color: '#111111', 
-                    textDecoration: 'none', 
-                    transition: 'all 0.4s ease', 
-                    fontWeight: '300',
-                    display: 'inline-block'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.color = '#203b72';
-                    e.target.style.transform = 'translateX(5px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.color = '#111111';
-                    e.target.style.transform = 'translateX(0px)';
-                  }}
-                >
-                  iam@yosantpatel.com
-                </a>
-              </p>
+            <div className="footer-cta-section">
+              <span className="footer-cta-tag">Let's Talk</span>
+              <a href="mailto:iam@yosantpatel.com" className="footer-email-link">
+                iam@yosantpatel.com
+              </a>
+            </div>
+            
+          </div>
+          
+          <div className="footer-divider"></div>
+          
+          {/* Middle Row: Editorial navigation links + Social follow section */}
+          <div className="footer-middle-row">
+            
+            <div className="footer-nav-section">
+              <span className="footer-nav-label">Explore</span>
+              <ul className="footer-horizontal-links">
+                {[
+                  { name: 'About', path: '/about' },
+                  { name: 'Solutions', path: '/solutions' },
+                  { name: 'Approach', path: '/approach' },
+                  { name: 'Work', path: '/work' },
+                  { name: 'Blog', path: '/blogs' },
+                  { name: 'Contact', path: '/contact' }
+                ].map((link, index, array) => (
+                  <li key={index} style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                    <Link href={link.path} className="footer-nav-link">
+                      {link.name}
+                    </Link>
+                    {index < array.length - 1 && <span className="footer-slash">/</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="footer-social-section">
+              <span className="footer-social-label">Follow Us</span>
+              <ul className="footer-social-list">
+                {[
+                  { icon: 'fa-facebook-official', url: 'https://www.facebook.com/iamyosantpatel' },
+                  { icon: 'fa-instagram', url: 'https://www.instagram.com/iamyosantpatel/' },
+                  { icon: 'fa-behance', url: 'https://www.behance.net/iamyosantpatel' },
+                  { icon: 'fa-youtube-play', url: 'https://www.youtube.com/channel/UCFt5AN2gdDfhgb3stWLgltA/videos' }
+                ].map((social, index) => (
+                  <li key={index}>
+                    <a 
+                      href={social.url} 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer-social-btn"
+                    >
+                      <span className={`fa ${social.icon}`}></span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+          </div>
+          
+          {/* Bottom Row: Copyright + Terms/Privacy */}
+          <div className="footer-bottom-row">
+            <p className="footer-copyright">
+              &copy; 2025 Yosant Patel. All Rights Reserved.
+            </p>
+            
+            <div className="footer-legal-links">
+              <Link href="/terms-conditions" className="footer-legal-link">
+                Terms & conditions
+              </Link>
+              <Link href="/privacy-policy" className="footer-legal-link">
+                Privacy policy
+              </Link>
             </div>
           </div>
-          
-          {/* Center Column - Explore */}
-          <div style={{ flex: '1 1 250px' }}>
-            <h4 style={{ 
-              fontSize: '11px', 
-              textTransform: 'uppercase', 
-              letterSpacing: '3px', 
-              color: '#999999', 
-              marginBottom: '30px', 
-              fontWeight: '600' 
-            }}>
-              Explore
-            </h4>
-            <ul style={{ 
-              listStyle: 'none', 
-              padding: 0, 
-              margin: 0, 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(2, 1fr)', 
-              gap: '20px 30px' 
-            }}>
-              {[
-                { name: 'About', path: '/about' },
-                { name: 'Solutions', path: '/solutions' },
-                { name: 'Approach', path: '/approach' },
-                { name: 'Work', path: '/work' },
-                { name: 'Blog', path: '/blogs' },
-                { name: 'Contact', path: '/contact' }
-              ].map((link, index) => (
-                <li key={index}>
-                  <Link 
-                    href={link.path} 
-                    style={{ 
-                      fontSize: '15px', 
-                      color: '#444444', 
-                      textDecoration: 'none', 
-                      fontWeight: '400', 
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      display: 'inline-block'
-                    }}
-                    onMouseEnter={(e) => { 
-                      e.target.style.color = '#203b72'; 
-                      e.target.style.transform = 'translateX(6px)'; 
-                    }}
-                    onMouseLeave={(e) => { 
-                      e.target.style.color = '#444444'; 
-                      e.target.style.transform = 'translateX(0px)'; 
-                    }}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Right Column - Social Icons */}
-          <div style={{ flex: '1 1 250px' }}>
-            <h4 style={{ 
-              fontSize: '11px', 
-              textTransform: 'uppercase', 
-              letterSpacing: '3px', 
-              color: '#999999', 
-              marginBottom: '30px', 
-              fontWeight: '600' 
-            }}>
-              Follow Us
-            </h4>
-            <ul style={{ 
-              padding: 0, 
-              margin: 0, 
-              listStyle: 'none', 
-              display: 'flex', 
-              flexWrap: 'wrap',
-              gap: '16px' 
-            }}>
-              {[
-                { icon: 'fa-facebook-official', url: 'https://www.facebook.com/iamyosantpatel' },
-                { icon: 'fa-instagram', url: 'https://www.instagram.com/iamyosantpatel/' },
-                { icon: 'fa-behance', url: 'https://www.behance.net/iamyosantpatel' },
-                { icon: 'fa-youtube-play', url: 'https://www.youtube.com/channel/UCFt5AN2gdDfhgb3stWLgltA/videos' }
-              ].map((social, index) => (
-                <li key={index}>
-                  <a 
-                    href={social.url} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center', 
-                      width: '46px', 
-                      height: '46px', 
-                      borderRadius: '50%', 
-                      backgroundColor: '#f8f9fa',
-                      color: '#555555', 
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)', 
-                      textDecoration: 'none'
-                    }}
-                    onMouseEnter={(e) => { 
-                      e.currentTarget.style.backgroundColor = '#203b72'; 
-                      e.currentTarget.style.color = '#ffffff'; 
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 10px 20px rgba(32, 59, 114, 0.15)';
-                    }}
-                    onMouseLeave={(e) => { 
-                      e.currentTarget.style.backgroundColor = '#f8f9fa'; 
-                      e.currentTarget.style.color = '#555555'; 
-                      e.currentTarget.style.transform = 'translateY(0px)';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
-                  >
-                    <span className={`fa ${social.icon}`} style={{ fontSize: '18px' }}></span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
+
         </div>
         
-        {/* Bottom Section - Copyright & Legal */}
-        <div style={{ 
-          borderTop: '1px solid #f2f2f5', 
-          paddingTop: '30px', 
-          display: 'flex', 
-          flexWrap: 'wrap', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          gap: '20px'
-        }}>
-          <p style={{ 
-            margin: 0, 
-            color: '#888888', 
-            fontSize: '13px',
-            fontWeight: '400'
-          }}>
-            &copy; 2025 Yosant Patel. All Rights Reserved.
-          </p>
-          
-          <div style={{ 
-            display: 'flex', 
-            gap: '30px', 
-            fontSize: '13px'
-          }}>
-            <Link 
-              href="/terms-conditions" 
-              style={{ color: '#888888', textDecoration: 'none', transition: 'color 0.3s ease' }}
-              onMouseEnter={(e) => e.target.style.color = '#203b72'}
-              onMouseLeave={(e) => e.target.style.color = '#888888'}
-            >
-              Terms & conditions
-            </Link>
-            <Link 
-              href="/privacy-policy" 
-              style={{ color: '#888888', textDecoration: 'none', transition: 'color 0.3s ease' }}
-              onMouseEnter={(e) => e.target.style.color = '#203b72'}
-              onMouseLeave={(e) => e.target.style.color = '#888888'}
-            >
-              Privacy policy
-            </Link>
-          </div>
-        </div>
+        <a id="bottom_top"></a>
 
-      </div>
-      <a id="bottom_top"></a>
-
-      {/* Floating Scroll to Top Button */}
-      <div
-        onClick={scrollToTop}
-        style={{
-          position: 'fixed',
-          bottom: '30px',
-          right: '30px',
-          width: '50px',
-          height: '50px',
-          borderRadius: '50%',
-          backgroundColor: '#203b72',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          color: '#ffffff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          zIndex: 9999,
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
-          pointerEvents: isVisible ? 'all' : 'none',
-          boxShadow: '0 10px 25px rgba(32, 59, 114, 0.25)',
-          transition: 'all 0.4s cubic-bezier(0.25, 1, 0.5, 1)',
-          padding: 0,
-          margin: 0,
-          boxSizing: 'border-box'
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#ffffff';
-          e.currentTarget.style.color = '#203b72';
-          e.currentTarget.style.borderColor = '#203b72';
-          e.currentTarget.style.transform = 'translateY(-4px) scale(1.05)';
-          e.currentTarget.style.boxShadow = '0 15px 35px rgba(32, 59, 114, 0.35)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = '#203b72';
-          e.currentTarget.style.color = '#ffffff';
-          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-          e.currentTarget.style.transform = 'translateY(0) scale(1)';
-          e.currentTarget.style.boxShadow = '0 10px 25px rgba(32, 59, 114, 0.25)';
-        }}
-      >
-        <svg 
-          width="20" 
-          height="20" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="1.5" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-          style={{ display: 'block', transition: 'transform 0.3s ease' }}
+        {/* Floating Scroll to Top Button */}
+        <div
+          onClick={scrollToTop}
+          className="scroll-to-top-btn"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)',
+            pointerEvents: isVisible ? 'all' : 'none',
+          }}
         >
-          <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-      </div>
-    </footer>
+          <svg 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="1.5" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            style={{ display: 'block' }}
+          >
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </div>
+      </footer>
+    </>
   );
 }
