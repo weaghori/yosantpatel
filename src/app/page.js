@@ -196,8 +196,8 @@ export default function Home() {
       <section id="about" className="section-block" style={{ padding: isMobile ? '60px 0' : '120px 0', backgroundColor: '#203b72', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
         <div className="row flex" style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '30px' : '50px' }}>
 
-          {/* Left Column: Why Hire Me sticky info block */}
-          <div className="column width-4 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;" data-threshold="0.5" style={{ flex: '1 1 350px', position: isMobile ? 'static' : 'sticky', top: '100px', height: 'fit-content' }}>
+          {/* Top Column: Why Hire Me title & info (Full Width) */}
+          <div className="column width-12 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;" data-threshold="0.5" style={{ marginBottom: isMobile ? '20px' : '10px' }}>
             <div style={{ width: '60px', height: '4px', backgroundColor: '#ffffff', marginBottom: '25px' }} />
             <h2 style={{
               fontSize: isMobile ? '30px' : '42px',
@@ -225,8 +225,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Right Column: 4 glassmorphic expertise cards */}
-          <div className="column width-8" style={{ flex: '1 1 650px', display: 'flex', flexDirection: 'column', gap: isMobile ? '20px' : '30px' }}>
+          {/* Bottom Column: 4 glassmorphic expertise cards in a 2x2 grid */}
+          <div className="column width-12" style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '20px' : '30px' }}>
             <div className="row flex boxes" style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '20px' : '30px', margin: 0 }}>
 
               {/* Card 1: Market Insights */}

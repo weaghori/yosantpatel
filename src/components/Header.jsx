@@ -11,15 +11,16 @@ export default function Header() {
   const isApproach = pathname === '/approach';
   const isContact = pathname === '/contact';
   const isBlogsList = pathname === '/blogs';
+  const isConsultation = pathname === '/consultation';
 
   const isWorkDetail = pathname.startsWith('/work/') && pathname !== '/work';
   const isBlogDetail = pathname.startsWith('/blogs/') && pathname !== '/blogs';
   
   // All pages with high-impact hero sections are transparent initially
-  const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid;
+  const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid || isConsultation;
 
   // Pages with dark hero images need the white logo for transparency
-  const hasDarkHero = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid;
+  const hasDarkHero = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid || isConsultation;
   const needsBlackNav = !hasDarkHero;
   
   const navColorClass = needsBlackNav ? 'color-black' : '';
@@ -52,6 +53,50 @@ export default function Header() {
           color: #203b72 !important;
           font-weight: 700 !important;
           opacity: 1 !important;
+        }
+
+        /* Premium custom styling for the right-side Contact button */
+        .custom-contact-btn {
+          background: transparent !important;
+          border: 1px solid rgba(255, 255, 255, 0.3) !important;
+          color: #ffffff !important;
+          font-weight: 600 !important;
+          font-size: 11px !important;
+          letter-spacing: 0.1em !important;
+          text-transform: uppercase !important;
+          padding: 8px 18px !important;
+          border-radius: 50px !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          height: auto !important;
+          line-height: 1 !important;
+          box-shadow: none !important;
+        }
+
+        .custom-contact-btn:hover {
+          background: rgba(255, 255, 255, 0.08) !important;
+          border: 1px solid rgba(255, 255, 255, 0.8) !important;
+          color: #ffffff !important;
+        }
+
+        /* Light/White Header state overrides */
+        .navigation.color-black .custom-contact-btn,
+        .header-background .custom-contact-btn {
+          border: 1px solid rgba(32, 59, 114, 0.3) !important;
+          color: #203b72 !important;
+        }
+
+        .navigation.color-black .custom-contact-btn:hover,
+        .header-background .custom-contact-btn:hover {
+          background: rgba(32, 59, 114, 0.05) !important;
+          border: 1px solid #203b72 !important;
+          color: #203b72 !important;
+        }
+
+        .custom-contact-btn:active {
+          transform: scale(0.98) !important;
         }
       `}</style>
 
@@ -88,12 +133,6 @@ export default function Header() {
                       </li>
                       <li className={pathname.startsWith('/work') ? 'current' : ''}>
                         <Link href="/work">Work</Link>
-                      </li>
-                      <li className={pathname.startsWith('/blogs') ? 'current' : ''}>
-                        <Link href="/blogs">Blog</Link>
-                      </li>
-                      <li className={pathname === '/contact' ? 'current' : ''}>
-                        <Link href="/contact">Contact</Link>
                       </li>
                     </ul>
                   </nav>
@@ -135,10 +174,9 @@ export default function Header() {
                     <div className="v-align-middle">
                       <Link 
                         href="/contact" 
-                        className="button no-label-on-mobile small no-margin-bottom"
-                        style={{ padding: '8px 20px', fontSize: '12px' }}
+                        className="button custom-contact-btn no-label-on-mobile small no-margin-bottom"
                       >
-                        <span>Let's Talk</span>
+                        <span>Contact</span>
                       </Link>
                     </div>
                   </li>
@@ -165,12 +203,6 @@ export default function Header() {
                   </li>
                   <li className={pathname.startsWith('/work') ? 'current' : ''}>
                     <Link href="/work">Work</Link>
-                  </li>
-                  <li className={`contains-mega-sub-menu ${pathname.startsWith('/blogs') ? 'current' : ''}`}>
-                    <Link href="/blogs">Blog</Link>
-                  </li>
-                  <li className={pathname === '/contact' ? 'current' : ''}>
-                    <Link href="/contact">Contact</Link>
                   </li>
                 </ul>
               </nav>
