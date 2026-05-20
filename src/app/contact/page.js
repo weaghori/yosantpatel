@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import ConsultationModal from '../../components/ConsultationModal';
 
-const CalendarWidget = () => {
+const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
   // Use a fixed date for initial render to prevent hydration mismatch
   const [date, setDate] = useState(new Date(2025, 8, 1)); // Default to Sept 2025 for SSR
   const [selectedDate, setSelectedDate] = useState(null);
@@ -12,11 +13,6 @@ const CalendarWidget = () => {
     setMounted(true);
     setDate(new Date()); // Set to current date after mounting
   }, []);
-
-  const redirectToAghori = () => {
-    const url = "https://aghori.club/yosant-patel/consultancy";
-    window.open(url, '_blank');
-  };
 
   const renderCalendar = () => {
     if (!mounted) return null;
@@ -50,7 +46,7 @@ const CalendarWidget = () => {
           onClick={() => {
             const newSelected = new Date(year, month, day);
             setSelectedDate(newSelected);
-            redirectToAghori();
+            if (onDateSelect) onDateSelect(newSelected);
           }}
         >
           {day}
@@ -79,7 +75,7 @@ const CalendarWidget = () => {
       <div className="calendar-grid" id="calendarGrid">
         {renderCalendar()}
       </div>
-      <button className="schedule-btn" onClick={redirectToAghori}>
+      <button className="schedule-btn" onClick={onScheduleClick}>
         Schedule a free consultation
       </button>
 
@@ -161,34 +157,47 @@ const CalendarWidget = () => {
 };
 
 export default function Contact() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalDate, setModalDate] = useState(null);
+
   useEffect(() => {
     window.dispatchEvent(new Event('resize'));
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <>
-      {/* Full Width Slider Section */}
-      <section className="section-block featured-media page-intro tm-slider-parallax-container">
-        <div className="tm-slider-container full-width-slider" data-parallax data-parallax-fade-out
-          data-animation="slide" data-scale-under="1140">
-          <ul className="tms-slides">
-            <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{ backgroundImage: "url('/images/slider/slide-2-page-intro.jpg')" }}>
-              <div className="tms-content">
-                <div className="tms-content-inner left">
-                  <div className="row">
-                    <div className="column width-12">
-                      <h1 className="tms-caption color-white inline"
-                        data-animate-in="preset:slideInUpShort;duration:1000ms;delay:100ms;"
-                        data-no-scale>
-                        Contact
-                      </h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <img data-src="/images/slider/slide-2-page-intro.jpg" data-retina src="/images/blank.png" alt="" />
-            </li>
-          </ul>
+      {/* Premium Hero Header Section */}
+      <section style={{
+        position: 'relative',
+        height: isMobile ? '280px' : '550px',
+        backgroundImage: "url('/images/slider/slide-2-page-intro.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: isMobile ? '28% center' : 'center center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
+      }}>
+        {/* Hero Caption Lockup */}
+        <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+          <div className="column width-12" style={{ textAlign: 'left' }}>
+            <h1 style={{
+              fontSize: isMobile ? '30px' : '64px',
+              fontWeight: '800',
+              color: '#ffffff',
+              margin: 0,
+              letterSpacing: '-1.5px',
+              lineHeight: '1.15',
+              fontFamily: 'inherit'
+            }}>
+              Contact
+            </h1>
+          </div>
         </div>
       </section>
 
@@ -232,11 +241,25 @@ export default function Contact() {
             </div>
 
             <div className="column width-6">
-              <CalendarWidget />
+              <CalendarWidget 
+                onDateSelect={(date) => {
+                  setModalDate(date);
+                  setIsModalOpen(true);
+                }}
+                onScheduleClick={() => {
+                  setIsModalOpen(true);
+                }}
+              />
             </div>
           </div>
         </div>
       </div>
+
+      <ConsultationModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        selectedDate={modalDate}
+      />
 
       <style dangerouslySetInnerHTML={{ __html: `
         .contact-card {
