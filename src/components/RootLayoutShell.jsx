@@ -41,8 +41,6 @@ export default function RootLayoutShell({ children }) {
           style={{ display: 'none', visibility: 'hidden' }}
         ></iframe>
       </noscript>
-      
-      <div id="loader" className="center"></div>
 
       <div className="wrapper reveal-side-navigation">
         <div className="wrapper-inner">
@@ -77,34 +75,6 @@ export default function RootLayoutShell({ children }) {
         `}
       </Script>
 
-      <Script id="loader-script" strategy="afterInteractive">
-        {`
-          (function() {
-            var loader = document.querySelector("#loader");
-            var body = document.body;
-            
-            function hideLoader() {
-              if (loader) loader.style.display = "none";
-              body.style.visibility = "visible";
-            }
-
-            if (document.readyState === "complete") {
-              hideLoader();
-            } else {
-              body.style.visibility = "hidden";
-              if (loader) loader.style.visibility = "visible";
-              window.addEventListener('load', hideLoader);
-              setTimeout(hideLoader, 5000);
-            }
-            
-            document.onreadystatechange = function () {
-              if (document.readyState === "complete") {
-                hideLoader();
-              }
-            };
-          })();
-        `}
-      </Script>
 
       <Script id="swiper-init" strategy="afterInteractive">
         {`
@@ -165,7 +135,7 @@ export default function RootLayoutShell({ children }) {
       {/* Re-load and re-evaluate Timber master script on route changes to scan and build new page elements */}
       <Script 
         key={pathname}
-        src={`/js/timber.master.min.js?v=${pathname}`} 
+        src={`/js/timber.master.min.js`} 
         strategy="afterInteractive" 
       />
     </body>

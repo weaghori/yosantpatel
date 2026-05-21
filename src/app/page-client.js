@@ -9,7 +9,7 @@ export default function HomeClient() {
   const [hoveredConsult, setHoveredConsult] = useState(false);
   const [hoveredStats, setHoveredStats] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   // Custom Dynamic React Count-Up Animation
   const [count, setCount] = useState(1);
   const [startCount, setStartCount] = useState(false);
@@ -49,7 +49,7 @@ export default function HomeClient() {
     const end = 207;
     const duration = 1500; // 1.5 seconds
     const step = Math.ceil(end / (duration / 16)); // ~60fps step size
-    
+
     const timer = setInterval(() => {
       start += step;
       if (start >= end) {
@@ -70,7 +70,7 @@ export default function HomeClient() {
         <div className="tm-slider-container full-width-slider pagination-top" data-featured-slider data-parallax
           data-parallax-fade-out data-animation="slide" data-scale-under="960" style={{ width: '100%' }}>
           <ul className="tms-slides">
-            <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{ 
+            <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{
               backgroundImage: "url('/images/Yosant_Branding_Logo_Design.jpg')",
               backgroundPosition: isMobile ? '82% center' : 'center center'
             }}>
@@ -208,7 +208,7 @@ export default function HomeClient() {
               letterSpacing: '-1.5px',
               fontFamily: 'inherit'
             }}>
-              Why Hire Me?
+              How I Help Brands Grow?
             </h2>
             <p className="lead" style={{
               fontSize: isMobile ? '16px' : '18px',
@@ -494,7 +494,7 @@ export default function HomeClient() {
               color: '#0f172a',
               fontFamily: 'inherit'
             }}>
-              Work
+              Brand Transformations
             </h2>
             <p style={{
               fontSize: isMobile ? '15px' : '16px',
@@ -512,7 +512,7 @@ export default function HomeClient() {
           </div>
 
           <div className="column width-5 horizon" style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'center' }}>
-            <div 
+            <div
               ref={statsRef}
               onMouseEnter={() => setHoveredStats(true)}
               onMouseLeave={() => setHoveredStats(false)}
@@ -597,7 +597,7 @@ export default function HomeClient() {
                 letterSpacing: '-0.5px',
                 fontFamily: 'inherit'
               }}>
-                Get a Personalized 101 Branding Consultation Now!
+                Get Your One-on-One Branding Consultation Now!
               </h2>
               <p style={{
                 fontSize: isMobile ? '15px' : '18px',
