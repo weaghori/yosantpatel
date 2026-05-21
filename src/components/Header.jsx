@@ -98,6 +98,23 @@ export default function Header() {
         .custom-contact-btn:active {
           transform: scale(0.98) !important;
         }
+
+        /* Mobile Logo Visibility Fix: Force black logo on mobile's light background */
+        @media only screen and (max-width: 991px) {
+          .logo .logo-inner a:first-of-type,
+          .logo .logo-inner a:first-of-type img {
+            display: inline-block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            max-height: 40px !important;
+          }
+          .logo .logo-inner a:last-of-type,
+          .logo .logo-inner a:last-of-type img {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+          }
+        }
       `}</style>
 
       {/* Overlay Navigation Menu */}
