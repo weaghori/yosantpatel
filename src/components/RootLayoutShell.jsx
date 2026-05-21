@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,9 +8,17 @@ import Script from "next/script";
 export default function RootLayoutShell({ children }) {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
+  const [isLoading, setIsLoading] = useState(true);
 
   // Scroll to top and wake up lazy loaders/reveals on every client-side page navigation
   useEffect(() => {
+    // Show loader on page change
+    setIsLoading(true);
+    
+    const hideTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 600); // Wait for page transition to finish before hiding
+
     window.scrollTo(0, 0);
     
     // Dispatch scroll & resize events after DOM content renders
@@ -25,7 +33,20 @@ export default function RootLayoutShell({ children }) {
       }
     }, 150);
 
-    return () => clearTimeout(timer);
+    // Inject timber.master.min.js dynamically so it re-evaluates on route change
+    // without busting the browser cache, ensuring sliders/animations initialize.
+    const script = document.createElement('script');
+    script.src = '/js/timber.master.min.js';
+    script.async = false;
+    document.body.appendChild(script);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(hideTimer);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, [pathname]);
   
   // Dynamic body class
@@ -41,6 +62,10 @@ export default function RootLayoutShell({ children }) {
           style={{ display: 'none', visibility: 'hidden' }}
         ></iframe>
       </noscript>
+
+      {isLoading && (
+        <div id="loader" className="center"></div>
+      )}
 
       <div className="wrapper reveal-side-navigation">
         <div className="wrapper-inner">
@@ -132,12 +157,7 @@ export default function RootLayoutShell({ children }) {
         `}
       </Script>
       
-      {/* Re-load and re-evaluate Timber master script on route changes to scan and build new page elements */}
-      <Script 
-        key={pathname}
-        src={`/js/timber.master.min.js`} 
-        strategy="afterInteractive" 
-      />
+      {/* Timber master script is injected via useEffect to ensure re-evaluation */}
     </body>
   );
 }

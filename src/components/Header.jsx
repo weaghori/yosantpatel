@@ -187,7 +187,7 @@ export default function Header() {
               <div className="logo no-transition">
                 <div className="logo-inner">
                   <Link href="/" className="no-transition">
-                    <img src="/images/yosant-black-logo.svg" alt="Logo" />
+                    <img src="/images/YOSANT LOGO-01.svg" alt="Logo" />
                   </Link>
                   <Link href="/" className="no-transition">
                     <img src="/images/logo.svg" alt="Logo" />

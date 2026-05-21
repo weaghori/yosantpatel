@@ -61,7 +61,7 @@ export default function Footer() {
         }
 
         .footer-logo-img {
-          height: 28px;
+          height: 26px;
           width: auto;
           display: block;
           transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -378,36 +378,36 @@ export default function Footer() {
 
       <footer className="premium-footer">
         <div className="row footer-max-width">
-          
+
           {/* Top Row: Asymmetrical Brand Info + Gigantic Email CTA */}
           <div className="footer-top-row">
-            
+
             <div className="footer-brand-section">
               <div className="footer-logo-wrapper" style={{ margin: 0 }}>
                 <Link href="/">
-                  <img 
-                    src="/images/yosant-black-logo.svg" 
-                    alt="Yosant Patel Logo" 
+                  <img
+                    src="/images/YOSANT LOGO-01.svg"
+                    alt="Yosant Patel Logo"
                     className="footer-logo-img"
                   />
                 </Link>
               </div>
             </div>
-            
+
             <div className="footer-cta-section">
               <span className="footer-cta-tag">Let's Talk</span>
               <a href="mailto:iam@yosantpatel.com" className="footer-email-link">
                 iam@yosantpatel.com
               </a>
             </div>
-            
+
           </div>
-          
+
           <div className="footer-divider"></div>
-          
+
           {/* Middle Row: Editorial navigation links + Social follow section */}
           <div className="footer-middle-row">
-            
+
             <div className="footer-nav-section">
               <span className="footer-nav-label">Explore</span>
               <ul className="footer-horizontal-links">
@@ -428,7 +428,7 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-            
+
             <div className="footer-social-section">
               <span className="footer-social-label">Follow Us</span>
               <ul className="footer-social-list">
@@ -439,8 +439,8 @@ export default function Footer() {
                   { icon: 'fa-youtube-play', url: 'https://www.youtube.com/channel/UCFt5AN2gdDfhgb3stWLgltA/videos' }
                 ].map((social, index) => (
                   <li key={index}>
-                    <a 
-                      href={social.url} 
+                    <a
+                      href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="footer-social-btn"
@@ -451,15 +451,15 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-            
+
           </div>
-          
+
           {/* Bottom Row: Copyright + Terms/Privacy */}
           <div className="footer-bottom-row">
             <p className="footer-copyright">
               &copy; 2025 Yosant Patel. All Rights Reserved.
             </p>
-            
+
             <div className="footer-legal-links">
               <Link href="/terms-conditions" className="footer-legal-link">
                 Terms & conditions
@@ -471,7 +471,7 @@ export default function Footer() {
           </div>
 
         </div>
-        
+
         <a id="bottom_top"></a>
 
         {/* Floating Scroll to Top Button */}
@@ -484,14 +484,14 @@ export default function Footer() {
             pointerEvents: isVisible ? 'all' : 'none',
           }}
         >
-          <svg 
-            width="20" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="1.5" 
-            strokeLinecap="round" 
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
             strokeLinejoin="round"
             style={{ display: 'block' }}
           >
