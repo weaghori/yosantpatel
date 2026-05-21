@@ -34,13 +34,12 @@ export default function Footer() {
           border-top: 1px solid #f1f5f9;
           position: relative;
           overflow: hidden;
-          padding: 100px 5% 40px;
+          padding: 100px 0 40px;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
           color: #475569;
         }
 
         .footer-max-width {
-          max-width: 1280px;
           margin: 0 auto;
         }
 
@@ -378,7 +377,7 @@ export default function Footer() {
       `}</style>
 
       <footer className="premium-footer">
-        <div className="footer-max-width">
+        <div className="row footer-max-width">
           
           {/* Top Row: Asymmetrical Brand Info + Gigantic Email CTA */}
           <div className="footer-top-row">

@@ -343,7 +343,7 @@ export default function About() {
         {/* Center: Large Cinematic Image */}
         <div className="row">
           <div className="column width-12" style={{ display: 'flex', justifyContent: 'center', marginBottom: isMobile ? '30px' : '55px' }}>
-            <div style={{ position: 'relative', width: '100%', maxWidth: '1000px' }}>
+            <div style={{ position: 'relative', width: '100%', maxWidth: '100%' }}>
               {/* Backing decorative geometric offset shape */}
               <div style={{
                 position: 'absolute',
