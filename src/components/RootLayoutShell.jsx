@@ -111,35 +111,6 @@ export default function RootLayoutShell({ children }) {
         `}
       </Script>
 
-
-      <Script id="swiper-init" strategy="afterInteractive">
-        {`
-          (function() {
-            function initSwiper() {
-              if (typeof Swiper !== 'undefined' && document.querySelector(".mySwiper")) {
-                new Swiper(".mySwiper", {
-                  slidesPerView: "auto",
-                  loop: true,
-                  speed: 3000,
-                  autoplay: {
-                    delay: 0,
-                    disableOnInteraction: false,
-                  },
-                  allowTouchMove: false,
-                  grabCursor: false,
-                });
-              }
-            }
-            // Use both immediate check and DOMContentLoaded
-            if (document.readyState === "complete") {
-              initSwiper();
-            } else {
-              window.addEventListener('load', initSwiper);
-            }
-          })();
-        `}
-      </Script>
-
       <Script id="bottom-to-top" strategy="afterInteractive">
         {`
           (function() {

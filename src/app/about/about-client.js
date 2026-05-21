@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AboutClient() {
   const [isMobile, setIsMobile] = useState(false);
@@ -16,22 +17,43 @@ export default function AboutClient() {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Initialize Swiper if loaded locally
-    if (typeof Swiper !== 'undefined' && document.querySelector(".mySwiper")) {
-      new Swiper(".mySwiper", {
-        slidesPerView: "auto",
-        loop: true,
-        speed: 3000,
-        autoplay: {
-          delay: 0,
-          disableOnInteraction: false,
-        },
-        allowTouchMove: false,
-        grabCursor: false,
-      });
+    let swiperInstance;
+    let intervalId;
+
+    const initSwiper = () => {
+      if (typeof Swiper !== 'undefined' && document.querySelector(".mySwiper")) {
+        swiperInstance = new Swiper(".mySwiper", {
+          slidesPerView: "auto",
+          loop: true,
+          speed: 3000,
+          autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+          },
+          allowTouchMove: false,
+          grabCursor: false,
+        });
+        return true;
+      }
+      return false;
+    };
+
+    // Attempt to initialize immediately, otherwise poll
+    if (!initSwiper()) {
+      intervalId = setInterval(() => {
+        if (initSwiper()) {
+          clearInterval(intervalId);
+        }
+      }, 100);
     }
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (intervalId) clearInterval(intervalId);
+      if (swiperInstance && typeof swiperInstance.destroy === 'function') {
+        swiperInstance.destroy();
+      }
+    };
   }, []);
 
   const partnerLogos = [
@@ -53,14 +75,24 @@ export default function AboutClient() {
       <section style={{
         position: 'relative',
         height: isMobile ? '280px' : '550px',
-        backgroundImage: "url('/images/slider/About-Kahani-Yosant-Patel.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: isMobile ? '28% center' : 'center center',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden'
       }}>
+        {/* Hero Background Image */}
+        <Image
+          src="/images/slider/About-Kahani-Yosant-Patel.jpg"
+          alt="Branding"
+          fill
+          priority
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+            objectPosition: isMobile ? '28% center' : 'center center',
+            zIndex: 1
+          }}
+        />
         {/* Hero Caption Lockup */}
         <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
           <div className="column width-12" style={{ textAlign: 'left' }}>
@@ -89,7 +121,7 @@ export default function AboutClient() {
       }}>
         <div className="row">
           <div className="column width-12" style={{ marginBottom: isMobile ? '35px' : '70px', textAlign: 'left' }}>
-            <h3 style={{
+            <h2 style={{
               fontSize: isMobile ? '24px' : '48px',
               fontWeight: '900',
               lineHeight: '1.2',
@@ -102,7 +134,7 @@ export default function AboutClient() {
               WebkitTextFillColor: 'transparent'
             }}>
               I transform brands for lasting success
-            </h3>
+            </h2>
           </div>
         </div>
  
@@ -384,9 +416,12 @@ export default function AboutClient() {
                   }
                 }}
               >
-                <img 
+                <Image 
                   src="/images/Yosant_Patel_Branding_Design_Creativity_Boost_Your_Brand_Artist.jpg" 
                   alt="Kahani Yosant Patel" 
+                  width={1200}
+                  height={675}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                   style={{ width: '100%', height: 'auto', display: 'block' }} 
                 />
               </div>
@@ -441,16 +476,18 @@ export default function AboutClient() {
                   e.currentTarget.style.background = '#ffffff';
                 }}
                 >
-                  <span style={{
+                  <h3 style={{
                     fontSize: isMobile ? '11px' : '12px',
                     fontWeight: '850',
                     color: '#203b72',
                     display: 'block',
+                    margin: 0,
                     marginBottom: isMobile ? '6px' : '10px',
-                    letterSpacing: '1.5px'
+                    letterSpacing: '1.5px',
+                    fontFamily: 'inherit'
                   }}>
                     CHAPTER I (2004 – 2016)
-                  </span>
+                  </h3>
                   <p style={{
                     fontSize: isMobile ? '13px' : '15px',
                     lineHeight: isMobile ? '1.7' : '1.75',
@@ -500,16 +537,18 @@ export default function AboutClient() {
                   e.currentTarget.style.background = '#ffffff';
                 }}
                 >
-                  <span style={{
+                  <h3 style={{
                     fontSize: isMobile ? '11px' : '12px',
                     fontWeight: '850',
                     color: '#203b72',
                     display: 'block',
+                    margin: 0,
                     marginBottom: isMobile ? '6px' : '10px',
-                    letterSpacing: '1.5px'
+                    letterSpacing: '1.5px',
+                    fontFamily: 'inherit'
                   }}>
                     CHAPTER II (2017 – PRESENT)
-                  </span>
+                  </h3>
                   <p style={{
                     fontSize: isMobile ? '13px' : '15px',
                     lineHeight: isMobile ? '1.7' : '1.75',
@@ -534,7 +573,7 @@ export default function AboutClient() {
         {/* Title Container (keeps standard row width alignment) */}
         <div className="row">
           <div className="column width-12">
-            <h6 style={{
+            <h3 style={{
               fontSize: isMobile ? '11px' : '13px',
               textTransform: 'uppercase',
               letterSpacing: '2px',
@@ -545,7 +584,7 @@ export default function AboutClient() {
               fontFamily: 'inherit'
             }}>
               Excellence via collaboration
-            </h6>
+            </h3>
           </div>
         </div>
 
@@ -600,6 +639,8 @@ export default function AboutClient() {
                   <img 
                     src={logo.src} 
                     alt={logo.alt} 
+                    width={150}
+                    height={40}
                     style={{
                       height: isMobile ? '22px' : '40px',
                       width: 'auto',

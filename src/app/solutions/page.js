@@ -5,7 +5,7 @@ export const metadata = {
   description: "Strategic branding and creative business solutions by Yosant Patel in Mumbai. Elevate your identity today and turn vision into growth. Call today & Act now!",
   keywords: "Branding Services Mumbai, Brand Strategy Consultant Mumbai, Creative Branding Services Mumbai, Brand Development Services India, Brand Consultation Services Mumbai, Strategic Branding Agency Mumbai, Corporate Branding Services India, Brand Identity Design Services, Rebranding Services Mumbai, Business Branding Solutions India, Brand Research Services Mumbai, Marketing & Branding Consultant, Brand Management Services India, Website Branding Services Mumbai, Integrated Branding Solutions Mumbai",
   alternates: {
-    canonical: "https://yosantpatel.com/solutions.html",
+    canonical: "/solutions",
   },
   openGraph: {
     type: "website",
