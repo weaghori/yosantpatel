@@ -131,7 +131,7 @@ export default function Header() {
               <div className="overlay-navigation-header row collapse full-width">
                 <div className="column width-12">
                   <div className="navigation-hide overlay-nav-hide">
-                    <a href="#">
+                    <a href="#" aria-label="Close menu">
                       <span className="icon-cancel"></span>
                     </a>
                   </div>
@@ -187,10 +187,10 @@ export default function Header() {
               <div className="logo no-transition">
                 <div className="logo-inner">
                   <Link href="/" className="no-transition">
-                    <img src="/images/YOSANT LOGO-01.svg" alt="Logo" />
+                    <img src="/images/YOSANT LOGO-01.svg" alt="Logo" width={150} height={40} />
                   </Link>
                   <Link href="/" className="no-transition">
-                    <img src="/images/logo.svg" alt="Logo" />
+                    <img src="/images/logo.svg" alt="Logo" width={150} height={40} />
                   </Link>
                 </div>
               </div>
@@ -207,7 +207,7 @@ export default function Header() {
                     </div>
                   </li>
                   <li className="aux-navigation hide">
-                    <a href="#" className="navigation-show overlay-nav-show nav-icon">
+                    <a href="#" className="navigation-show overlay-nav-show nav-icon" aria-label="Open menu">
                       <span className="icon-menu"></span>
                     </a>
                   </li>

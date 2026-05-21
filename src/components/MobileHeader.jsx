@@ -28,7 +28,7 @@ export default function MobileHeader() {
     <div className="mobile-only-header-wrapper">
       <header className="custom-mobile-header">
         <Link href="/" className="mobile-logo">
-          <img src="/images/yosant-black-logo.svg" alt="Yosant Patel" />
+          <img src="/images/yosant-black-logo.svg" alt="Yosant Patel" width={125} height={32} />
         </Link>
         
         <button 

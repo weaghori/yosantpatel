@@ -389,6 +389,8 @@ export default function Footer() {
                     src="/images/YOSANT LOGO-01.svg"
                     alt="Yosant Patel Logo"
                     className="footer-logo-img"
+                    width={150}
+                    height={40}
                   />
                 </Link>
               </div>
@@ -433,10 +435,10 @@ export default function Footer() {
               <span className="footer-social-label">Follow Us</span>
               <ul className="footer-social-list">
                 {[
-                  { icon: 'fa-facebook-official', url: 'https://www.facebook.com/iamyosantpatel' },
-                  { icon: 'fa-instagram', url: 'https://www.instagram.com/iamyosantpatel/' },
-                  { icon: 'fa-behance', url: 'https://www.behance.net/iamyosantpatel' },
-                  { icon: 'fa-youtube-play', url: 'https://www.youtube.com/channel/UCFt5AN2gdDfhgb3stWLgltA/videos' }
+                  { icon: 'fa-facebook-official', url: 'https://www.facebook.com/iamyosantpatel', name: 'Facebook' },
+                  { icon: 'fa-instagram', url: 'https://www.instagram.com/iamyosantpatel/', name: 'Instagram' },
+                  { icon: 'fa-behance', url: 'https://www.behance.net/iamyosantpatel', name: 'Behance' },
+                  { icon: 'fa-youtube-play', url: 'https://www.youtube.com/channel/UCFt5AN2gdDfhgb3stWLgltA/videos', name: 'YouTube' }
                 ].map((social, index) => (
                   <li key={index}>
                     <a
@@ -444,6 +446,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="footer-social-btn"
+                      aria-label={`Follow Yosant Patel on ${social.name}`}
                     >
                       <span className={`fa ${social.icon}`}></span>
                     </a>

@@ -5,7 +5,7 @@ export const metadata = {
   description: "Yosant Patel delivers strategic branding and identity consulting in India for businesses ready to grow. Build your brand with confidence for tomorrow too!",
   keywords: "brand consultant in mumbai, branding consultant india, brand strategist, independent brand consultant india, startup branding consultant mumbai, strategic branding consultant, founder branding consultant, branding agency, brand positioning consultant, premium branding services, business branding expert, creative branding consultant india, rebranding consultant india, brand identity consultant",
   alternates: {
-    canonical: "https://yosantpatel.com/",
+    canonical: "/",
   },
   openGraph: {
     type: "website",

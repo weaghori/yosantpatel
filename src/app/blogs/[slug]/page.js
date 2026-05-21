@@ -18,6 +18,9 @@ export async function generateMetadata({ params }) {
         return {
           title: `${post.title} | Yosant Patel Blog`,
           description: cleanDesc.substring(0, 160),
+          alternates: {
+            canonical: `/blogs/${slug}`,
+          },
           openGraph: {
             title: post.title,
             description: cleanDesc.substring(0, 160),
