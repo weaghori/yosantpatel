@@ -24,6 +24,9 @@ export const metadata = {
     description: "I am one of the leading brand consultant and branding strategist in Mumbai providing expert branding solutions regarding all the branding needs",
     images: ["/FAVICON.png"],
   },
+  icons: {
+    icon: "/images/YOSANT LOGO-02.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
