@@ -109,8 +109,7 @@ export default function HomeClient() {
                           letterSpacing: 'normal',
                           display: 'block'
                         }}>
-                          A Brand Consulting Visionary,<br />Owner of a Digital Media Marketing
-                          Firm, <br />and Founder of a Graphic Design Academy.
+                          <h2 style={{ color: 'white' }}>A Brand Consulting Visionary,<br />Owner of a Digital Media Marketing Firm.</h2>
                         </span>
                         <br />
                         <Link href="/consultation">
