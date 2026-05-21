@@ -386,7 +386,7 @@ export default function Footer() {
               <div className="footer-logo-wrapper" style={{ margin: 0 }}>
                 <Link href="/">
                   <img 
-                    src="/images/YOSANT BLACK LOGO.svg" 
+                    src="/images/yosant-black-logo.svg" 
                     alt="Yosant Patel Logo" 
                     className="footer-logo-img"
                   />

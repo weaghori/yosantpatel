@@ -648,7 +648,7 @@ export default function HomeClient() {
           <div className="column width-10 offset-1 left">
             <div className="login-form-container">
               <div className="thumbnail mb-30">
-                <img src="/images/YOSANT BLACK LOGO.svg" width="125" alt="Yosant Patel Logo" />
+                <img src="/images/yosant-black-logo.svg" width="125" alt="Yosant Patel Logo" />
               </div>
               <p className="mb-20">FILL OUT THE FORM AND WE'LL BE IN TOUCH SOON!</p>
               <h2 className="mb-30">LET'S TALK</h2>
@@ -695,7 +695,7 @@ export default function HomeClient() {
           <div className="column width-10 offset-1 left">
             <div className="consultaion-form-container">
               <div className="thumbnail mb-30">
-                <img src="/images/YOSANT BLACK LOGO.svg" width="125" alt="Yosant Patel Logo" />
+                <img src="/images/yosant-black-logo.svg" width="125" alt="Yosant Patel Logo" />
               </div>
               <h2 className="mb-10">Branding Consultation</h2>
               <hr style={{ width: '140px', borderTop: '4px solid #000' }} />
