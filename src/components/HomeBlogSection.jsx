@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HomeBlogSection() {
   const [blogs, setBlogs] = useState([]);
@@ -216,9 +217,11 @@ export default function HomeBlogSection() {
                 }}>
                   <div style={{ borderRadius: '6px', overflow: 'hidden', aspectRatio: '16/10' }}>
                     <Link href={`/blogs/${post.slug}`} style={{ display: 'block', width: '100%', height: '100%' }}>
-                      <img 
+                      <Image 
                         src={post.img} 
                         alt={post.title}
+                        width={600}
+                        height={400}
                         className="blog-img"
                         style={{
                           width: '100%',
