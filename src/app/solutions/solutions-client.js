@@ -33,6 +33,22 @@ export default function SolutionsClient() {
         justifyContent: 'center',
         overflow: 'hidden'
       }}>
+        {/* Visually Hidden Image for SEO */}
+        <img 
+          src="/images/slider/Solutions-Yosant-Patel.jpg" 
+          alt="Branding" 
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            padding: '0',
+            margin: '-1px',
+            overflow: 'hidden',
+            clip: 'rect(0, 0, 0, 0)',
+            whiteSpace: 'nowrap',
+            border: '0'
+          }} 
+        />
         {/* Hero Title Grid Frame */}
         <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
           <div className="column width-12" style={{ textAlign: 'left' }}>
@@ -168,7 +184,7 @@ export default function SolutionsClient() {
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: isMobile ? '16/10' : '21/9' }}>
                       <img 
                         src="/images/solution/Solution-01.jpg" 
-                        alt="Understand Brand Status"
+                        alt="Branding"
                         className="sol-img"
                         style={{
                           width: '100%',
@@ -267,7 +283,7 @@ export default function SolutionsClient() {
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: '4/3' }}>
                       <img 
                         src="/images/solution/Solution-02.jpg" 
-                        alt="Creative Messaging Impact"
+                        alt="Branding"
                         className="sol-img"
                         style={{
                           width: '100%',
@@ -379,7 +395,7 @@ export default function SolutionsClient() {
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: '4/3' }}>
                       <img 
                         src="/images/solution/Solution-03.jpg" 
-                        alt="Brand Voice Identity"
+                        alt="Branding"
                         className="sol-img"
                         style={{
                           width: '100%',
@@ -474,7 +490,7 @@ export default function SolutionsClient() {
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: isMobile ? '16/10' : '21/9' }}>
                       <img 
                         src="/images/solution/Solution-04.jpg" 
-                        alt="Long term Perseverance"
+                        alt="Branding"
                         className="sol-img"
                         style={{
                           width: '100%',
@@ -582,7 +598,7 @@ export default function SolutionsClient() {
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: isMobile ? '16/10' : '21/9' }}>
                       <img 
                         src="/images/solution/Solution-05.jpg" 
-                        alt="Market Communication Growth"
+                        alt="Branding"
                         className="sol-img"
                         style={{
                           width: '100%',
@@ -681,7 +697,7 @@ export default function SolutionsClient() {
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: '4/3' }}>
                       <img 
                         src="/images/solution/Solution-06.jpg" 
-                        alt="Rebranding desired results"
+                        alt="Branding"
                         className="sol-img"
                         style={{
                           width: '100%',

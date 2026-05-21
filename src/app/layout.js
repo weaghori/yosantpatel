@@ -7,6 +7,9 @@ export const metadata = {
   title: "Get Best Branding Advice From The Best Brand Consultancy in Mumbai | Official Site",
   description: "I am one of the leading brand consultant and branding strategist in Mumbai providing expert branding solutions regarding all the branding needs",
   keywords: "BRAND CONSULTATION,BRAND STRATEGY,BRAND COMMUNICATION,BRAND IDENTITY,BRAND DEVELOPMENT,BRAND EXPERIENCE,REBRANDING",
+  alternates: {
+    canonical: "https://yosantpatel.com/",
+  },
   openGraph: {
     type: "website",
     title: "Get Best Branding Advice From The Best Brand Consultancy in Mumbai | Official Site",

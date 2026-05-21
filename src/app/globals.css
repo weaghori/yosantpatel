@@ -58,3 +58,93 @@
     max-width: 1280px !important;
 }
 
+/* ==========================================
+   MOBILE & RESPONSIVE PREMIUM OVERRIDES
+   ========================================== */
+
+/* Mobile Header Logo Visibility Fix (<= 991px)
+   Forces the black logo to show and the white logo to hide on mobile's solid header, 
+   overriding desktop's transparent header rules. */
+@media only screen and (max-width: 991px) {
+  .header.header-transparent:not(.header-background) .logo-inner a:first-child,
+  .header.header-transparent:not(.header-background) .logo-inner a:first-child img,
+  .header.header-background .logo-inner a:first-child,
+  .header.header-background .logo-inner a:first-child img,
+  .header .logo-inner a:first-child,
+  .header .logo-inner a:first-child img {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-height: 40px !important;
+  }
+  
+  .header.header-transparent:not(.header-background) .logo-inner a:last-child,
+  .header.header-transparent:not(.header-background) .logo-inner a:last-child img,
+  .header.header-background .logo-inner a:last-child,
+  .header.header-background .logo-inner a:last-child img,
+  .header .logo-inner a:last-child,
+  .header .logo-inner a:last-child img {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Home Page Hero Slider Height Scaling (<= 768px)
+   Reduces hero viewport height on mobile to achieve a wider aspect ratio,
+   preventing aggressive zooming/cropping and scaling down the background image beautifully. */
+@media only screen and (max-width: 768px) {
+  .tm-slider-parallax-container.window-height,
+  .tm-slider-parallax-container.window-height .tm-slider-container,
+  .tm-slider-parallax-container.window-height .tms-slides,
+  .tm-slider-parallax-container.window-height .tms-slide {
+    height: 65vh !important;
+    min-height: 480px !important;
+  }
+}
+
+/* Home Page Hero Text & Button Typography Scale (<= 768px) */
+@media only screen and (max-width: 768px) {
+  .hero-title {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+  .hero-title strong {
+    font-weight: 800 !important;
+  }
+  .hero-desc {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-top: 12px !important;
+  }
+  .hero-btn {
+    margin-top: 16px !important;
+    padding: 10px 22px !important;
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+  }
+}
+
+/* Extra Small Screens (<= 480px) */
+@media only screen and (max-width: 480px) {
+  .tm-slider-parallax-container.window-height,
+  .tm-slider-parallax-container.window-height .tm-slider-container,
+  .tm-slider-parallax-container.window-height .tms-slides,
+  .tm-slider-parallax-container.window-height .tms-slide {
+    height: 60vh !important;
+    min-height: 420px !important;
+  }
+  .hero-title {
+    font-size: 20px !important;
+  }
+  .hero-desc {
+    font-size: 12px !important;
+  }
+  .hero-btn {
+    padding: 8px 18px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.5px !important;
+  }
+}
+
+

@@ -82,7 +82,7 @@ export default function HomeClient() {
                         data-animate-in="preset:slideInRightShort;duration:1000ms;"
                         data-no-scale
                         style={{ fontFamily: 'inherit', margin: 0 }}>
-                        <span style={{
+                        <span className="hero-title" style={{
                           color: '#ffffff',
                           fontSize: isMobile ? '28px' : '56px',
                           lineHeight: isMobile ? '1.2' : '1.15',
@@ -100,7 +100,7 @@ export default function HomeClient() {
                           marginTop: isMobile ? '15px' : '25px',
                           fontFamily: 'inherit'
                         }}>
-                        <span style={{
+                        <span className="hero-desc" style={{
                           color: '#ffffff',
                           fontSize: isMobile ? '14px' : '22px',
                           lineHeight: isMobile ? '1.5' : '1.65',
@@ -114,6 +114,7 @@ export default function HomeClient() {
                         <br />
                         <Link href="/consultation">
                           <button
+                            className="hero-btn"
                             onMouseEnter={() => setHoveredCta(true)}
                             onMouseLeave={() => setHoveredCta(false)}
                             style={{
@@ -145,7 +146,7 @@ export default function HomeClient() {
                   </div>
                 </div>
               </div>
-              <img data-src="/images/Yosant_Branding_Logo_Design.jpg" data-retina src="/images/blank.png" alt="" />
+              <img data-src="/images/Yosant_Branding_Logo_Design.jpg" data-retina src="/images/blank.png" alt="BRAND LOGO DESIGN" />
             </li>
           </ul>
         </div>
@@ -200,13 +201,11 @@ export default function HomeClient() {
           {/* Top Column: Why Hire Me title & info (Full Width) */}
           <div className="column width-12 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;" data-threshold="0.5" style={{ marginBottom: isMobile ? '20px' : '10px' }}>
             <div style={{ width: '60px', height: '4px', backgroundColor: '#ffffff', marginBottom: '25px' }} />
-            <h2 style={{
+            <h2 className="color-white" style={{
               fontSize: isMobile ? '30px' : '42px',
               fontWeight: '800',
               lineHeight: '1.15',
               letterSpacing: '-1.5px',
-              color: '#ffffff',
-              marginBottom: '20px',
               fontFamily: 'inherit'
             }}>
               Why Hire Me?
@@ -262,7 +261,7 @@ export default function HomeClient() {
                   }}>
                     <img
                       src="/images/icons/market-analysis.png"
-                      alt=""
+                      alt="Market Analysis"
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',
@@ -324,7 +323,7 @@ export default function HomeClient() {
                   }}>
                     <img
                       src="/images/icons/guidance.png"
-                      alt=""
+                      alt="Guidance"
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',
@@ -386,7 +385,7 @@ export default function HomeClient() {
                   }}>
                     <img
                       src="/images/icons/expert.png"
-                      alt=""
+                      alt="Experts"
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',
@@ -448,7 +447,7 @@ export default function HomeClient() {
                   }}>
                     <img
                       src="/images/icons/analyst.png"
-                      alt=""
+                      alt="Analyst"
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',
@@ -493,7 +492,6 @@ export default function HomeClient() {
               fontSize: isMobile ? '30px' : '42px',
               fontWeight: '800',
               color: '#0f172a',
-              marginBottom: '20px',
               fontFamily: 'inherit'
             }}>
               Work
@@ -592,13 +590,11 @@ export default function HomeClient() {
         <div className="row">
           <div className="column width-5 left">
             <div className="signup-form-container" style={{ padding: 0 }}>
-              <h2 style={{
+              <h2 className="color-white" style={{
                 fontSize: isMobile ? '28px' : '36px',
                 fontWeight: '700',
                 lineHeight: '1.25',
                 letterSpacing: '-0.5px',
-                color: '#ffffff',
-                marginBottom: '20px',
                 fontFamily: 'inherit'
               }}>
                 Get a Personalized 101 Branding Consultation Now!
@@ -652,7 +648,7 @@ export default function HomeClient() {
           <div className="column width-10 offset-1 left">
             <div className="login-form-container">
               <div className="thumbnail mb-30">
-                <img src="/images/YOSANT BLACK LOGO.svg" width="125" alt="" />
+                <img src="/images/YOSANT BLACK LOGO.svg" width="125" alt="Yosant Patel Logo" />
               </div>
               <p className="mb-20">FILL OUT THE FORM AND WE'LL BE IN TOUCH SOON!</p>
               <h2 className="mb-30">LET'S TALK</h2>
@@ -699,7 +695,7 @@ export default function HomeClient() {
           <div className="column width-10 offset-1 left">
             <div className="consultaion-form-container">
               <div className="thumbnail mb-30">
-                <img src="/images/YOSANT BLACK LOGO.svg" width="125" alt="" />
+                <img src="/images/YOSANT BLACK LOGO.svg" width="125" alt="Yosant Patel Logo" />
               </div>
               <h2 className="mb-10">Branding Consultation</h2>
               <hr style={{ width: '140px', borderTop: '4px solid #000' }} />
