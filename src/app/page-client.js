@@ -1,5 +1,6 @@
 "use client";
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import HomeBlogSection from '@/components/HomeBlogSection';
 
@@ -259,9 +260,11 @@ export default function HomeClient() {
                     marginBottom: isMobile ? '15px' : '25px',
                     transition: 'all 0.3s ease'
                   }}>
-                    <img
+                    <Image
                       src="/images/icons/market-analysis.png"
                       alt="Market Analysis"
+                      width={64}
+                      height={64}
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',
@@ -321,9 +324,11 @@ export default function HomeClient() {
                     marginBottom: isMobile ? '15px' : '25px',
                     transition: 'all 0.3s ease'
                   }}>
-                    <img
+                    <Image
                       src="/images/icons/guidance.png"
                       alt="Guidance"
+                      width={64}
+                      height={64}
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',
@@ -383,9 +388,11 @@ export default function HomeClient() {
                     marginBottom: isMobile ? '15px' : '25px',
                     transition: 'all 0.3s ease'
                   }}>
-                    <img
+                    <Image
                       src="/images/icons/expert.png"
                       alt="Experts"
+                      width={64}
+                      height={64}
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',
@@ -445,9 +452,11 @@ export default function HomeClient() {
                     marginBottom: isMobile ? '15px' : '25px',
                     transition: 'all 0.3s ease'
                   }}>
-                    <img
+                    <Image
                       src="/images/icons/analyst.png"
                       alt="Analyst"
+                      width={64}
+                      height={64}
                       style={{
                         width: isMobile ? '24px' : '32px',
                         height: isMobile ? '24px' : '32px',

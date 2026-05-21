@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,42 +8,57 @@ import Script from "next/script";
 export default function RootLayoutShell({ children }) {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
-  const [isLoading, setIsLoading] = useState(true);
-
   // Scroll to top and wake up lazy loaders/reveals on every client-side page navigation
   useEffect(() => {
-    // Show loader on page change
-    setIsLoading(true);
-    
-    const hideTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 600); // Wait for page transition to finish before hiding
-
     window.scrollTo(0, 0);
     
-    // Dispatch scroll & resize events after DOM content renders
-    const timer = setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-      window.dispatchEvent(new Event('scroll'));
-      
-      // If legacy jQuery components exist on page, fire their scroll & resize handlers
-      if (typeof window !== 'undefined' && window.jQuery) {
-        window.jQuery(window).trigger('resize');
-        window.jQuery(window).trigger('scroll');
-      }
-    }, 150);
+    let timer;
+    let script;
+    let checkJQuery;
 
-    // Inject timber.master.min.js dynamically so it re-evaluates on route change
-    // without busting the browser cache, ensuring sliders/animations initialize.
-    const script = document.createElement('script');
-    script.src = '/js/timber.master.min.js';
-    script.async = false;
-    document.body.appendChild(script);
+    const injectTimber = () => {
+      // Clear previous jQuery listeners on window/document to avoid cumulative scroll/resize overhead
+      if (typeof window !== 'undefined' && window.jQuery) {
+        window.jQuery(window).off();
+        window.jQuery(document).off();
+      }
+
+      // Dispatch scroll & resize events after DOM content renders
+      timer = setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new Event('scroll'));
+        
+        // If legacy jQuery components exist on page, fire their scroll & resize handlers
+        if (typeof window !== 'undefined' && window.jQuery) {
+          window.jQuery(window).trigger('resize');
+          window.jQuery(window).trigger('scroll');
+        }
+      }, 150);
+
+      // Inject timber.master.min.js dynamically so it re-evaluates on route change
+      // without busting the browser cache, ensuring sliders/animations initialize.
+      script = document.createElement('script');
+      script.src = '/js/timber.master.min.js';
+      script.async = false;
+      document.body.appendChild(script);
+    };
+
+    // Check if jQuery is loaded. If not, poll until it is.
+    if (typeof window !== 'undefined' && window.jQuery) {
+      injectTimber();
+    } else {
+      checkJQuery = setInterval(() => {
+        if (typeof window !== 'undefined' && window.jQuery) {
+          clearInterval(checkJQuery);
+          injectTimber();
+        }
+      }, 50);
+    }
 
     return () => {
-      clearTimeout(timer);
-      clearTimeout(hideTimer);
-      if (document.body.contains(script)) {
+      if (checkJQuery) clearInterval(checkJQuery);
+      if (timer) clearTimeout(timer);
+      if (script && document.body.contains(script)) {
         document.body.removeChild(script);
       }
     };
@@ -62,10 +77,6 @@ export default function RootLayoutShell({ children }) {
           style={{ display: 'none', visibility: 'hidden' }}
         ></iframe>
       </noscript>
-
-      {isLoading && (
-        <div id="loader" className="center"></div>
-      )}
 
       <div className="wrapper reveal-side-navigation">
         <div className="wrapper-inner">

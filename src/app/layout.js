@@ -1,6 +1,21 @@
 import RootLayoutShell from "@/components/RootLayoutShell";
 import "./globals.css";
 import Script from "next/script";
+import { Open_Sans, Lato } from 'next/font/google';
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '700'],
+  display: 'swap',
+  variable: '--font-open-sans',
+});
+
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700'],
+  display: 'swap',
+  variable: '--font-lato',
+});
 
 export const metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -31,17 +46,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="en" className={`${openSans.variable} ${lato.variable}`} suppressHydrationWarning={true}>
       <head>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700%7CLato:300,400,700' rel='stylesheet' type='text/css' />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <link rel="stylesheet" href="/css/core.min.css" />
         <link rel="stylesheet" href="/css/skin-web-application.css" />
         
-        {/* Load jQuery and Swiper before Next.js is interactive */}
-        <Script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" strategy="beforeInteractive" />
+        <style dangerouslySetInnerHTML={{__html: `
+          body { font-family: var(--font-open-sans), sans-serif !important; }
+          h1, h2, h3, h4, h5, h6, .font-alt { font-family: var(--font-lato), sans-serif !important; }
+        `}} />
+
+        {/* Load jQuery and Swiper without blocking initial hydration */}
+        <Script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" strategy="afterInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" strategy="afterInteractive" />
       </head>
       <RootLayoutShell>
         {children}
