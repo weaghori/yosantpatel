@@ -173,7 +173,7 @@ export default function HomeClient() {
               letterSpacing: '-5px',
               textAlign: isMobile ? 'left' : 'center'
             }}>
-              18
+              18+
             </h2>
           </div>
           <div className="column width-7 horizon" data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;" data-threshold="0.5" style={{ flex: '1 1 450px' }}>
