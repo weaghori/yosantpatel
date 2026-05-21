@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import MobileHeader from './MobileHeader';
 
 export default function Header() {
   const pathname = usePathname();
@@ -106,7 +107,7 @@ export default function Header() {
             display: inline-block !important;
             visibility: visible !important;
             opacity: 1 !important;
-            max-height: 40px !important;
+            max-height: 28px !important;
           }
           .logo .logo-inner a:last-of-type,
           .logo .logo-inner a:last-of-type img {
@@ -116,9 +117,14 @@ export default function Header() {
           }
         }
       `}</style>
+      
+      {/* NEW CUSTOM MOBILE HEADER */}
+      <MobileHeader />
 
-      {/* Overlay Navigation Menu */}
-      <div className="overlay-navigation-wrapper enter-right" data-no-scrollbar data-animation="slide-in">
+      {/* LEGACY DESKTOP HEADER (Hidden on mobile) */}
+      <div className="desktop-only-header">
+        {/* Overlay Navigation Menu */}
+        <div className="overlay-navigation-wrapper enter-right" data-no-scrollbar data-animation="slide-in">
         <div className="overlay-navigation-scroll-pane">
           <div className="overlay-navigation-inner">
             <div className="v-align-middle">
@@ -151,6 +157,9 @@ export default function Header() {
                       <li className={pathname.startsWith('/work') ? 'current' : ''}>
                         <Link href="/work">Work</Link>
                       </li>
+                      <li className={pathname === '/contact' ? 'current' : ''}>
+                        <Link href="/contact">Contact</Link>
+                      </li>
                     </ul>
                   </nav>
                 </div>
@@ -178,7 +187,7 @@ export default function Header() {
               <div className="logo no-transition">
                 <div className="logo-inner">
                   <Link href="/" className="no-transition">
-                    <img src="/images/YOSANT BLACK LOGO.svg" alt="Logo" />
+                    <img src="/images/yosant-black-logo.svg" alt="Logo" />
                   </Link>
                   <Link href="/" className="no-transition">
                     <img src="/images/logo.svg" alt="Logo" />
@@ -227,6 +236,7 @@ export default function Header() {
           </div>
         </div>
       </header>
+      </div>
     </>
   );
 }
