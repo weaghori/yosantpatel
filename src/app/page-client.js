@@ -79,20 +79,37 @@ export default function HomeClient() {
                 <div className="tms-content-inner left v-align-middle">
                   <div className="row">
                     <div className="column width-12">
-                      <h1 className="tms-caption no-margin-bottom text-uppercase"
+                      <h1 className="tms-caption no-margin-bottom"
                         data-animate-in="preset:slideInRightShort;duration:1000ms;"
+                        data-no-scale
+                        style={{ fontFamily: 'inherit', margin: isMobile ? '0 0 5px 0' : '0 0 10px 0' }}>
+                        <span className="hero-main-title" style={{
+                          color: '#ffffff',
+                          fontSize: isMobile ? '24px' : '42px',
+                          lineHeight: isMobile ? '1.3' : '1.2',
+                          fontWeight: '700',
+                          display: 'block',
+                          letterSpacing: 'normal',
+                          marginBottom: '50px'
+                        }}>
+                          Transforming Local Businesses <br className="hide-on-mobile" /> Into Unforgettable Brands.
+                        </span>
+                      </h1>
+                      <div className="clear"></div>
+                      <h2 className="tms-caption no-margin-bottom text-uppercase"
+                        data-animate-in="preset:slideInRightShort;duration:1000ms;delay:100ms;"
                         data-no-scale
                         style={{ fontFamily: 'inherit', margin: 0 }}>
                         <span className="hero-title" style={{
                           color: '#ffffff',
-                          fontSize: isMobile ? '28px' : '56px',
+                          fontSize: isMobile ? '28px' : '48px',
                           lineHeight: isMobile ? '1.2' : '1.15',
                           fontWeight: '300',
                           display: 'block'
                         }}>
                           I Am  <strong style={{ fontWeight: '800' }}>Yosant Patel</strong>
                         </span>
-                      </h1>
+                      </h2>
                       <div className="clear"></div>
                       <div className="tms-caption"
                         data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;"
