@@ -204,7 +204,7 @@ export default function AboutClient() {
                     fontWeight: '300',
                     margin: 0,
                     fontFamily: 'inherit',
-                    textAlign: 'center'
+                    textAlign: 'justify'
                   }}>
                     With <strong style={{ color: '#203b72', fontWeight: '600' }}>18+ years of extensive industry experience</strong>, I have developed a focused approach and strong vision to elevate brands. As a brand strategist and creative director, I am driven by a passion for building impactful and meaningful brand identities.
                   </p>
@@ -265,7 +265,7 @@ export default function AboutClient() {
                     fontWeight: '300',
                     margin: 0,
                     fontFamily: 'inherit',
-                    textAlign: 'center'
+                    textAlign: 'justify'
                   }}>
                     I aim to strengthen your brand through <strong style={{ color: '#203b72', fontWeight: '600' }}>market research</strong>, campaign analysis, and tailored strategic solutions. My expertise in graphic design also allows me to create impactful visuals and messages for stronger brand communication.
                   </p>
@@ -326,7 +326,7 @@ export default function AboutClient() {
                     fontWeight: '300',
                     margin: 0,
                     fontFamily: 'inherit',
-                    textAlign: 'center'
+                    textAlign: 'justify'
                   }}>
                     A brand consultant acts like a guide, supporting brands through every stage and offering solutions, whether it involves marketing strategies or rebranding. As a brand strategist, my role is to <strong style={{ color: '#203b72', fontWeight: '600' }}>build and strengthen your brand</strong> while staying true to its core values.
                   </p>
@@ -550,7 +550,7 @@ export default function AboutClient() {
                     fontFamily: 'inherit',
                     margin: 0
                   }}>
-                    While curiosity gradually evolved into a passion for brand building, in 2017 I started <strong style={{ color: '#203b72', fontWeight: '600' }}>Aghori Media House</strong>, a creative media agency focused on building meaningful brand connections. As a brand consultant, I aim to transform brands through the right strategy, creative direction, and in-depth research by identifying and improving the gaps within your brand.
+                    While curiosity gradually evolved into a passion for brand building, in 2017 I started <a href="https://aghorimediahouse.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><strong style={{ color: '#203b72', fontWeight: '600', transition: 'opacity 0.3s' }} onMouseEnter={(e) => e.target.style.opacity = '0.75'} onMouseLeave={(e) => e.target.style.opacity = '1'}>Aghori Media House</strong></a>, a creative media agency focused on building meaningful brand connections. As a brand consultant, I aim to transform brands through the right strategy, creative direction, and in-depth research by identifying and improving the gaps within your brand.
                   </p>
                 </div>
               </div>

@@ -129,7 +129,7 @@ export default function BlogDetailClient({ post }) {
         <div className="row">
           <div className="column width-12">
             <article className="creative-blog-wrapper" style={{
-              maxWidth: '800px',
+              maxWidth: '100%',
               margin: '0 auto',
               backgroundColor: '#ffffff'
             }}>
