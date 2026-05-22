@@ -6,7 +6,7 @@ export default function SolutionsClient() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    
+
     window.dispatchEvent(new Event('resize'));
 
     // Hydration-safe screen observer
@@ -34,9 +34,9 @@ export default function SolutionsClient() {
         overflow: 'hidden'
       }}>
         {/* Visually Hidden Image for SEO */}
-        <img 
-          src="/images/slider/Solutions-Yosant-Patel.jpg" 
-          alt="Branding" 
+        <img
+          src="/images/slider/Solutions-Yosant-Patel.jpg"
+          alt="Branding"
           style={{
             position: 'absolute',
             width: '1px',
@@ -47,7 +47,7 @@ export default function SolutionsClient() {
             clip: 'rect(0, 0, 0, 0)',
             whiteSpace: 'nowrap',
             border: '0'
-          }} 
+          }}
         />
         {/* Hero Title Grid Frame */}
         <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
@@ -107,7 +107,7 @@ export default function SolutionsClient() {
         position: 'relative',
         overflow: 'hidden'
       }}>
-        
+
         {/* ROW 1: Solution 1 (BIG - Left) & Solution 2 (SMALL - Right) */}
         <div className="row" style={{ marginBottom: isMobile ? '20px' : '80px' }}>
           <div style={{
@@ -117,13 +117,13 @@ export default function SolutionsClient() {
             alignItems: 'stretch',
             width: '100%'
           }}>
-            
+
             {/* Solution 1 (BIG - Width 60% on Desktop) */}
-            <div style={{ 
-              flex: isMobile ? '1 1 100%' : '1 1 60%', 
-              display: 'flex' 
+            <div style={{
+              flex: isMobile ? '1 1 100%' : '1 1 60%',
+              display: 'flex'
             }}>
-              <div 
+              <div
                 style={{
                   background: '#ffffff',
                   border: '1px solid #e2e8f0',
@@ -154,15 +154,15 @@ export default function SolutionsClient() {
                   if (img) img.style.transform = 'scale(1)';
                 }}
               >
-                {/* Large Background Watermarked Serial Number */}
+                {/* Large Dark Watermark Number */}
                 <div style={{
                   position: 'absolute',
                   right: isMobile ? '15px' : '25px',
                   bottom: isMobile ? '-10px' : '-15px',
                   fontSize: isMobile ? '50px' : '120px',
                   fontWeight: '900',
-                  color: '#203b72',
-                  opacity: 0.03,
+                  color: '#0f172a',
+                  opacity: 0.08,
                   userSelect: 'none',
                   zIndex: 1,
                   fontFamily: 'inherit'
@@ -182,8 +182,8 @@ export default function SolutionsClient() {
                     border: '1px solid #f1f5f9'
                   }}>
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: isMobile ? '16/10' : '21/9' }}>
-                      <img 
-                        src="/images/solution/Solution-01.jpg" 
+                      <img
+                        src="/images/solution/Solution-01.jpg"
                         alt="Branding"
                         className="sol-img"
                         style={{
@@ -214,11 +214,11 @@ export default function SolutionsClient() {
             </div>
 
             {/* Solution 2 (SMALL - Width 35% on Desktop) */}
-            <div style={{ 
-              flex: isMobile ? '1 1 100%' : '1 1 35%', 
-              display: 'flex' 
+            <div style={{
+              flex: isMobile ? '1 1 100%' : '1 1 35%',
+              display: 'flex'
             }}>
-              <div 
+              <div
                 style={{
                   background: '#ffffff',
                   border: '1px solid #e2e8f0',
@@ -249,15 +249,15 @@ export default function SolutionsClient() {
                   if (img) img.style.transform = 'scale(1)';
                 }}
               >
-                {/* Large Background Watermarked Serial Number */}
+                {/* Large Dark Watermark Number */}
                 <div style={{
                   position: 'absolute',
                   right: isMobile ? '15px' : '25px',
                   bottom: isMobile ? '-10px' : '-15px',
                   fontSize: isMobile ? '50px' : '120px',
                   fontWeight: '900',
-                  color: '#203b72',
-                  opacity: 0.03,
+                  color: '#0f172a',
+                  opacity: 0.08,
                   userSelect: 'none',
                   zIndex: 1,
                   fontFamily: 'inherit'
@@ -281,8 +281,8 @@ export default function SolutionsClient() {
                     marginBottom: isMobile ? '15px' : '25px'
                   }}>
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: '4/3' }}>
-                      <img 
-                        src="/images/solution/Solution-02.jpg" 
+                      <img
+                        src="/images/solution/Solution-02.jpg"
                         alt="Branding"
                         className="sol-img"
                         style={{
@@ -324,13 +324,13 @@ export default function SolutionsClient() {
             alignItems: 'stretch',
             width: '100%'
           }}>
-            
+
             {/* Solution 3 (SMALL - Width 35% on Desktop) */}
-            <div style={{ 
-              flex: isMobile ? '1 1 100%' : '1 1 35%', 
-              display: 'flex' 
+            <div style={{
+              flex: isMobile ? '1 1 100%' : '1 1 35%',
+              display: 'flex'
             }}>
-              <div 
+              <div
                 style={{
                   background: '#ffffff',
                   border: '1px solid #e2e8f0',
@@ -361,15 +361,15 @@ export default function SolutionsClient() {
                   if (img) img.style.transform = 'scale(1)';
                 }}
               >
-                {/* Large Background Watermarked Serial Number */}
+                {/* Large Dark Watermark Number */}
                 <div style={{
                   position: 'absolute',
                   right: isMobile ? '15px' : '25px',
                   bottom: isMobile ? '-10px' : '-15px',
                   fontSize: isMobile ? '50px' : '120px',
                   fontWeight: '900',
-                  color: '#203b72',
-                  opacity: 0.03,
+                  color: '#0f172a',
+                  opacity: 0.08,
                   userSelect: 'none',
                   zIndex: 1,
                   fontFamily: 'inherit'
@@ -393,8 +393,8 @@ export default function SolutionsClient() {
                     marginBottom: isMobile ? '15px' : '25px'
                   }}>
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: '4/3' }}>
-                      <img 
-                        src="/images/solution/Solution-03.jpg" 
+                      <img
+                        src="/images/solution/Solution-03.jpg"
                         alt="Branding"
                         className="sol-img"
                         style={{
@@ -425,11 +425,11 @@ export default function SolutionsClient() {
             </div>
 
             {/* Solution 4 (BIG - Width 60% on Desktop) */}
-            <div style={{ 
-              flex: isMobile ? '1 1 100%' : '1 1 60%', 
-              display: 'flex' 
+            <div style={{
+              flex: isMobile ? '1 1 100%' : '1 1 60%',
+              display: 'flex'
             }}>
-              <div 
+              <div
                 style={{
                   background: '#ffffff',
                   border: '1px solid #e2e8f0',
@@ -460,15 +460,15 @@ export default function SolutionsClient() {
                   if (img) img.style.transform = 'scale(1)';
                 }}
               >
-                {/* Large Background Watermarked Serial Number */}
+                {/* Large Dark Watermark Number */}
                 <div style={{
                   position: 'absolute',
                   right: isMobile ? '15px' : '25px',
                   bottom: isMobile ? '-10px' : '-15px',
                   fontSize: isMobile ? '50px' : '120px',
                   fontWeight: '900',
-                  color: '#203b72',
-                  opacity: 0.03,
+                  color: '#0f172a',
+                  opacity: 0.08,
                   userSelect: 'none',
                   zIndex: 1,
                   fontFamily: 'inherit'
@@ -488,8 +488,8 @@ export default function SolutionsClient() {
                     border: '1px solid #f1f5f9'
                   }}>
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: isMobile ? '16/10' : '21/9' }}>
-                      <img 
-                        src="/images/solution/Solution-04.jpg" 
+                      <img
+                        src="/images/solution/Solution-04.jpg"
                         alt="Branding"
                         className="sol-img"
                         style={{
@@ -531,13 +531,13 @@ export default function SolutionsClient() {
             alignItems: 'stretch',
             width: '100%'
           }}>
-            
+
             {/* Solution 5 (BIG - Width 60% on Desktop) */}
-            <div style={{ 
-              flex: isMobile ? '1 1 100%' : '1 1 60%', 
-              display: 'flex' 
+            <div style={{
+              flex: isMobile ? '1 1 100%' : '1 1 60%',
+              display: 'flex'
             }}>
-              <div 
+              <div
                 style={{
                   background: '#ffffff',
                   border: '1px solid #e2e8f0',
@@ -568,15 +568,15 @@ export default function SolutionsClient() {
                   if (img) img.style.transform = 'scale(1)';
                 }}
               >
-                {/* Large Background Watermarked Serial Number */}
+                {/* Large Dark Watermark Number */}
                 <div style={{
                   position: 'absolute',
                   right: isMobile ? '15px' : '25px',
                   bottom: isMobile ? '-10px' : '-15px',
                   fontSize: isMobile ? '50px' : '120px',
                   fontWeight: '900',
-                  color: '#203b72',
-                  opacity: 0.03,
+                  color: '#0f172a',
+                  opacity: 0.08,
                   userSelect: 'none',
                   zIndex: 1,
                   fontFamily: 'inherit'
@@ -596,8 +596,8 @@ export default function SolutionsClient() {
                     border: '1px solid #f1f5f9'
                   }}>
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: isMobile ? '16/10' : '21/9' }}>
-                      <img 
-                        src="/images/solution/Solution-05.jpg" 
+                      <img
+                        src="/images/solution/Solution-05.jpg"
                         alt="Branding"
                         className="sol-img"
                         style={{
@@ -628,11 +628,11 @@ export default function SolutionsClient() {
             </div>
 
             {/* Solution 6 (SMALL - Width 35% on Desktop) */}
-            <div style={{ 
-              flex: isMobile ? '1 1 100%' : '1 1 35%', 
-              display: 'flex' 
+            <div style={{
+              flex: isMobile ? '1 1 100%' : '1 1 35%',
+              display: 'flex'
             }}>
-              <div 
+              <div
                 style={{
                   background: '#ffffff',
                   border: '1px solid #e2e8f0',
@@ -663,15 +663,15 @@ export default function SolutionsClient() {
                   if (img) img.style.transform = 'scale(1)';
                 }}
               >
-                {/* Large Background Watermarked Serial Number */}
+                {/* Large Dark Watermark Number */}
                 <div style={{
                   position: 'absolute',
                   right: isMobile ? '15px' : '25px',
                   bottom: isMobile ? '-10px' : '-15px',
                   fontSize: isMobile ? '50px' : '120px',
                   fontWeight: '900',
-                  color: '#203b72',
-                  opacity: 0.03,
+                  color: '#0f172a',
+                  opacity: 0.08,
                   userSelect: 'none',
                   zIndex: 1,
                   fontFamily: 'inherit'
@@ -695,8 +695,8 @@ export default function SolutionsClient() {
                     marginBottom: isMobile ? '15px' : '25px'
                   }}>
                     <div style={{ borderRadius: isMobile ? '8px' : '12px', overflow: 'hidden', aspectRatio: '4/3' }}>
-                      <img 
-                        src="/images/solution/Solution-06.jpg" 
+                      <img
+                        src="/images/solution/Solution-06.jpg"
                         alt="Branding"
                         className="sol-img"
                         style={{
@@ -769,16 +769,16 @@ export default function SolutionsClient() {
                 textTransform: 'uppercase',
                 boxShadow: 'none'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#ffffff';
-                e.currentTarget.style.color = '#203b72';
-                e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.25)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#ffffff';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.color = '#203b72';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
                 Grow Your Brand
               </Link>
