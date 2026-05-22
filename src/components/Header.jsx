@@ -16,12 +16,14 @@ export default function Header() {
 
   const isWorkDetail = pathname.startsWith('/work/') && pathname !== '/work';
   const isBlogDetail = pathname.startsWith('/blogs/') && pathname !== '/blogs';
+  const isTerms = pathname === '/terms-conditions';
+  const isPrivacy = pathname === '/privacy-policy';
 
 
-  const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid || isConsultation;
+  const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid || isConsultation || isTerms || isPrivacy;
 
   // Pages with dark hero images need the white logo for transparency
-  const hasDarkHero = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid || isConsultation;
+  const hasDarkHero = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid || isConsultation || isTerms || isPrivacy;
   const needsBlackNav = !hasDarkHero;
 
   const navColorClass = needsBlackNav ? 'color-black' : '';

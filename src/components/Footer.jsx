@@ -383,7 +383,7 @@ export default function Footer() {
           <div className="footer-top-row">
 
             <div className="footer-brand-section">
-              <div className="footer-logo-wrapper" style={{ margin: 0 }}>
+              <div className="footer-logo-wrapper" style={{ marginBottom: '20px' }}>
                 <Link href="/">
                   <img
                     src="/images/YOSANT LOGO-01.svg"
@@ -394,6 +394,9 @@ export default function Footer() {
                   />
                 </Link>
               </div>
+              <p className="footer-brand-tagline">
+                Hello, I am Yosant Patel, a brand strategist and brand consultant in Mumbai helping startups and businesses build strong brand identities through strategic and creative branding solutions.
+              </p>
             </div>
 
             <div className="footer-cta-section">
