@@ -84,17 +84,17 @@ export default function HomeClient() {
                         data-no-scale
                         style={{ fontFamily: 'inherit', margin: '0' }}>
 
-                        <div style={{ color: '#ffffff', textTransform: 'uppercase', lineHeight: '1.05' }}>
-                          <div style={{ fontSize: isMobile ? '14px' : '18px', fontWeight: '300', letterSpacing: '1.5px', marginBottom: '4px' }}>
+                        <div style={{ color: '#ffffff', textTransform: 'uppercase', lineHeight: '1.3' }}>
+                          <div style={{ fontSize: isMobile ? '16px' : '35px', fontWeight: '100', letterSpacing: '1px' }}>
                             Transforming
                           </div>
-                          <div style={{ fontSize: isMobile ? '24px' : '38px', fontWeight: '800', letterSpacing: '1px', marginBottom: '14px' }}>
+                          <div style={{ fontSize: isMobile ? '26px' : '38px', fontWeight: '600', letterSpacing: '0px' }}>
                             Local Businesses
                           </div>
-                          <div style={{ fontSize: isMobile ? '14px' : '18px', fontWeight: '300', letterSpacing: '1.5px', marginBottom: '4px' }}>
+                          <div style={{ fontSize: isMobile ? '16px' : '35px', fontWeight: '100', letterSpacing: '1px', marginTop: '2px' }}>
                             Into Unforgettable
                           </div>
-                          <div style={{ fontSize: isMobile ? '24px' : '38px', fontWeight: '800', letterSpacing: '1px' }}>
+                          <div style={{ fontSize: isMobile ? '26px' : '38px', fontWeight: '600', letterSpacing: '0px' }}>
                             Brands
                           </div>
                         </div>
@@ -102,8 +102,8 @@ export default function HomeClient() {
                         <hr style={{
                           width: '180px',
                           border: 'none',
-                          borderTop: '1px solid rgba(255, 255, 255, 0.4)',
-                          margin: '35px 0 45px 0',
+                          borderTop: '1px solid rgba(255, 255, 255, 0.25)',
+                          margin: '25px 0 25px 0',
                           marginLeft: 0
                         }} />
                       </div>
@@ -115,9 +115,10 @@ export default function HomeClient() {
                         style={{ fontFamily: 'inherit', margin: 0 }}>
                         <div style={{
                           color: '#ffffff',
-                          fontSize: isMobile ? '22px' : '34px',
+                          fontSize: isMobile ? '20px' : '32px',
                           lineHeight: isMobile ? '1.2' : '1.15',
-                          display: 'block'
+                          display: 'block',
+                          marginTop: '50px'
                         }}>
                           <span style={{ fontWeight: '300' }}>I AM </span>
                           <span style={{ fontWeight: '800' }}>YOSANT PATEL</span>
@@ -133,7 +134,7 @@ export default function HomeClient() {
                         }}>
                         <div style={{
                           color: '#ffffff',
-                          fontSize: isMobile ? '14px' : '18px',
+                          fontSize: isMobile ? '14px' : '22px',
                           lineHeight: isMobile ? '1.5' : '1.6',
                           fontWeight: '300',
                           letterSpacing: 'normal',
