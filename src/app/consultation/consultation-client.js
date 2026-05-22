@@ -34,14 +34,14 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
-      const isSelected = selectedDate && 
-                         day === selectedDate.getDate() && 
-                         month === selectedDate.getMonth() && 
-                         year === selectedDate.getFullYear();
-      
+      const isSelected = selectedDate &&
+        day === selectedDate.getDate() &&
+        month === selectedDate.getMonth() &&
+        year === selectedDate.getFullYear();
+
       calendarDays.push(
-        <div 
-          key={`day-${day}`} 
+        <div
+          key={`day-${day}`}
           className={`calendar-day ${isSelected ? 'active' : ''}`}
           onClick={() => {
             const newSelected = new Date(year, month, day);
@@ -80,7 +80,8 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
       </button>
 
       {/* Global CSS style block for Calendar layout */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .calendar-container {
           background: #f4f4f4;
           padding: 30px;
@@ -220,7 +221,7 @@ export default function ConsultationClient() {
           <div className="row">
             <div className="column width-6">
               <h3><b>Ready to elevate your business?</b><br />Let's Connect!</h3>
-              
+
               <div className="row inner-row" style={{ marginTop: '40px' }}>
                 <div className="column width-12">
                   <div className="contact-card">
@@ -232,12 +233,12 @@ export default function ConsultationClient() {
                       </svg>
                     </div>
                     <div className="card-content">
-                      <h4 className="weight-bold no-margin-bottom">WHAT TO EXPECT</h4>
+                      <h3 className="weight-bold no-margin-bottom">WHAT TO EXPECT</h3>
                       <p>In this free 30-minute deep-dive session, we will audit your brand presence, identify key market opportunities, and map out a strategic growth plan.</p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="column width-12" style={{ marginTop: '20px' }}>
                   <div className="contact-card">
                     <div className="icon-box">
@@ -247,7 +248,7 @@ export default function ConsultationClient() {
                       </svg>
                     </div>
                     <div className="card-content">
-                      <h4 className="weight-bold no-margin-bottom">GET IN TOUCH</h4>
+                      <h3 className="weight-bold no-margin-bottom">GET IN TOUCH</h3>
                       <p><a href="mailto:iam@yosantpatel.com">iam@yosantpatel.com</a></p>
                     </div>
                   </div>
@@ -256,7 +257,7 @@ export default function ConsultationClient() {
             </div>
 
             <div className="column width-6">
-              <CalendarWidget 
+              <CalendarWidget
                 onDateSelect={(date) => {
                   setModalDate(date);
                   setIsModalOpen(true);
@@ -270,14 +271,15 @@ export default function ConsultationClient() {
         </div>
       </div>
 
-      <ConsultationModal 
+      <ConsultationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         selectedDate={modalDate}
       />
 
       {/* Global CSS styles for layout consistency */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .contact-card {
           display: flex;
           align-items: flex-start;
