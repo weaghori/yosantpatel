@@ -109,7 +109,7 @@ export default function HomeClient() {
                           letterSpacing: 'normal',
                           display: 'block'
                         }}>
-                          <h2 style={{ color: 'white' }}>Strategic Branding Consultant,<br />Owner of a Digital Media Marketing Firm.</h2>
+                          <h2 style={{ color: 'white' }}>Strategic Branding Consultant,<br />Owner of a Branding Agency.</h2>
                         </span>
                         <br />
                         <Link href="/consultation">
