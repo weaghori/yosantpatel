@@ -142,6 +142,36 @@ export default function HomeClient() {
                         }}>
                           Strategic Branding Consultant,<br />Owner of a Branding Agency.
                         </div>
+                        
+                        <Link href="/consultation">
+                          <button
+                            className="hero-btn"
+                            onMouseEnter={() => setHoveredCta(true)}
+                            onMouseLeave={() => setHoveredCta(false)}
+                            style={{
+                              marginTop: isMobile ? '20px' : '30px',
+                              backgroundColor: hoveredCta ? '#ffffff' : 'transparent',
+                              border: '1px solid #ffffff',
+                              padding: isMobile ? '10px 24px' : '12px 30px',
+                              borderRadius: '30px',
+                              fontSize: '12px',
+                              letterSpacing: '1.5px',
+                              display: 'inline-block',
+                              cursor: 'pointer',
+                              boxShadow: hoveredCta ? '0 8px 25px rgba(255, 255, 255, 0.25)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
+                              transform: 'none',
+                              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                              textTransform: 'uppercase',
+                              fontWeight: '700',
+                              outline: 'none',
+                              fontFamily: 'inherit'
+                            }}
+                          >
+                            <span style={{ color: hoveredCta ? '#203b72' : '#ffffff', transition: 'color 0.3s ease' }}>
+                              Grow Your Business
+                            </span>
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
