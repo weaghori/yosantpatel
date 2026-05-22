@@ -107,10 +107,10 @@ export default function WorkClient() {
             }}>
               Brands Built with VISION
             </h1>
-            <h2 className="font-alt-1 mobile-res-work" style={{
-              fontSize: isMobile ? '20px' : '32px',
+            <h3 className="font-alt-1 mobile-res-work" style={{
+              fontSize: isMobile ? '20px' : '28px',
               lineHeight: '1.45',
-              fontWeight: '700',
+              fontWeight: '400',
               color: '#ffffff',
               margin: 0,
               padding: 0,
@@ -119,7 +119,7 @@ export default function WorkClient() {
               With <strong>18+ years</strong> of extensive experience in the industry, <br className="hide-on-mobile" />
               I have worked on <strong>207+ projects</strong>. I strive to offer best results to <br className="hide-on-mobile" />
               varied brands by bringing creativity aligned with impactful strategy.
-            </h2>
+            </h3>
           </div>
         </div>
       </section>
