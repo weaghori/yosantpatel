@@ -84,7 +84,7 @@ export default function TermsConditionsClient() {
       <div className="section-block content-inner bkg-white legal-content" style={{ padding: isMobile ? '50px 0' : '100px 0' }}>
         <div className="row">
           <div className="column width-12">
-            <p>Last updated: August 13, 2021</p>
+            <p>Last updated: May 23, 2026</p>
             <p>Please read these terms and conditions carefully before using Our Service.</p>
 
             <h1>Interpretation and Definitions</h1>

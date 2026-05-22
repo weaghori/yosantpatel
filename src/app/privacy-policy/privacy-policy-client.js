@@ -91,7 +91,7 @@ export default function PrivacyPolicyClient() {
       <div className="section-block content-inner bkg-white legal-content" style={{ padding: isMobile ? '50px 0' : '100px 0' }}>
         <div className="row">
           <div className="column width-12">
-            <p>Last updated: August 13, 2021</p>
+            <p>Last updated: May 23, 2026</p>
             <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
             <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the Privacy Policy Generator.</p>
 
