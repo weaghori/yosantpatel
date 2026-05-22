@@ -207,7 +207,7 @@ export default function SolutionsClient() {
                     margin: 0,
                     fontFamily: 'inherit'
                   }}>
-                    I try to <strong style={{ color: '#203b72', fontWeight: '500' }}>understand where your brand stands</strong> right now and help position it better with the facts, insights, and research. I try to fill in the gaps where your brand is lacking behind.
+                    I focus on <strong style={{ color: '#203b72', fontWeight: '500' }}>understanding where your brand stands</strong> today and help strengthen its position through research, insights, and strategic direction. I work on identifying the gaps and improving the areas where your brand needs growth.
                   </p>
                 </div>
               </div>
@@ -306,7 +306,7 @@ export default function SolutionsClient() {
                     margin: 0,
                     fontFamily: 'inherit'
                   }}>
-                    To create an impact on the audience’s mind, <strong style={{ color: '#203b72', fontWeight: '500' }}>generating creative messages</strong> are essential for your brand. I help you create innovative and impactful messages that reach your target audience and attract new customers.
+                    To leave a lasting impression on your audience, <strong style={{ color: '#203b72', fontWeight: '500' }}>creative messaging</strong> plays an important role in your brand. I help craft innovative and meaningful communication that connects with your target audience and attracts potential customers.
                   </p>
                 </div>
               </div>
@@ -418,7 +418,7 @@ export default function SolutionsClient() {
                     margin: 0,
                     fontFamily: 'inherit'
                   }}>
-                    A Brand needs its <strong style={{ color: '#203b72', fontWeight: '500' }}>voice, tone, identity, and personality</strong> to make your brand unique and relevant to the audience. I help you to build a voice for your brand and connect with your target audience.
+                    A brand needs a distinct <strong style={{ color: '#203b72', fontWeight: '500' }}>voice, tone, identity, and personality</strong> to stay unique and relevant to its audience. I help shape a strong brand voice that builds meaningful connections with your target audience.
                   </p>
                 </div>
               </div>
@@ -513,7 +513,7 @@ export default function SolutionsClient() {
                     margin: 0,
                     fontFamily: 'inherit'
                   }}>
-                    Branding can get intimidating as it is a <strong style={{ color: '#203b72', fontWeight: '500' }}>long-term process</strong>. Through my guidance, the right approach, and perseverance will make this journey easy and effective.
+                    Branding can feel overwhelming as it is a <strong style={{ color: '#203b72', fontWeight: '500' }}>long-term journey</strong>. With the right guidance, strategic approach, and consistent efforts, I help make the process smoother, effective, and growth-driven.
                   </p>
                 </div>
               </div>
@@ -621,7 +621,7 @@ export default function SolutionsClient() {
                     margin: 0,
                     fontFamily: 'inherit'
                   }}>
-                    It is essential to <strong style={{ color: '#203b72', fontWeight: '500' }}>build strong communication</strong> to stand out in the market. By understanding the market situation, your audience needs, and expectations, I give you solutions for your potential growth.
+                    <strong style={{ color: '#203b72', fontWeight: '500' }}>Strong communication is essential</strong> for standing out in the market. By understanding market trends, audience expectations, and consumer needs, I provide strategic solutions that support your brand’s long-term growth.
                   </p>
                 </div>
               </div>
@@ -720,7 +720,7 @@ export default function SolutionsClient() {
                     margin: 0,
                     fontFamily: 'inherit'
                   }}>
-                    Rebranding can get challenging as there is a constant fear of your brand’s position. It is a long process of changing strategies, visuals, communication, products. I assure you to bring desired results.
+                    Rebranding can be challenging, especially with concerns about your brand’s position in the market. It is a long journey involving changes in strategy, visuals, communication, and products, and I help guide the process toward meaningful results.
                   </p>
                 </div>
               </div>
@@ -772,13 +772,11 @@ export default function SolutionsClient() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#ffffff';
                 e.currentTarget.style.color = '#203b72';
-                e.currentTarget.style.transform = 'translateY(-3px)';
                 e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.25)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
                 e.currentTarget.style.color = '#ffffff';
-                e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
               >

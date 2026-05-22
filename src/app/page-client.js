@@ -109,7 +109,7 @@ export default function HomeClient() {
                           letterSpacing: 'normal',
                           display: 'block'
                         }}>
-                          <h2 style={{ color: 'white' }}>A Brand Consulting Visionary,<br />Owner of a Digital Media Marketing Firm.</h2>
+                          <h2 style={{ color: 'white' }}>Strategic Branding Consultant,<br />Owner of a Digital Media Marketing Firm.</h2>
                         </span>
                         <br />
                         <Link href="/consultation">
@@ -128,7 +128,7 @@ export default function HomeClient() {
                               display: 'inline-block',
                               cursor: 'pointer',
                               boxShadow: hoveredCta ? '0 8px 25px rgba(255, 255, 255, 0.25)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
-                              transform: hoveredCta ? 'translateY(-3px)' : 'none',
+                              transform: 'none',
                               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                               textTransform: 'uppercase',
                               fontWeight: '700',
@@ -189,7 +189,7 @@ export default function HomeClient() {
               marginBottom: 0,
               fontFamily: 'inherit'
             }}>
-              With 18+ years of experience, I have learned and explored various ways to build and enrich a brand. I am keen to help you reach your goal.
+              With 18+ years of experience, I have explored thoughtful ways to build strong brands and create meaningful identities. I am passionate about helping businesses grow with clarity and purpose.
             </h2>
           </div>
         </div>
@@ -218,10 +218,7 @@ export default function HomeClient() {
               margin: 0,
               fontFamily: 'inherit'
             }}>
-              Having a focused approach is always beneficial; meanwhile, developing a
-              good foundation for your brand is essential. With my expert research, aligning your
-              brand needs to market trends, and through my constant guidance, you are closer to
-              success.
+              A focused approach always creates better results, while building a strong brand foundation remains equally important. Through expert research, market-driven insights, and constant guidance, I help bring your brand closer to lasting success.
             </p>
           </div>
 
@@ -512,10 +509,7 @@ export default function HomeClient() {
               margin: 0,
               fontFamily: 'inherit'
             }}>
-              With a passion for uplifting a brand, I have transformed various brands from scratch. In
-              these 18+ years of experience, I have explored different ways to mold brands into accurate
-              strategies aligned with creative messages. I have provided the best results from brand
-              research to audit the outcome.
+              With a passion for building impactful brands, I have transformed businesses from the ground up. Across 18+ years of experience, I have explored strategic and creative ways to shape brands with meaningful direction and deliver results through research, planning, and brand evaluation.
             </p>
           </div>
 
@@ -615,7 +609,7 @@ export default function HomeClient() {
                 marginBottom: '30px',
                 fontFamily: 'inherit'
               }}>
-                Want to increase your brand's visibility? Share your business details and get 360° branding solutions today!
+                Looking to elevate your brand’s presence? Book a 30-minute, no-obligation strategy session and explore tailored 360° branding solutions. For businesses ready to grow with purpose — let’s build success together.
               </p>
               <div>
                 <Link href="/consultation">
@@ -633,7 +627,7 @@ export default function HomeClient() {
                       textTransform: 'uppercase',
                       cursor: 'pointer',
                       boxShadow: hoveredConsult ? '0 8px 25px rgba(255, 255, 255, 0.25)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
-                      transform: hoveredConsult ? 'translateY(-3px)' : 'none',
+                      transform: 'none',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       outline: 'none',
                       fontFamily: 'inherit'
