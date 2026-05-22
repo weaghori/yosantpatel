@@ -401,7 +401,7 @@ export default function Footer() {
 
             <div className="footer-cta-section">
               <span className="footer-cta-tag">Let's Talk</span>
-              <a href="mailto:iam@yosantpatel.com" className="footer-email-link">
+              <a href="mailto:iam@yosantpatel.com" className="footer-email-link" onClick={(e) => { window.location.href = "mailto:iam@yosantpatel.com"; e.preventDefault(); }}>
                 iam@yosantpatel.com
               </a>
             </div>
