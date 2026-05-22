@@ -97,7 +97,17 @@ export default function WorkClient() {
         {/* Decorative Grid Frame */}
         <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
           <div className="column width-12" style={{ textAlign: 'left', padding: '0 20px' }}>
-            <h1 className="font-alt-1 mobile-res-work" style={{
+            <h1 className="font-alt-1" style={{
+              fontSize: isMobile ? '36px' : '56px',
+              fontWeight: '700',
+              color: '#ffffff',
+              margin: '0 0 20px 0',
+              padding: 0,
+              lineHeight: '1.2'
+            }}>
+              Brands Built with VISION
+            </h1>
+            <h2 className="font-alt-1 mobile-res-work" style={{
               fontSize: isMobile ? '20px' : '32px',
               lineHeight: '1.45',
               fontWeight: '700',
@@ -109,7 +119,7 @@ export default function WorkClient() {
               With <strong>18+ years</strong> of extensive experience in the industry, <br className="hide-on-mobile" />
               I have worked on <strong>207+ projects</strong>. I strive to offer best results to <br className="hide-on-mobile" />
               varied brands by bringing creativity aligned with impactful strategy.
-            </h1>
+            </h2>
           </div>
         </div>
       </section>
