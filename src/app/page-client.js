@@ -90,7 +90,7 @@ export default function HomeClient() {
                           fontWeight: '300',
                           display: 'block'
                         }}>
-                          I Am <strong style={{ fontWeight: '800' }}>Yosant Patel</strong>
+                          I Am  <strong style={{ fontWeight: '800' }}>Yosant Patel</strong>
                         </span>
                       </h1>
                       <div className="clear"></div>
@@ -98,7 +98,7 @@ export default function HomeClient() {
                         data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;"
                         data-no-scale
                         style={{
-                          marginTop: isMobile ? '15px' : '25px',
+                          marginTop: isMobile ? '5px' : '10px',
                           fontFamily: 'inherit'
                         }}>
                         <span className="hero-desc" style={{
@@ -109,7 +109,7 @@ export default function HomeClient() {
                           letterSpacing: 'normal',
                           display: 'block'
                         }}>
-                          <h2 style={{ color: 'white' }}>Strategic Branding Consultant,<br />Owner of a Branding Agency.</h2>
+                          <h3 style={{ color: 'white', lineHeight: '1.6' }}>Strategic Branding Consultant,<br />Owner of a Branding Agency.</h3>
                         </span>
                         <br />
                         <Link href="/consultation">
