@@ -34,14 +34,14 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
-      const isSelected = selectedDate && 
-                         day === selectedDate.getDate() && 
-                         month === selectedDate.getMonth() && 
-                         year === selectedDate.getFullYear();
-      
+      const isSelected = selectedDate &&
+        day === selectedDate.getDate() &&
+        month === selectedDate.getMonth() &&
+        year === selectedDate.getFullYear();
+
       calendarDays.push(
-        <div 
-          key={`day-${day}`} 
+        <div
+          key={`day-${day}`}
           className={`calendar-day ${isSelected ? 'active' : ''}`}
           onClick={() => {
             const newSelected = new Date(year, month, day);
@@ -80,7 +80,8 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
       </button>
 
       {/* Use a global style to avoid styled-jsx hydration mismatches with dynamic classes */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .calendar-container {
           background: #f4f4f4;
           padding: 30px;
@@ -211,7 +212,7 @@ export default function ContactClient() {
           <div className="row">
             <div className="column width-6">
               <h3><b>Are you ready to transform your brand?</b><br />Let’s Connect!</h3>
-              
+
               <div className="row inner-row" style={{ marginTop: '40px' }}>
                 <div className="column width-12">
                   <div className="contact-card">
@@ -222,12 +223,12 @@ export default function ContactClient() {
                       </svg>
                     </div>
                     <div className="card-content">
-                      <h4 className="weight-bold no-margin-bottom">OFFICE</h4>
+                      <h3 className="weight-bold no-margin-bottom">OFFICE</h3>
                       <p>204, Vaishali Shopping Center, Next to Natraj Market, S.V.Road, Malad West, Mumbai, 400064.</p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="column width-12" style={{ marginTop: '20px' }}>
                   <div className="contact-card">
                     <div className="icon-box">
@@ -237,7 +238,7 @@ export default function ContactClient() {
                       </svg>
                     </div>
                     <div className="card-content">
-                      <h4 className="weight-bold no-margin-bottom">GET IN TOUCH WITH ME</h4>
+                      <h3 className="weight-bold no-margin-bottom">GET IN TOUCH WITH ME</h3>
                       <p><a href="mailto:iam@yosantpatel.com">iam@yosantpatel.com</a></p>
                     </div>
                   </div>
@@ -246,7 +247,7 @@ export default function ContactClient() {
             </div>
 
             <div className="column width-6">
-              <CalendarWidget 
+              <CalendarWidget
                 onDateSelect={(date) => {
                   setModalDate(date);
                   setIsModalOpen(true);
@@ -260,13 +261,14 @@ export default function ContactClient() {
         </div>
       </div>
 
-      <ConsultationModal 
+      <ConsultationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         selectedDate={modalDate}
       />
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .contact-card {
           display: flex;
           align-items: flex-start;
