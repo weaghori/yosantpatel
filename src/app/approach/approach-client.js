@@ -128,7 +128,7 @@ export default function ApproachClient() {
   // Render a specific card (BIG or SMALL) based on step information
   const renderCard = (step, isBig) => {
     return (
-      <div 
+      <div
         key={step.num}
         style={{
           flex: isMobile ? '1 1 100%' : (isBig ? '1 1 60%' : '1 1 35%'),
@@ -136,7 +136,7 @@ export default function ApproachClient() {
           width: '100%'
         }}
       >
-        <div 
+        <div
           style={{
             background: '#ffffff',
             border: '1px solid #e2e8f0',
@@ -167,15 +167,15 @@ export default function ApproachClient() {
             if (img) img.style.transform = 'scale(1)';
           }}
         >
-          {/* Large Watermark Serial Number */}
+          {/* Large Dark Watermark Number */}
           <div style={{
             position: 'absolute',
             right: isMobile ? '15px' : '25px',
             bottom: isMobile ? '-10px' : '-15px',
             fontSize: isMobile ? '50px' : '120px',
             fontWeight: '900',
-            color: '#203b72',
-            opacity: 0.03,
+            color: '#0f172a',
+            opacity: 0.08,
             userSelect: 'none',
             zIndex: 1,
             fontFamily: 'inherit'
@@ -184,7 +184,7 @@ export default function ApproachClient() {
           </div>
 
           <div style={{ zIndex: 2 }}>
-            
+
             <h3 style={{
               fontSize: isMobile ? '16px' : '22px',
               fontWeight: '800',
@@ -196,7 +196,7 @@ export default function ApproachClient() {
               {step.title}
             </h3>
 
-            
+
             <div style={{
               borderRadius: isMobile ? '14px' : '20px',
               overflow: 'hidden',
@@ -210,13 +210,13 @@ export default function ApproachClient() {
               marginRight: 'auto',
               marginTop: '0px'
             }}>
-              <div style={{ 
-                borderRadius: isMobile ? '10px' : '14px', 
-                overflow: 'hidden', 
-                aspectRatio: isMobile ? '16/10' : (isBig ? '16/9' : '4/3') 
+              <div style={{
+                borderRadius: isMobile ? '10px' : '14px',
+                overflow: 'hidden',
+                aspectRatio: isMobile ? '16/10' : (isBig ? '16/9' : '4/3')
               }}>
-                <img 
-                  src={step.img} 
+                <img
+                  src={step.img}
                   alt={step.title}
                   className="approach-img"
                   style={{
@@ -323,9 +323,9 @@ export default function ApproachClient() {
       }}>
         <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? '30px' : '40px' }}>
           {/* Left Column Heading */}
-          <div className="column" style={{ 
-            flex: isMobile ? '1 1 100%' : '1 1 35%', 
-            margin: 0 
+          <div className="column" style={{
+            flex: isMobile ? '1 1 100%' : '1 1 35%',
+            margin: 0
           }}>
             <h2 style={{
               fontSize: isMobile ? '22px' : '36px',
@@ -340,9 +340,9 @@ export default function ApproachClient() {
             </h2>
           </div>
           {/* Right Column Body */}
-          <div className="column" style={{ 
-            flex: isMobile ? '1 1 100%' : '1 1 55%', 
-            margin: 0 
+          <div className="column" style={{
+            flex: isMobile ? '1 1 100%' : '1 1 55%',
+            margin: 0
           }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <p style={{
@@ -377,7 +377,7 @@ export default function ApproachClient() {
         position: 'relative',
         overflow: 'hidden'
       }}>
-        
+
         {/* ROW 1: Step 1 (BIG - Left) & Step 2 (SMALL - Right) */}
         <div className="row" style={{ marginBottom: isMobile ? '20px' : '80px' }}>
           <div style={{
@@ -474,16 +474,16 @@ export default function ApproachClient() {
                 textTransform: 'uppercase',
                 boxShadow: 'none'
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#ffffff';
-                e.currentTarget.style.color = '#203b72';
-                e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.25)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#ffffff';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.color = '#203b72';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
                 Grow Your Brand
               </Link>
