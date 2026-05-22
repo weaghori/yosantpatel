@@ -553,52 +553,43 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         }
         .cm-actions.split { justify-content: space-between; }
 
-        .cm-btn-primary {
-          background: #203b72;
-          color: #fff;
-          border: none;
-          padding: 13px 28px;
-          border-radius: 10px;
-          font-size: 15px;
+        .cm-btn-primary, .cm-btn-submit {
+          background: transparent;
+          color: #203b72;
+          border: 1px solid #203b72;
+          padding: 14px 34px;
+          border-radius: 30px;
+          font-size: 13px;
           font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 2px;
           cursor: pointer;
-          transition: background .2s, transform .15s;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-        .cm-btn-primary:hover {
-          background: #162a54;
-          transform: translateY(-1px);
+        .cm-btn-primary:hover, .cm-btn-submit:hover {
+          background: #203b72;
+          color: #ffffff;
+          box-shadow: 0 8px 25px rgba(32, 59, 114, 0.25);
         }
+        
         .cm-btn-ghost {
           background: transparent;
-          border: 1.5px solid #e2e8f0;
+          border: 1px solid #e2e8f0;
           color: #475569;
-          padding: 13px 24px;
-          border-radius: 10px;
-          font-size: 15px;
-          font-weight: 600;
+          padding: 14px 34px;
+          border-radius: 30px;
+          font-size: 13px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 2px;
           cursor: pointer;
-          transition: all .2s;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .cm-btn-ghost:hover {
           background: #f8fafc;
           border-color: #cbd5e1;
           color: #0f172a;
-        }
-        .cm-btn-submit {
-          background: linear-gradient(135deg, #203b72, #2d5aba);
-          color: #fff;
-          border: none;
-          padding: 13px 28px;
-          border-radius: 10px;
-          font-size: 15px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all .2s;
-          box-shadow: 0 4px 14px rgba(32,59,114,.3);
-        }
-        .cm-btn-submit:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 6px 20px rgba(32,59,114,.4);
         }
 
         /* ── Mobile ── */

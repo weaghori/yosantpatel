@@ -477,13 +477,11 @@ export default function ApproachClient() {
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#ffffff';
                 e.currentTarget.style.color = '#203b72';
-                e.currentTarget.style.transform = 'translateY(-3px)';
                 e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.25)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
                 e.currentTarget.style.color = '#ffffff';
-                e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
               >

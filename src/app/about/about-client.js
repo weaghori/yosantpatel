@@ -133,7 +133,7 @@ export default function AboutClient() {
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
-              I transform brands for lasting success
+              I shape brands for long-term success
             </h2>
           </div>
         </div>
@@ -206,9 +206,7 @@ export default function AboutClient() {
                     fontFamily: 'inherit',
                     textAlign: 'center'
                   }}>
-                    With <strong style={{ color: '#203b72', fontWeight: '600' }}>18+ years of extensive experience</strong> in the industry, I have built a focused
-                    approach and clear vision to uplift brands. As a brand strategist and creative
-                    director of a media agency, I have an inspiration to develop the brand.
+                    With <strong style={{ color: '#203b72', fontWeight: '600' }}>18+ years of extensive industry experience</strong>, I have developed a focused approach and strong vision to elevate brands. As a brand strategist and creative director, I am driven by a passion for building impactful and meaningful brand identities.
                   </p>
                 </div>
               </div>
@@ -269,9 +267,7 @@ export default function AboutClient() {
                     fontFamily: 'inherit',
                     textAlign: 'center'
                   }}>
-                    I aim to establish your brand with <strong style={{ color: '#203b72', fontWeight: '600' }}>market research</strong> to analyze the campaign and
-                    provide solutions for your brand. Having expertise in graphic designing helps me
-                    in crafting creative messages for better brand communication.
+                    I aim to strengthen your brand through <strong style={{ color: '#203b72', fontWeight: '600' }}>market research</strong>, campaign analysis, and tailored strategic solutions. My expertise in graphic design also allows me to create impactful visuals and messages for stronger brand communication.
                   </p>
                 </div>
               </div>
@@ -332,10 +328,7 @@ export default function AboutClient() {
                     fontFamily: 'inherit',
                     textAlign: 'center'
                   }}>
-                    A brand consultant is like a coach, would guide brands through every phase and
-                    provide solutions if it is a change in marketing strategy or rebranding. As a
-                    brand strategist, it is my responsibility to help <strong style={{ color: '#203b72', fontWeight: '600' }}>build and establish your brand</strong> while
-                    understanding your brand’s core value.
+                    A brand consultant acts like a guide, supporting brands through every stage and offering solutions, whether it involves marketing strategies or rebranding. As a brand strategist, my role is to <strong style={{ color: '#203b72', fontWeight: '600' }}>build and strengthen your brand</strong> while staying true to its core values.
                   </p>
                 </div>
               </div>
@@ -496,7 +489,7 @@ export default function AboutClient() {
                     fontFamily: 'inherit',
                     margin: 0
                   }}>
-                    From 2004 to 2016, I have gained experience in various jobs related to branding. In these years, I have built excellent skills for designing and transforming ideas into the best creative designs has been my forte.
+                    From 2004 to 2016, I gained hands-on experience across various branding roles. During this journey, I developed strong creative skills, with designing and transforming ideas into impactful visuals becoming one of my core strengths.
                   </p>
                 </div>
               </div>
@@ -557,7 +550,7 @@ export default function AboutClient() {
                     fontFamily: 'inherit',
                     margin: 0
                   }}>
-                    While curiosity turned into a passion for developing brands, In 2017 began with a media agency, <strong style={{ color: '#203b72', fontWeight: '600' }}>Aghori Media House</strong>. We build and connect with brands through creativity. Being a brand consultant, I strive to transform brands with the right approach, strategy, and thorough research. I provide the best results by finding the gaps within your brand.
+                    While curiosity gradually evolved into a passion for brand building, in 2017 I started <strong style={{ color: '#203b72', fontWeight: '600' }}>Aghori Media House</strong>, a creative media agency focused on building meaningful brand connections. As a brand consultant, I aim to transform brands through the right strategy, creative direction, and in-depth research by identifying and improving the gaps within your brand.
                   </p>
                 </div>
               </div>

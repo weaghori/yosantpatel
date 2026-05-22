@@ -76,7 +76,7 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
         {renderCalendar()}
       </div>
       <button className="schedule-btn" onClick={onScheduleClick}>
-        Schedule a free consultation
+        Schedule a Consultation Call
       </button>
 
       {/* Use a global style to avoid styled-jsx hydration mismatches with dynamic classes */}
@@ -138,18 +138,23 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
         }
         .schedule-btn {
           width: 100%;
-          padding: 15px;
-          background: #1f3d73;
-          color: #fff;
-          border: none;
-          border-radius: 5px;
+          padding: 14px 34px;
+          background: transparent;
+          color: #203b72;
+          border: 1px solid #203b72;
+          border-radius: 30px;
           cursor: pointer;
-          font-weight: bold;
+          font-weight: 700;
+          font-size: 13px;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 2px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         .schedule-btn:hover {
-          background: #2a5298;
+          background: #203b72;
+          color: #ffffff;
+          box-shadow: 0 8px 25px rgba(32, 59, 114, 0.25);
         }
       `}} />
     </div>
