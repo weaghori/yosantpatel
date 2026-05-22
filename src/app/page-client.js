@@ -73,92 +73,75 @@ export default function HomeClient() {
           <ul className="tms-slides">
             <li className="tms-slide" data-image data-as-bkg-image data-force-fit style={{
               backgroundImage: "url('/images/Yosant_Branding_Logo_Design.jpg')",
-              backgroundPosition: isMobile ? '82% center' : 'center center'
+              backgroundPosition: 'right center'
             }}>
               <div className="tms-content" style={{ zIndex: 2 }}>
                 <div className="tms-content-inner left v-align-middle">
                   <div className="row">
                     <div className="column width-12">
-                      <h1 className="tms-caption no-margin-bottom"
+                      <div className="tms-caption no-margin-bottom"
                         data-animate-in="preset:slideInRightShort;duration:1000ms;"
                         data-no-scale
-                        style={{ fontFamily: 'inherit', margin: isMobile ? '0 0 5px 0' : '0 0 10px 0' }}>
-                        <span className="hero-main-title" style={{
-                          color: '#ffffff',
-                          fontSize: isMobile ? '24px' : '42px',
-                          lineHeight: isMobile ? '1.3' : '1.2',
-                          fontWeight: '700',
-                          display: 'block',
-                          letterSpacing: 'normal',
-                          marginBottom: '50px'
-                        }}>
-                          Transforming Local Businesses <br className="hide-on-mobile" /> Into Unforgettable Brands.
-                        </span>
-                      </h1>
+                        style={{ fontFamily: 'inherit', margin: '0' }}>
+
+                        <div style={{ color: '#ffffff', textTransform: 'uppercase', lineHeight: '1.05' }}>
+                          <div style={{ fontSize: isMobile ? '14px' : '18px', fontWeight: '300', letterSpacing: '1.5px', marginBottom: '4px' }}>
+                            Transforming
+                          </div>
+                          <div style={{ fontSize: isMobile ? '24px' : '38px', fontWeight: '800', letterSpacing: '1px', marginBottom: '14px' }}>
+                            Local Businesses
+                          </div>
+                          <div style={{ fontSize: isMobile ? '14px' : '18px', fontWeight: '300', letterSpacing: '1.5px', marginBottom: '4px' }}>
+                            Into Unforgettable
+                          </div>
+                          <div style={{ fontSize: isMobile ? '24px' : '38px', fontWeight: '800', letterSpacing: '1px' }}>
+                            Brands
+                          </div>
+                        </div>
+
+                        <hr style={{
+                          width: '180px',
+                          border: 'none',
+                          borderTop: '1px solid rgba(255, 255, 255, 0.4)',
+                          margin: '35px 0 45px 0',
+                          marginLeft: 0
+                        }} />
+                      </div>
+
                       <div className="clear"></div>
-                      <h2 className="tms-caption no-margin-bottom text-uppercase"
+                      <div className="tms-caption no-margin-bottom text-uppercase"
                         data-animate-in="preset:slideInRightShort;duration:1000ms;delay:100ms;"
                         data-no-scale
                         style={{ fontFamily: 'inherit', margin: 0 }}>
-                        <span className="hero-title" style={{
+                        <div style={{
                           color: '#ffffff',
-                          fontSize: isMobile ? '28px' : '48px',
+                          fontSize: isMobile ? '22px' : '34px',
                           lineHeight: isMobile ? '1.2' : '1.15',
-                          fontWeight: '300',
                           display: 'block'
                         }}>
-                          I Am  <strong style={{ fontWeight: '800' }}>Yosant Patel</strong>
-                        </span>
-                      </h2>
+                          <span style={{ fontWeight: '300' }}>I AM </span>
+                          <span style={{ fontWeight: '800' }}>YOSANT PATEL</span>
+                        </div>
+                      </div>
                       <div className="clear"></div>
                       <div className="tms-caption"
                         data-animate-in="preset:slideInRightShort;duration:1000ms;delay:200ms;"
                         data-no-scale
                         style={{
-                          marginTop: isMobile ? '5px' : '10px',
+                          marginTop: isMobile ? '10px' : '15px',
                           fontFamily: 'inherit'
                         }}>
-                        <span className="hero-desc" style={{
+                        <div style={{
                           color: '#ffffff',
-                          fontSize: isMobile ? '14px' : '22px',
-                          lineHeight: isMobile ? '1.5' : '1.65',
+                          fontSize: isMobile ? '14px' : '18px',
+                          lineHeight: isMobile ? '1.5' : '1.6',
                           fontWeight: '300',
                           letterSpacing: 'normal',
-                          display: 'block'
+                          opacity: 0.8
                         }}>
-                          <h3 style={{ color: 'white', lineHeight: '1.6' }}>Strategic Branding Consultant,<br />Owner of a Branding Agency.</h3>
-                        </span>
-                        <br />
-                        <Link href="/consultation">
-                          <button
-                            className="hero-btn"
-                            onMouseEnter={() => setHoveredCta(true)}
-                            onMouseLeave={() => setHoveredCta(false)}
-                            style={{
-                              marginTop: isMobile ? '20px' : '35px',
-                              backgroundColor: hoveredCta ? '#ffffff' : 'transparent',
-                              border: '1px solid #ffffff',
-                              padding: isMobile ? '12px 28px' : '14px 34px',
-                              borderRadius: '30px',
-                              fontSize: '13px',
-                              letterSpacing: '2px',
-                              display: 'inline-block',
-                              cursor: 'pointer',
-                              boxShadow: hoveredCta ? '0 8px 25px rgba(255, 255, 255, 0.25)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
-                              transform: 'none',
-                              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                              textTransform: 'uppercase',
-                              fontWeight: '700',
-                              outline: 'none',
-                              fontFamily: 'inherit'
-                            }}
-                          >
-                            <span style={{ color: hoveredCta ? '#203b72' : '#ffffff', transition: 'color 0.3s ease' }}>
-                              Grow Your Business
-                            </span>
-                          </button>
-                        </Link>
-                      </div><br />
+                          Strategic Branding Consultant,<br />Owner of a Branding Agency.
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

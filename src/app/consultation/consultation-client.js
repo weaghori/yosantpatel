@@ -33,7 +33,12 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
       calendarDays.push(<div key={`pad-${i}`} className="calendar-day disabled"></div>);
     }
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     for (let day = 1; day <= daysInMonth; day++) {
+      const cellDate = new Date(year, month, day);
+      const isPast = cellDate < today;
       const isSelected = selectedDate &&
         day === selectedDate.getDate() &&
         month === selectedDate.getMonth() &&
@@ -42,8 +47,9 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
       calendarDays.push(
         <div
           key={`day-${day}`}
-          className={`calendar-day ${isSelected ? 'active' : ''}`}
+          className={`calendar-day ${isSelected ? 'active' : ''} ${isPast ? 'disabled' : ''}`}
           onClick={() => {
+            if (isPast) return;
             const newSelected = new Date(year, month, day);
             setSelectedDate(newSelected);
             if (onDateSelect) onDateSelect(newSelected);
@@ -75,7 +81,14 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
       <div className="calendar-grid" id="calendarGrid">
         {renderCalendar()}
       </div>
-      <button className="schedule-btn" onClick={onScheduleClick}>
+      <button className="schedule-btn" onClick={() => {
+        if (!selectedDate) {
+          const today = new Date();
+          setSelectedDate(today);
+          if (onDateSelect) onDateSelect(today);
+        }
+        if (onScheduleClick) onScheduleClick();
+      }}>
         Schedule a Consultation Call
       </button>
 
@@ -139,18 +152,19 @@ const CalendarWidget = ({ onDateSelect, onScheduleClick }) => {
         }
         .schedule-btn {
           width: 100%;
-          padding: 14px 34px;
+          padding: 10px 20px;
           background: transparent;
           color: #203b72;
           border: 1px solid #203b72;
           border-radius: 30px;
           cursor: pointer;
-          font-weight: 700;
-          font-size: 13px;
+          font-weight: 600;
+          font-size: 11px;
           text-transform: uppercase;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+          margin-top: 10px;
         }
         .schedule-btn:hover {
           background: #203b72;
@@ -219,7 +233,7 @@ export default function ConsultationClient() {
       <div className="section-block content-inner bkg-white">
         <div className="container">
           <div className="row">
-            <div className="column width-6">
+            <div className={isMobile ? "column width-12" : "column width-6"} style={{ marginBottom: isMobile ? '40px' : '0' }}>
               <h3><b>Ready to elevate your business?</b><br />Let's Connect!</h3>
 
               <div className="row inner-row" style={{ marginTop: '40px' }}>
@@ -249,18 +263,17 @@ export default function ConsultationClient() {
                     </div>
                     <div className="card-content">
                       <h3 className="weight-bold no-margin-bottom">GET IN TOUCH</h3>
-                      <p><a href="mailto:iam@yosantpatel.com">iam@yosantpatel.com</a></p>
+                      <p><a href="mailto:iam@yosantpatel.com" onClick={(e) => { window.location.href = "mailto:iam@yosantpatel.com"; e.preventDefault(); }}>iam@yosantpatel.com</a></p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="column width-6">
+            <div className={isMobile ? "column width-12" : "column width-6"}>
               <CalendarWidget
                 onDateSelect={(date) => {
                   setModalDate(date);
-                  setIsModalOpen(true);
                 }}
                 onScheduleClick={() => {
                   setIsModalOpen(true);

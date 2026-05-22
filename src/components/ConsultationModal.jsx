@@ -557,12 +557,12 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
           background: transparent;
           color: #203b72;
           border: 1px solid #203b72;
-          padding: 14px 34px;
+          padding: 10px 20px;
           border-radius: 30px;
-          font-size: 13px;
-          font-weight: 700;
+          font-size: 11px;
+          font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -577,12 +577,12 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
           background: transparent;
           border: 1px solid #e2e8f0;
           color: #475569;
-          padding: 14px 34px;
+          padding: 10px 20px;
           border-radius: 30px;
-          font-size: 13px;
-          font-weight: 700;
+          font-size: 11px;
+          font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
