@@ -21,26 +21,78 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
     };
   }, [isOpen]);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isSuccess, setIsSuccess] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleNext = () => setStep(p => Math.min(p + 1, 3));
-  const handleBack = () => setStep(p => Math.max(p - 1, 1));
-
-  const handleSubmit = () => {
-    console.log('Submitted:', formData, selectedDate);
-    alert('Request submitted! We will reach out shortly.');
-    onClose();
-    setStep(1);
-    setFormData({ fullName: '', email: '', phone: '', city: '', occupation: '', services: [], budget: '', businessDetails: '', inquiryDetails: '' });
+  const validateStep1 = () => {
+    const newErrors = {};
+    if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required';
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Invalid email address';
+    }
+    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const set = (name, value) => setFormData(p => ({ ...p, [name]: value }));
+  const validateStep2 = () => {
+    const newErrors = {};
+    if (formData.services.length === 0) newErrors.services = 'Please select at least one service';
+    if (!formData.budget) newErrors.budget = 'Please select a budget range';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNext = () => {
+    if (step === 1 && !validateStep1()) return;
+    if (step === 2 && !validateStep2()) return;
+    setErrors({});
+    setStep(p => Math.min(p + 1, 3));
+  };
+  const handleBack = () => setStep(p => Math.max(p - 1, 1));
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, selectedDate })
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setIsSuccess(true);
+      } else {
+        alert('Failed to send request: ' + (result.message || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('An error occurred while submitting your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const set = (name, value) => {
+    setFormData(p => ({ ...p, [name]: value }));
+    if (errors[name]) setErrors(p => ({ ...p, [name]: undefined }));
+  };
 
   const toggleService = (srv) => {
     setFormData(p => ({
       ...p,
       services: p.services.includes(srv) ? p.services.filter(s => s !== srv) : [...p.services, srv]
     }));
+    if (errors.services) setErrors(p => ({ ...p, services: undefined }));
   };
 
   const services = ['Graphic Design', 'Branding', 'Web Development', 'Digital Marketing', 'Social Marketing', 'Other'];
@@ -91,27 +143,50 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
 
           <div className="cm-scroll-area">
 
-            {step === 1 && (
-              <div className="cm-pane" key="step1">
-                <p className="cm-step-label">Step 1 of 3</p>
+            {isSuccess ? (
+              <div className="cm-pane cm-success-pane" key="success">
+                <div className="cm-success-icon">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h2 className="cm-form-title">Request Submitted!</h2>
+                <p className="cm-form-sub" style={{ textAlign: 'center' }}>We have received your details and will reach out to you shortly.</p>
+                <div className="cm-actions" style={{ justifyContent: 'center', marginTop: '30px' }}>
+                  <button className="cm-btn-primary" onClick={() => {
+                    onClose();
+                    setTimeout(() => {
+                      setIsSuccess(false);
+                      setStep(1);
+                      setFormData({ fullName: '', email: '', phone: '', city: '', occupation: '', services: [], budget: '', businessDetails: '', inquiryDetails: '' });
+                    }, 300);
+                  }}>Done</button>
+                </div>
+              </div>
+            ) : (
+              <>
+                {step === 1 && (
+                  <div className="cm-pane" key="step1">
+                    <p className="cm-step-label">Step 1 of 3</p>
                 <h2 className="cm-form-title">Personal Information</h2>
                 <p className="cm-form-sub">Tell us a bit about yourself so we can personalise your consultation.</p>
 
                 <div className="cm-fields">
                   <div className="cm-field-row">
                     <div className="cm-field">
-                      <label>Full Name</label>
-                      <input type="text" placeholder="Alex Johnson" value={formData.fullName} onChange={e => set('fullName', e.target.value)} />
+                      <label>Full Name *</label>
+                      <input type="text" placeholder="Alex Johnson" value={formData.fullName} onChange={e => set('fullName', e.target.value)} className={errors.fullName ? 'cm-error-input' : ''} />
+                      {errors.fullName && <span className="cm-error-text">{errors.fullName}</span>}
                     </div>
                     <div className="cm-field">
-                      <label>Email</label>
-                      <input type="email" placeholder="alex@email.com" value={formData.email} onChange={e => set('email', e.target.value)} />
+                      <label>Email *</label>
+                      <input type="email" placeholder="alex@email.com" value={formData.email} onChange={e => set('email', e.target.value)} className={errors.email ? 'cm-error-input' : ''} />
+                      {errors.email && <span className="cm-error-text">{errors.email}</span>}
                     </div>
                   </div>
                   <div className="cm-field-row">
                     <div className="cm-field">
-                      <label>Phone</label>
-                      <input type="tel" placeholder="+91 98765 43210" value={formData.phone} onChange={e => set('phone', e.target.value)} />
+                      <label>Phone *</label>
+                      <input type="tel" placeholder="+91 98765 43210" value={formData.phone} onChange={e => set('phone', e.target.value)} className={errors.phone ? 'cm-error-input' : ''} />
+                      {errors.phone && <span className="cm-error-text">{errors.phone}</span>}
                     </div>
                     <div className="cm-field">
                       <label>City</label>
@@ -138,21 +213,23 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
 
                 <div className="cm-fields">
                   <div className="cm-field">
-                    <label>Services Needed</label>
+                    <label>Services Needed *</label>
                     <div className="cm-chip-group">
                       {services.map(s => (
-                        <button key={s} className={`cm-chip ${formData.services.includes(s) ? 'on' : ''}`} onClick={() => toggleService(s)}>{s}</button>
+                        <button key={s} className={`cm-chip ${formData.services.includes(s) ? 'on' : ''} ${errors.services ? 'cm-error-chip' : ''}`} onClick={() => toggleService(s)}>{s}</button>
                       ))}
                     </div>
+                    {errors.services && <span className="cm-error-text">{errors.services}</span>}
                   </div>
 
                   <div className="cm-field">
-                    <label>Budget Range</label>
+                    <label>Budget Range *</label>
                     <div className="cm-chip-group">
                       {budgets.map(b => (
-                        <button key={b} className={`cm-chip ${formData.budget === b ? 'on' : ''}`} onClick={() => set('budget', b)}>{b}</button>
+                        <button key={b} className={`cm-chip ${formData.budget === b ? 'on' : ''} ${errors.budget ? 'cm-error-chip' : ''}`} onClick={() => set('budget', b)}>{b}</button>
                       ))}
                     </div>
+                    {errors.budget && <span className="cm-error-text">{errors.budget}</span>}
                   </div>
 
                   <div className="cm-field">
@@ -194,9 +271,13 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
 
                 <div className="cm-actions split">
                   <button className="cm-btn-ghost" onClick={handleBack}>&larr; Back</button>
-                  <button className="cm-btn-submit" onClick={handleSubmit}>Submit Request ✓</button>
+                  <button className="cm-btn-submit" onClick={handleSubmit} disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit Request ✓'}
+                  </button>
                 </div>
               </div>
+            )}
+              </>
             )}
 
           </div>
@@ -481,6 +562,19 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         .cm-field textarea::placeholder {
           color: #94a3b8;
         }
+        .cm-field input.cm-error-input {
+          border-color: #ef4444;
+          background: #fef2f2;
+        }
+        .cm-field input.cm-error-input:focus {
+          box-shadow: 0 0 0 3px rgba(239,68,68,.15);
+        }
+        .cm-error-text {
+          color: #ef4444;
+          font-size: 12px;
+          margin-top: 2px;
+          font-weight: 500;
+        }
 
         /* ── Chips ── */
         .cm-chip-group {
@@ -503,6 +597,11 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         .cm-chip:hover {
           border-color: #203b72;
           color: #203b72;
+        }
+        .cm-chip.cm-error-chip {
+          border-color: #ef4444;
+          background: #fef2f2;
+          color: #ef4444;
         }
         .cm-chip.on {
           background: #203b72;
