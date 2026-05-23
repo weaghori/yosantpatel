@@ -1,9 +1,21 @@
 import WorkDetailClient from "./work-detail-client";
 import { WORK_DATA } from '@/data/work-data';
 
+async function getWorks() {
+  return Object.keys(WORK_DATA).map(slug => ({
+    slug,
+    ...WORK_DATA[slug]
+  }));
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const project = WORK_DATA[slug] || { title: slug, description: "Branding and design solutions by Yosant Patel." };
+  const works = await getWorks();
+  const project = works.find(item => item.slug === slug);
+  
+  if (!project) {
+    return { title: 'Project Not Found' };
+  }
   
   return {
     title: `${project.title} | Brand Consultation Case Study`,
@@ -30,5 +42,19 @@ export async function generateMetadata({ params }) {
 
 export default async function WorkDetail({ params }) {
   const { slug } = await params;
-  return <WorkDetailClient slug={slug} />;
+  const works = await getWorks();
+  const project = works.find(item => item.slug === slug);
+
+  if (project) {
+    return <WorkDetailClient slug={slug} />;
+  }
+
+  return <div>Project not found</div>;
+}
+
+export async function generateStaticParams() {
+  const works = await getWorks();
+  return works.map((item) => ({
+    slug: item.slug,
+  }));
 }
