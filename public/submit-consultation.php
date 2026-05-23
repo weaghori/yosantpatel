@@ -24,6 +24,24 @@ if (empty($data)) {
     exit();
 }
 
+// Verify Google reCAPTCHA v3
+$recaptchaSecret = "6LcRzfgsAAAAAEfFQDIBKC7SAsCAVOmD1gs03mSo";
+if (empty($data['g-recaptcha-response'])) {
+    http_response_code(403);
+    echo json_encode(["success" => false, "message" => "reCAPTCHA verification failed: No token provided"]);
+    exit();
+}
+
+$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $recaptchaSecret . '&response=' . $data['g-recaptcha-response']);
+$responseData = json_decode($verifyResponse);
+
+// score usually ranges from 0.0 (bot) to 1.0 (human)
+if (!$responseData->success || $responseData->score < 0.5) {
+    http_response_code(403);
+    echo json_encode(["success" => false, "message" => "reCAPTCHA verification failed: Bot detected"]);
+    exit();
+}
+
 // Decode services array if it was stringified
 if (!empty($data['services']) && is_string($data['services'])) {
     $data['services'] = json_decode($data['services'], true);
