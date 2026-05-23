@@ -59,15 +59,32 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/contact', {
+      const formPayload = new URLSearchParams();
+      Object.keys(formData).forEach(key => {
+        if (Array.isArray(formData[key])) {
+          formPayload.append(key, JSON.stringify(formData[key]));
+        } else {
+          formPayload.append(key, formData[key] || '');
+        }
+      });
+      if (selectedDate) {
+        formPayload.append('selectedDate', selectedDate.toISOString());
+      }
+
+      const response = await fetch('/submit-consultation.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify({ ...formData, selectedDate })
+        body: formPayload.toString()
       });
 
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch (e) {
+        throw new Error('Server returned an invalid response (might be blocked by a firewall).');
+      }
 
       if (response.ok && result.success) {
         setIsSuccess(true);
