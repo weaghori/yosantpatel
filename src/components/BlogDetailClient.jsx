@@ -281,7 +281,7 @@ export default function BlogDetailClient({ post }) {
                   return (
                     <Link 
                       key={suggested.slug} 
-                      href={`/blogs/${suggested.slug}`}
+                      href={`/blog-details?slug=${suggested.slug}`}
                       style={{
                         textDecoration: 'none',
                         color: 'inherit',

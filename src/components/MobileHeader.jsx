@@ -24,6 +24,11 @@ export default function MobileHeader() {
     setIsOpen(false);
   }, [pathname]);
 
+  // Normalize pathname to ignore trailing slashes
+  const normalizedPath = pathname.endsWith('/') && pathname !== '/' 
+    ? pathname.slice(0, -1) 
+    : pathname;
+
   return (
     <div className="mobile-only-header-wrapper">
       <header className="custom-mobile-header">
@@ -45,32 +50,32 @@ export default function MobileHeader() {
       <div className={`mobile-overlay-menu ${isOpen ? 'open' : ''}`}>
         <ul className="mobile-nav-list">
           <li>
-            <Link href="/" className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}>
+            <Link href="/" className={`mobile-nav-link ${normalizedPath === '/' ? 'active' : ''}`}>
               Home
             </Link>
           </li>
           <li>
-            <Link href="/about" className={`mobile-nav-link ${pathname === '/about' ? 'active' : ''}`}>
+            <Link href="/about" className={`mobile-nav-link ${normalizedPath === '/about' ? 'active' : ''}`}>
               About
             </Link>
           </li>
           <li>
-            <Link href="/solutions" className={`mobile-nav-link ${pathname === '/solutions' ? 'active' : ''}`}>
+            <Link href="/solutions" className={`mobile-nav-link ${normalizedPath === '/solutions' ? 'active' : ''}`}>
               Solutions
             </Link>
           </li>
           <li>
-            <Link href="/approach" className={`mobile-nav-link ${pathname === '/approach' ? 'active' : ''}`}>
+            <Link href="/approach" className={`mobile-nav-link ${normalizedPath === '/approach' ? 'active' : ''}`}>
               Approach
             </Link>
           </li>
           <li>
-            <Link href="/work" className={`mobile-nav-link ${pathname.startsWith('/work') ? 'active' : ''}`}>
+            <Link href="/work" className={`mobile-nav-link ${normalizedPath.startsWith('/work') ? 'active' : ''}`}>
               Work
             </Link>
           </li>
           <li>
-            <Link href="/contact" className={`mobile-nav-link ${pathname === '/contact' ? 'active' : ''}`}>
+            <Link href="/contact" className={`mobile-nav-link ${normalizedPath === '/contact' ? 'active' : ''}`}>
               Contact
             </Link>
           </li>
