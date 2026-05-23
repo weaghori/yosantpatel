@@ -8,6 +8,7 @@ export const WORK_DATA = {
       "/images/work/mitraas/Mitraas_Artboard-3.jpg",
       "/images/work/mitraas/Mitraas_Artboard-4.jpg",
       "/images/work/mitraas/Mitraas_Artboard-5.jpg",
+      "/images/work/mitraas/Mitraas_Artboard-6.jpg",
       "/images/work/mitraas/Mitraas_Artboard-7.jpg",
       "/images/work/mitraas/Mitraas_Artboard-8.jpg",
       "/images/work/mitraas/Mitraas_Artboard-9.jpg"
@@ -19,10 +20,15 @@ export const WORK_DATA = {
     title: "Chandan",
     description: "Chandan Jewellers is a name that represents excellence and trust. I helped them with rebranding their identity and creating a modern yet traditional look for their jewelry brand.",
     images: [
-      "/images/work/chandan/01.jpg",
-      "/images/work/chandan/02.jpg",
-      "/images/work/chandan/03.jpg",
-      "/images/work/chandan/04.jpg"
+      "/images/work/chandan/Chandan-01.jpg",
+      "/images/work/chandan/Chandan-02.jpg",
+      "/images/work/chandan/Chandan-03.jpg",
+      "/images/work/chandan/Chandan-04.jpg",
+      "/images/work/chandan/Chandan-05.jpg",
+      "/images/work/chandan/Chandan-06.jpg",
+      "/images/work/chandan/Chandan-07.jpg",
+      "/images/work/chandan/Chandan-08.jpg",
+      "/images/work/chandan/Chandan-09.jpg"
     ],
     prev: "/work/mitraas",
     next: "/work/elegant-classes"
@@ -31,9 +37,13 @@ export const WORK_DATA = {
     title: "ELEGANT CLASSES",
     description: "Elegant Classes is a premier educational institute. I provided them with brand strategy and design solutions to help them connect with students and parents effectively.",
     images: [
-      "/images/work/elegant/01.jpg",
-      "/images/work/elegant/02.jpg",
-      "/images/work/elegant/03.jpg"
+      "/images/work/elegant/Eligant-Classes-01.jpg",
+      "/images/work/elegant/Eligant-Classes-02.jpg",
+      "/images/work/elegant/Eligant-Classes-03.jpg",
+      "/images/work/elegant/Eligant-Classes-04.jpg",
+      "/images/work/elegant/Eligant-Classes-05.jpg",
+      "/images/work/elegant/Eligant-Classes-06.jpg",
+      "/images/work/elegant/Eligant-Classes-07.jpg"
     ],
     prev: "/work/chandan",
     next: "/work/kiya"
@@ -44,7 +54,10 @@ export const WORK_DATA = {
     images: [
       "/images/work/kiya/01.jpg",
       "/images/work/kiya/02.jpg",
-      "/images/work/kiya/03.jpg"
+      "/images/work/kiya/03.jpg",
+      "/images/work/kiya/04.jpg",
+      "/images/work/kiya/05.jpg",
+      "/images/work/kiya/06.jpg"
     ],
     prev: "/work/elegant-classes",
     next: "/work/mjwel"
@@ -53,9 +66,12 @@ export const WORK_DATA = {
     title: "Mjwel",
     description: "Mjwel is a jewelry brand that specializes in contemporary designs. I assisted them with rebranding and marketing collateral to enhance their market presence.",
     images: [
-      "/images/work/mjwel/01.jpg",
-      "/images/work/mjwel/02.jpg",
-      "/images/work/mjwel/03.jpg"
+      "/images/work/MJWEL/01.jpg",
+      "/images/work/MJWEL/02.jpg",
+      "/images/work/MJWEL/03.jpg",
+      "/images/work/MJWEL/04.jpg",
+      "/images/work/MJWEL/05.jpg",
+      "/images/work/MJWEL/06.jpg"
     ],
     prev: "/work/kiya",
     next: "/work/nirali"
@@ -64,9 +80,13 @@ export const WORK_DATA = {
     title: "Nirali",
     description: "Nirali is a brand that offers unique branding solutions. I worked with them to create a distinctive identity that stands out in the creative industry.",
     images: [
-      "/images/work/nirali/01.jpg",
-      "/images/work/nirali/02.jpg",
-      "/images/work/nirali/03.jpg"
+      "/images/work/nirali/Nirali-01.jpg",
+      "/images/work/nirali/Nirali-02.jpg",
+      "/images/work/nirali/Nirali-03.jpg",
+      "/images/work/nirali/Nirali-04.jpg",
+      "/images/work/nirali/Nirali-05.jpg",
+      "/images/work/nirali/Nirali-06.jpg",
+      "/images/work/nirali/Nirali-07.jpg"
     ],
     prev: "/work/mjwel",
     next: "/work/meraki"
@@ -75,9 +95,11 @@ export const WORK_DATA = {
     title: "Meraki",
     description: "Meraki Saloon is a luxury wellness center. I provided them with brand creative and design services to build a premium and relaxing brand experience.",
     images: [
-      "/images/work/meraki/01.jpg",
-      "/images/work/meraki/02.jpg",
-      "/images/work/meraki/03.jpg"
+      "/images/work/miraki/01.jpg",
+      "/images/work/miraki/02.jpg",
+      "/images/work/miraki/03.jpg",
+      "/images/work/miraki/04.jpg",
+      "/images/work/miraki/05.jpg"
     ],
     prev: "/work/nirali",
     next: "/work/the-my-mobile"
@@ -86,9 +108,12 @@ export const WORK_DATA = {
     title: "The My Mobile",
     description: "The My Mobile is a mobile retail chain. I developed their social media strategy and design to increase their digital reach and engagement.",
     images: [
-      "/images/work/my-mobile/01.jpg",
-      "/images/work/my-mobile/02.jpg",
-      "/images/work/my-mobile/03.jpg"
+      "/images/work/MYBOBILE/01.jpg",
+      "/images/work/MYBOBILE/02.jpg",
+      "/images/work/MYBOBILE/03.jpg",
+      "/images/work/MYBOBILE/04.jpg",
+      "/images/work/MYBOBILE/05.jpg",
+      "/images/work/MYBOBILE/06.jpg"
     ],
     prev: "/work/meraki",
     next: "/work/serengeti"
@@ -97,9 +122,13 @@ export const WORK_DATA = {
     title: "Serengeti",
     description: "Serengeti Resort is a luxury getaway. I created their social media strategy and lead generation campaigns to attract more visitors and build a strong online presence.",
     images: [
-      "/images/work/serengeti/01.jpg",
-      "/images/work/serengeti/02.jpg",
-      "/images/work/serengeti/03.jpg"
+      "/images/work/SERENGETI/01.jpg",
+      "/images/work/SERENGETI/02.jpg",
+      "/images/work/SERENGETI/03.jpg",
+      "/images/work/SERENGETI/04.jpg",
+      "/images/work/SERENGETI/05.jpg",
+      "/images/work/SERENGETI/06.jpg",
+      "/images/work/SERENGETI/07.jpg"
     ],
     prev: "/work/the-my-mobile",
     next: "/work/mitraas"
