@@ -186,7 +186,7 @@ export default function BlogsClient() {
                     transition: 'all 0.4s ease'
                   }}>
                     <div style={{ borderRadius: '6px', overflow: 'hidden', aspectRatio: '16/10' }}>
-                      <Link href={`/blogs/${post.slug}`} style={{ display: 'block', width: '100%', height: '100%' }}>
+                      <Link href={`/blog-details?slug=${post.slug}`} style={{ display: 'block', width: '100%', height: '100%' }}>
                         <img 
                           src={post.img} 
                           alt={post.title}
@@ -227,7 +227,7 @@ export default function BlogsClient() {
                     letterSpacing: '-0.5px',
                     fontFamily: 'inherit'
                   }}>
-                    <Link href={`/blogs/${post.slug}`} style={{ color: '#203b72', textDecoration: 'none', transition: 'color 0.3s' }}
+                    <Link href={`/blog-details?slug=${post.slug}`} style={{ color: '#203b72', textDecoration: 'none', transition: 'color 0.3s' }}
                       onMouseEnter={(e) => e.currentTarget.style.color = '#000'}
                       onMouseLeave={(e) => e.currentTarget.style.color = '#203b72'}
                     >
@@ -278,7 +278,7 @@ export default function BlogsClient() {
 
                   {/* Simple Creative Slide-Arrow CTA */}
                   <div>
-                    <Link href={`/blogs/${post.slug}`} style={{
+                    <Link href={`/blog-details?slug=${post.slug}`} style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '5px',

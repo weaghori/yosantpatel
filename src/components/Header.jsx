@@ -5,19 +5,25 @@ import MobileHeader from './MobileHeader';
 
 export default function Header() {
   const pathname = usePathname();
-  const isHomePage = pathname === '/';
-  const isWorkGrid = pathname === '/work';
-  const isSolutions = pathname === '/solutions';
-  const isAbout = pathname === '/about';
-  const isApproach = pathname === '/approach';
-  const isContact = pathname === '/contact';
-  const isBlogsList = pathname === '/blogs';
-  const isConsultation = pathname === '/consultation';
+  
+  // Normalize pathname to ignore trailing slashes (which Next.js adds with trailingSlash: true)
+  const normalizedPath = pathname.endsWith('/') && pathname !== '/' 
+    ? pathname.slice(0, -1) 
+    : pathname;
 
-  const isWorkDetail = pathname.startsWith('/work/') && pathname !== '/work';
-  const isBlogDetail = pathname.startsWith('/blogs/') && pathname !== '/blogs';
-  const isTerms = pathname === '/terms-conditions';
-  const isPrivacy = pathname === '/privacy-policy';
+  const isHomePage = normalizedPath === '/';
+  const isWorkGrid = normalizedPath === '/work';
+  const isSolutions = normalizedPath === '/solutions';
+  const isAbout = normalizedPath === '/about';
+  const isApproach = normalizedPath === '/approach';
+  const isContact = normalizedPath === '/contact';
+  const isBlogsList = normalizedPath === '/blogs';
+  const isConsultation = normalizedPath === '/consultation';
+
+  const isWorkDetail = normalizedPath.startsWith('/work/') && normalizedPath !== '/work';
+  const isBlogDetail = normalizedPath.startsWith('/blog-details');
+  const isTerms = normalizedPath === '/terms-conditions';
+  const isPrivacy = normalizedPath === '/privacy-policy';
 
 
   const isTransparent = isHomePage || isAbout || isSolutions || isApproach || isContact || isWorkDetail || isBlogDetail || isBlogsList || isWorkGrid || isConsultation || isTerms || isPrivacy;
