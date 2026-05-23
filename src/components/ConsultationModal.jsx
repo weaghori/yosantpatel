@@ -1,5 +1,8 @@
 "use client";
 import { useState, useEffect } from 'react';
+import Script from 'next/script';
+
+const RECAPTCHA_SITE_KEY = "6LcRzfgsAAAAAAXSGljZN5vB3-54x1AG0D3nAwc6";
 
 const STEPS = ['Personal Info', 'Project Details', 'Review'];
 
@@ -58,7 +61,19 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    
     try {
+      // Execute Google reCAPTCHA v3
+      const token = await new Promise((resolve, reject) => {
+        if (!window.grecaptcha) {
+          reject(new Error('reCAPTCHA not loaded'));
+          return;
+        }
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {action: 'submit'}).then(resolve).catch(reject);
+        });
+      });
+
       const formPayload = new URLSearchParams();
       Object.keys(formData).forEach(key => {
         if (Array.isArray(formData[key])) {
@@ -70,6 +85,9 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
       if (selectedDate) {
         formPayload.append('selectedDate', selectedDate.toISOString());
       }
+      
+      // Append the reCAPTCHA token to the form payload
+      formPayload.append('g-recaptcha-response', token);
 
       const response = await fetch('/submit-consultation.php', {
         method: 'POST',
@@ -116,8 +134,10 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
   const budgets = ['20–50k', '50k–1L', '1–5L'];
 
   return (
-    <div id="consultation-overlay" className="cm-overlay" onClick={onClose}>
-      <div className="cm-modal" onClick={e => e.stopPropagation()}>
+    <>
+      <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`} strategy="afterInteractive" />
+      <div id="consultation-overlay" className="cm-overlay" onClick={onClose}>
+        <div className="cm-modal" onClick={e => e.stopPropagation()}>
 
         {/* Left accent panel */}
         <div className="cm-panel">
@@ -717,7 +737,8 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
           .cm-form-title { font-size: 22px; }
         }
       `}} />
-    </div>
+      </div>
+    </>
   );
 }
 
