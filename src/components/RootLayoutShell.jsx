@@ -72,7 +72,7 @@ export default function RootLayoutShell({ children }) {
       {/* Google Tag Manager (noscript) */}
       <noscript>
         <iframe 
-          src="https://www.googletagmanager.com/ns.html?id=GTM-PSXB8DV" 
+          src="https://www.googletagmanager.com/ns.html?id=GTM-K2SNGWC9" 
           height="0" width="0" 
           style={{ display: 'none', visibility: 'hidden' }}
         ></iframe>
@@ -107,7 +107,7 @@ export default function RootLayoutShell({ children }) {
             j.src =
               'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', 'GTM-PSXB8DV');
+          })(window, document, 'script', 'dataLayer', 'GTM-K2SNGWC9');
         `}
       </Script>
 
