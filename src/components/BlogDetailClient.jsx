@@ -115,9 +115,10 @@ export default function BlogDetailClient({ post }) {
         <div className="row">
           <div className="column width-12">
             <article className="creative-blog-wrapper" style={{
-              maxWidth: '100%',
+              maxWidth: '1150px',
               margin: '0 auto',
-              backgroundColor: '#ffffff'
+              backgroundColor: '#ffffff',
+              padding: isMobile ? '0 15px' : '0 40px'
             }}>
               
 
@@ -393,71 +394,83 @@ export default function BlogDetailClient({ post }) {
         }
 
         .creative-prose p {
-          margin-bottom: 24px !important;
-          color: #334155 !important;
-          line-height: 1.85 !important;
-          font-size: 17px !important;
+          margin-bottom: 24px;
+          color: #334155;
+          line-height: 1.85;
+          font-size: 17px;
+          font-weight: 400 !important;
+        }
+
+        body .creative-prose p,
+        body .creative-prose p span,
+        body .creative-prose li,
+        body .creative-prose li span {
+          font-weight: 400 !important;
         }
 
         .creative-prose h2 {
-          font-size: 28px !important;
-          font-weight: 800 !important;
-          color: #203b72 !important;
-          margin-top: 50px !important;
-          margin-bottom: 20px !important;
-          letter-spacing: -0.5px !important;
-          line-height: 1.3 !important;
+          font-size: 24px;
+          font-weight: 700;
+          color: #000000;
+          margin-top: 36px;
+          margin-bottom: 18px;
+          letter-spacing: -0.3px;
+          line-height: 1.35;
+          font-family: var(--font-open-sans), sans-serif !important;
         }
 
         .creative-prose h3 {
-          font-size: 22px !important;
-          font-weight: 700 !important;
-          color: #203b72 !important;
-          margin-top: 40px !important;
-          margin-bottom: 16px !important;
-          letter-spacing: -0.5px !important;
-          line-height: 1.3 !important;
+          font-size: 20px;
+          font-weight: 700;
+          color: #000000;
+          margin-top: 28px;
+          margin-bottom: 14px;
+          letter-spacing: -0.3px;
+          line-height: 1.35;
+          font-family: var(--font-open-sans), sans-serif !important;
         }
 
         .creative-prose blockquote {
-          border-left: 4px solid #203b72 !important;
-          padding: 16px 24px !important;
-          margin: 32px 0 !important;
-          background: #f8fafc !important;
-          border-radius: 0 8px 8px 0 !important;
-          font-style: italic !important;
-          color: #475569 !important;
+          border-left: 4px solid #203b72;
+          padding: 16px 24px;
+          margin: 32px 0;
+          background: #f8fafc;
+          border-radius: 0 8px 8px 0;
+          font-style: italic;
+          color: #475569;
         }
 
         .creative-prose blockquote p {
-          margin: 0 !important;
-          font-size: 18px !important;
-          color: #475569 !important;
+          margin: 0;
+          font-size: 18px;
+          color: #475569;
         }
 
         .creative-prose ul {
-          list-style-type: disc !important;
-          margin: 0 0 24px 24px !important;
+          list-style-type: disc;
+          margin: 0 0 24px 24px;
         }
 
         .creative-prose ol {
-          list-style-type: decimal !important;
-          margin: 0 0 24px 24px !important;
+          list-style-type: decimal;
+          margin: 0 0 24px 24px;
         }
 
         .creative-prose li {
-          margin-bottom: 8px !important;
-          line-height: 1.8 !important;
-          color: #334155 !important;
+          margin-bottom: 8px;
+          line-height: 1.8;
+          color: #334155;
+          font-weight: 400 !important;
         }
 
         .creative-prose img {
-          border-radius: 12px !important;
-          margin: 40px auto !important;
-          display: block !important;
+          border-radius: 12px;
+          margin: 40px auto;
+          display: block;
+          width: 100% !important;
           max-width: 100% !important;
           height: auto !important;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
         }
 
         /* Suggested Recent Articles Hover Animations */
