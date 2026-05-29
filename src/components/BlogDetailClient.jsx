@@ -74,20 +74,6 @@ export default function BlogDetailClient({ post }) {
 
         <div className="row" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
           <div className="column width-12" style={{ textAlign: 'left' }}>
-            {/* Category Tag */}
-            {Array.isArray(post.tags) && post.tags.length > 0 && (
-              <span style={{
-                display: 'inline-block',
-                fontSize: '11px',
-                fontWeight: '700',
-                color: '#38bdf8',
-                letterSpacing: '1.5px',
-                textTransform: 'uppercase',
-                marginBottom: '15px'
-              }}>
-                {post.tags.join(', ')}
-              </span>
-            )}
 
             {/* Premium Editorial Title */}
             <h1 style={{
@@ -134,29 +120,7 @@ export default function BlogDetailClient({ post }) {
               backgroundColor: '#ffffff'
             }}>
               
-              {/* Blog Main Image Content Tag */}
-              {post.mainImage && (
-                <div style={{
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  width: '100%',
-                  marginBottom: isMobile ? '30px' : '50px',
-                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.03)',
-                  border: '1px solid #f1f5f9'
-                }}>
-                  <img 
-                    src={post.mainImage.startsWith('http') ? post.mainImage : `https://ams.aghorimediahouse.com${post.mainImage}`} 
-                    alt={post.title} 
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      maxHeight: '520px',
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
-                  />
-                </div>
-              )}
+
 
               {/* Dynamic content prose */}
               <div 
