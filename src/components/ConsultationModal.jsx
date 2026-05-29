@@ -74,27 +74,16 @@ export default function ConsultationModal({ isOpen, onClose, selectedDate }) {
         });
       });
 
-      const formPayload = new URLSearchParams();
-      Object.keys(formData).forEach(key => {
-        if (Array.isArray(formData[key])) {
-          formPayload.append(key, JSON.stringify(formData[key]));
-        } else {
-          formPayload.append(key, formData[key] || '');
-        }
-      });
-      if (selectedDate) {
-        formPayload.append('selectedDate', selectedDate.toISOString());
-      }
-      
-      // Append the reCAPTCHA token to the form payload
-      formPayload.append('g-recaptcha-response', token);
-
       const response = await fetch('/submit-consultation.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
         },
-        body: formPayload.toString()
+        body: JSON.stringify({
+          ...formData,
+          selectedDate: selectedDate ? selectedDate.toISOString() : undefined,
+          'g-recaptcha-response': token
+        })
       });
 
       let result;

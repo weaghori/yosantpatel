@@ -11,6 +11,22 @@ export async function POST(request) {
       selectedDate
     } = data;
 
+    // Verify Google reCAPTCHA v3
+    const gRecaptchaResponse = data['g-recaptcha-response'];
+    if (!gRecaptchaResponse) {
+      return NextResponse.json({ success: false, message: "reCAPTCHA verification failed: No token provided" }, { status: 400 });
+    }
+
+    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || "6LcRzfgsAAAAAEfFQDIBKC7SAsCAVOmD1gs03mSo";
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${gRecaptchaResponse}`;
+
+    const verifyResponse = await fetch(verifyUrl, { method: 'POST' });
+    const responseData = await verifyResponse.json();
+
+    if (!responseData.success || responseData.score < 0.5) {
+      return NextResponse.json({ success: false, message: "reCAPTCHA verification failed: Bot detected" }, { status: 403 });
+    }
+
     const SMTP_HOST = process.env.SMTP_HOST || 'smtp-relay.brevo.com';
     const SMTP_PORT = process.env.SMTP_PORT || '587';
     const SMTP_USER = process.env.SMTP_USER;
@@ -75,7 +91,7 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       host: SMTP_HOST,
       port: parseInt(SMTP_PORT),
-      secure: false, // true for 465, false for other ports
+      secure: false, 
       auth: {
         user: SMTP_USER,
         pass: BREVO_API_KEY,
