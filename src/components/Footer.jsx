@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -41,6 +43,10 @@ export default function Footer() {
 
         .footer-max-width {
           margin: 0 auto;
+        }
+
+        .footer-blog-details-width {
+          max-width: 1150px !important;
         }
 
         /* Top Row: Asymmetrical Brand + Tagline vs Big Creative Email CTA */
@@ -377,7 +383,7 @@ export default function Footer() {
       `}</style>
 
       <footer className="premium-footer">
-        <div className="row footer-max-width">
+        <div className={`row footer-max-width ${pathname === '/blog-details' ? 'footer-blog-details-width' : ''}`}>
 
           {/* Top Row: Asymmetrical Brand Info + Gigantic Email CTA */}
           <div className="footer-top-row">
